@@ -8,6 +8,7 @@
   --accent: #8a5a2b;
   --accent-soft: #b8894f;
   --max: 900px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * { box-sizing: border-box; }
@@ -150,13 +151,18 @@ nav.main-nav a.active {
   border: 1px solid var(--line);
   border-radius: 4px;
   padding: 24px;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out);
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent-soft);
+/* Touch devices fire :hover on tap, so gate the lift behind a real pointer. */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-soft);
+  }
 }
+
+.card:active { transform: scale(0.99); }
 
 .card h3 { margin: 0 0 8px; font-size: 1.25rem; }
 .card p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
@@ -286,4 +292,37 @@ article.prose .end-mark {
   text-align: center;
   letter-spacing: 0.6em;
   margin: 40px 0 0;
+}
+
+/* ---------- Sub-headings and lists inside a piece ---------- */
+article.prose h2 {
+  font-size: 1.3rem;
+  margin: 36px 0 14px;
+}
+
+article.prose ul {
+  margin: 0 0 20px;
+  padding-left: 1.3em;
+}
+
+article.prose li { margin-bottom: 8px; }
+
+/* Address blocks, sign-offs — lines that belong together. */
+article.prose p.block { color: var(--ink-soft); }
+
+/* ---------- Poems ---------- */
+article.prose.poem { max-width: 60ch; }
+
+article.prose.poem .stanza {
+  margin: 0 0 30px;
+  line-height: 1.85;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .card, .card:hover, .card:active {
+    transition: border-color 200ms ease;
+    transform: none;
+  }
 }
