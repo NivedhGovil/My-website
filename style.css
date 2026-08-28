@@ -88,6 +88,48 @@ nav.main-nav a.active {
   border-bottom-color: var(--accent);
 }
 
+/* ---------- Sub-navigation (within a section) ---------- */
+.sub-nav {
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-alt);
+}
+
+.sub-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 12px 0;
+  flex-wrap: wrap;
+}
+
+.sub-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.sub-nav a:hover { color: var(--ink); }
+
+.sub-nav a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Section introduction ---------- */
+.section-intro {
+  max-width: 64ch;
+  margin: 32px 0 44px;
+  color: var(--ink-soft);
+}
+
+.section-intro p { margin: 0 0 16px; }
+
+.more-note { margin-top: 26px; font-size: 0.92rem; font-style: italic; }
+
 /* ---------- Hero ---------- */
 .hero {
   display: grid;
@@ -174,6 +216,15 @@ nav.main-nav a.active {
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+main.wrap > .cards:last-of-type { margin-bottom: 72px; }
+
+/* A section list that is not yet full-width: keep cards at a readable size
+   instead of stretching a lone card across the page. */
+.cards.cards-start {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 300px));
+  justify-content: start;
 }
 
 /* ---------- Page header ---------- */

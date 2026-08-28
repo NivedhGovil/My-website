@@ -7,7 +7,8 @@ stylesheet. Open `index.html` in a browser to view it locally.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Home: photo, introduction, and links to the writing sections |
+| `index.html` | Home: photo, introduction, and the list of sections |
+| `literary.html` | The Literary section: an intro and doors into the three forms |
 | `articles.html` | All articles |
 | `poems.html` | All poems |
 | `short-stories.html` | All short stories |
@@ -15,8 +16,28 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `style.css` | Shared styling for every page |
 | `assets/` | Images |
 
-Every page carries the same navigation bar, so you can move between Home,
-Articles, Poems and Short Stories from anywhere on the site.
+## How the site is organised
+
+The site is built to hold more than writing, so navigation works in two levels:
+
+- The **main navigation** (top bar, on every page) lists the sections of the
+  site. Right now that is Home and Literary.
+- Inside Literary, a **sub-navigation** bar lists the three forms — Articles,
+  Poems and Short Stories — and stays visible on every page beneath it, so you
+  can move between them from anywhere without going back up.
+
+## Adding a new section
+
+1. Copy `literary.html` to a new file and rewrite its intro and cards.
+2. Add a card for it in the "Sections" list in `index.html`.
+3. Add it to the main navigation on every page:
+
+   ```html
+   <li><a href="the-new-section.html">The New Section</a></li>
+   ```
+
+Only pages inside a section need a sub-navigation bar; a section with no
+sub-pages can leave it out, as `literary.html` itself does.
 
 ## Adding the photo
 
