@@ -18,6 +18,42 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `style.css` | Shared styling for every page |
 | `assets/` | Images |
 
+## Design
+
+The look is a warm cream-to-peach wash carrying one hue per section, with serif
+display headings over a sans interface, soft rounded white cards, and pill-shaped
+badges and buttons.
+
+| Section | Hue |
+| --- | --- |
+| Literary | orange |
+| Articles | teal |
+| Poems | rose |
+| Short Stories | violet |
+| Books | olive green |
+| Engineering | indigo |
+
+Each page names its section on the `<body>` tag — `<body class="s-poems">` — and
+every component inherits its colour from there. Adding a page means giving its
+body the right class; nothing else needs touching.
+
+There are three colour roles per section and they are **not** interchangeable:
+
+- `--accent` carries text. Every value clears 4.5:1 contrast on the background.
+- `--accent-bright` fills shapes (buttons, badges). Never use it for small text.
+- `--accent-tint` is the pale wash behind pills.
+
+Type is split by job: headings are serif, interface text is sans, and the writing
+itself returns to serif on the reading pages, where it belongs.
+
+## Artwork
+
+`assets/cover-*.svg` is one abstract cover per section, used both as the image on
+its card and as the banner across the top of its page. Each is drawn on the
+section's own gradient. The motifs sit inside a centre band so they survive both
+crops — if you redraw one, keep the artwork between roughly y=100 and y=240 of
+the 800x340 canvas.
+
 ## How the site is organised
 
 The site is built to hold more than writing, so navigation works in two levels:
