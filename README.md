@@ -9,6 +9,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | --- | --- |
 | `index.html` | Home: photo, introduction, and the list of sections |
 | `literary.html` | The Literary section: an intro and doors into the three forms |
+| `engineering.html` | The Engineering section: intro and the list of builds |
 | `articles.html` | All articles |
 | `poems.html` | All poems |
 | `short-stories.html` | All short stories |
@@ -21,10 +22,46 @@ stylesheet. Open `index.html` in a browser to view it locally.
 The site is built to hold more than writing, so navigation works in two levels:
 
 - The **main navigation** (top bar, on every page) lists the sections of the
-  site. Right now that is Home and Literary.
+  site: Home, Literary and Engineering.
 - Inside Literary, a **sub-navigation** bar lists the three forms — Articles,
   Poems and Short Stories — and stays visible on every page beneath it, so you
   can move between them from anywhere without going back up.
+
+## Adding a build to the Engineering section
+
+Open `engineering.html`. It contains a commented-out template with instructions.
+Copy it, and fill in the video ID, title, meta line and summary:
+
+```html
+<li class="build">
+  <div class="video">
+    <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+            title="The build's name" loading="lazy" allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <div class="build-text">
+    <h2>The build's name</h2>
+    <p class="meta">Arduino Uno &middot; HC-SR04</p>
+    <p class="summary">What it does, and what was hard about it.</p>
+  </div>
+</li>
+```
+
+`VIDEO_ID` is the part of a YouTube URL after `v=` — in
+`https://www.youtube.com/watch?v=dQw4w9WgXcQ` the ID is `dQw4w9WgXcQ`. The embed
+sits in a 16:9 frame that resizes with the page, and stacks above the text on
+phones. Delete the placeholder `<li>` holding the "being added" note once the
+first build is in.
+
+## Elsewhere
+
+Links out to Nivedh's profiles live next to the work they relate to, not in the
+main navigation:
+
+- **Medium** (`https://medium.com/@nivedh.govil`) — in an "Also on Medium" block
+  at the foot of `literary.html`.
+- **YouTube** (`https://www.youtube.com/@nivedhgovil`) — in the intro and footer
+  of `engineering.html`.
 
 ## Adding a new section
 
