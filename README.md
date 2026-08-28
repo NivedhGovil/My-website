@@ -18,29 +18,41 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `style.css` | Shared styling for every page |
 | `assets/` | Images |
 
-## Colour
+## Design
 
-The palette is one cool neutral base plus a hue per section, defined as tokens
-at the top of `style.css`:
+The look is a warm cream-to-peach wash carrying one hue per section, with serif
+display headings over a sans interface, soft rounded white cards, and pill-shaped
+badges and buttons.
 
 | Section | Hue |
 | --- | --- |
-| Literary | violet |
-| Articles | blue |
-| Poems | magenta |
-| Short Stories | orange |
-| Books | green |
-| Engineering | teal |
+| Literary | orange |
+| Articles | teal |
+| Poems | rose |
+| Short Stories | violet |
+| Books | olive green |
+| Engineering | indigo |
 
-Each page sets its section on the `<body>` tag — `<body class="s-poems">` — and
-every component below inherits the right colour from it. Nothing else needs to
-change when you add a page; give its `<body>` the right class and the headings,
-links, meta lines and rules all follow.
+Each page names its section on the `<body>` tag — `<body class="s-poems">` — and
+every component inherits its colour from there. Adding a page means giving its
+body the right class; nothing else needs touching.
 
-`--accent` carries text and every value clears 4.5:1 contrast on the page
-background; `--accent-soft` is decorative only (card rules, hover borders). Keep
-that split when adding a hue. The thin gradient across the top of every page is
-all six hues in order.
+There are three colour roles per section and they are **not** interchangeable:
+
+- `--accent` carries text. Every value clears 4.5:1 contrast on the background.
+- `--accent-bright` fills shapes (buttons, badges). Never use it for small text.
+- `--accent-tint` is the pale wash behind pills.
+
+Type is split by job: headings are serif, interface text is sans, and the writing
+itself returns to serif on the reading pages, where it belongs.
+
+## Artwork
+
+`assets/cover-*.svg` is one abstract cover per section, used both as the image on
+its card and as the banner across the top of its page. Each is drawn on the
+section's own gradient. The motifs sit inside a centre band so they survive both
+crops — if you redraw one, keep the artwork between roughly y=100 and y=240 of
+the 800x340 canvas.
 
 ## How the site is organised
 
