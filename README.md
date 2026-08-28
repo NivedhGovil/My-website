@@ -18,6 +18,30 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `style.css` | Shared styling for every page |
 | `assets/` | Images |
 
+## Colour
+
+The palette is one cool neutral base plus a hue per section, defined as tokens
+at the top of `style.css`:
+
+| Section | Hue |
+| --- | --- |
+| Literary | violet |
+| Articles | blue |
+| Poems | magenta |
+| Short Stories | orange |
+| Books | green |
+| Engineering | teal |
+
+Each page sets its section on the `<body>` tag — `<body class="s-poems">` — and
+every component below inherits the right colour from it. Nothing else needs to
+change when you add a page; give its `<body>` the right class and the headings,
+links, meta lines and rules all follow.
+
+`--accent` carries text and every value clears 4.5:1 contrast on the page
+background; `--accent-soft` is decorative only (card rules, hover borders). Keep
+that split when adding a hue. The thin gradient across the top of every page is
+all six hues in order.
+
 ## How the site is organised
 
 The site is built to hold more than writing, so navigation works in two levels:

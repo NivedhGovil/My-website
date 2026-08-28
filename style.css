@@ -1,14 +1,54 @@
-/* ---------- Base ---------- */
+/* ---------- Base ----------
+
+   The palette is one neutral base plus a hue per section. Each section sets
+   --accent / --accent-soft on <body>, so every component below inherits the
+   right colour without knowing which section it is in.
+
+   --accent      carries text (links, labels, meta) and must stay legible:
+                 every value here clears 4.5:1 on the page background.
+   --accent-soft is decorative only — card rules, hover borders, dividers.
+*/
 :root {
-  --ink: #1c1b19;
-  --ink-soft: #55524d;
-  --paper: #fbf9f5;
-  --paper-alt: #f2eee6;
-  --line: #e0d9cc;
-  --accent: #8a5a2b;
-  --accent-soft: #b8894f;
+  --ink: #15161c;
+  --ink-soft: #565a68;
+  --paper: #fcfcfd;
+  --paper-alt: #f3f4f8;
+  --line: #e3e5ec;
+
+  --c-literary:    #6d28d9;   --c-literary-soft:    #8b5cf6;
+  --c-engineering: #0f766e;   --c-engineering-soft: #14b8a6;
+  --c-articles:    #1d4ed8;   --c-articles-soft:    #3b82f6;
+  --c-poems:       #be185d;   --c-poems-soft:       #ec4899;
+  --c-stories:     #c2410c;   --c-stories-soft:     #f97316;
+  --c-books:       #047857;   --c-books-soft:       #10b981;
+
+  --accent: var(--c-literary);
+  --accent-soft: var(--c-literary-soft);
+
   --max: 900px;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body.s-home        { --accent: #4338ca;              --accent-soft: #818cf8; }
+body.s-literary    { --accent: var(--c-literary);    --accent-soft: var(--c-literary-soft); }
+body.s-engineering { --accent: var(--c-engineering); --accent-soft: var(--c-engineering-soft); }
+body.s-articles    { --accent: var(--c-articles);    --accent-soft: var(--c-articles-soft); }
+body.s-poems       { --accent: var(--c-poems);       --accent-soft: var(--c-poems-soft); }
+body.s-stories     { --accent: var(--c-stories);     --accent-soft: var(--c-stories-soft); }
+body.s-books       { --accent: var(--c-books);       --accent-soft: var(--c-books-soft); }
+
+/* The full spectrum, as a hairline across the top of every page. */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 20;
+  background: linear-gradient(90deg,
+    var(--c-articles) 0%, var(--c-literary) 22%, var(--c-poems) 42%,
+    var(--c-stories) 62%, var(--c-books) 81%, var(--c-engineering) 100%);
 }
 
 * { box-sizing: border-box; }
@@ -17,6 +57,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  padding-top: 3px;
   background: var(--paper);
   color: var(--ink);
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -38,7 +79,7 @@ a { color: var(--accent); }
   border-bottom: 1px solid var(--line);
   background: var(--paper);
   position: sticky;
-  top: 0;
+  top: 3px;
   z-index: 10;
 }
 
@@ -191,28 +232,30 @@ nav.main-nav a.active {
   color: inherit;
   background: var(--paper-alt);
   border: 1px solid var(--line);
+  border-top: 3px solid var(--card-accent, var(--accent-soft));
   border-radius: 4px;
   padding: 24px;
-  transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out);
+  transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out),
+              box-shadow 200ms var(--ease-out);
 }
 
 /* Touch devices fire :hover on tap, so gate the lift behind a real pointer. */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     transform: translateY(-3px);
-    border-color: var(--accent-soft);
+    box-shadow: 0 6px 20px rgb(21 22 28 / 8%);
   }
 }
 
 .card:active { transform: scale(0.99); }
 
-.card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+.card h3 { margin: 0 0 8px; font-size: 1.25rem; color: var(--card-accent, var(--accent)); }
 .card p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
 
 .card .go {
   display: inline-block;
   margin-top: 14px;
-  color: var(--accent);
+  color: var(--card-accent, var(--accent));
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -248,7 +291,7 @@ main.wrap > .cards:last-of-type { margin-bottom: 72px; }
 .piece h2 a:hover { color: var(--accent); }
 
 .piece .meta {
-  color: var(--accent-soft);
+  color: var(--accent);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -321,7 +364,7 @@ article.prose h1 {
 }
 
 article.prose .byline {
-  color: var(--accent-soft);
+  color: var(--accent);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -444,7 +487,7 @@ article.prose.poem .stanza {
 .build-text h2 { font-size: 1.35rem; margin: 0 0 6px; }
 
 .build-text .meta {
-  color: var(--accent-soft);
+  color: var(--accent);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -486,7 +529,7 @@ article.prose.poem .stanza {
 .book h2 { font-size: 1.3rem; margin: 0 0 4px; }
 
 .book .author {
-  color: var(--accent-soft);
+  color: var(--accent);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -494,3 +537,31 @@ article.prose.poem .stanza {
 }
 
 .book .reason { margin: 0; color: var(--ink-soft); }
+
+/* Per-card hues, so a row of cards previews the colour of each section. */
+/* Four cards read better as a square than as a row of three plus an orphan. */
+@media (min-width: 700px) {
+  .cards.cards-quad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.k-literary    { --card-accent: var(--c-literary); }
+.k-engineering { --card-accent: var(--c-engineering); }
+.k-articles    { --card-accent: var(--c-articles); }
+.k-poems       { --card-accent: var(--c-poems); }
+.k-stories     { --card-accent: var(--c-stories); }
+.k-books       { --card-accent: var(--c-books); }
+
+/* The page title carries a short bar in the section colour. */
+.page-head h1::after,
+article.prose h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Sub-navigation picks up each form's own colour on hover and when current. */
+.sub-nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
