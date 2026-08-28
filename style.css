@@ -467,3 +467,30 @@ article.prose.poem .stanza {
 .elsewhere h2 { font-size: 1.3rem; margin: 0 0 8px; }
 
 .elsewhere p { color: var(--ink-soft); margin: 0 0 18px; max-width: 60ch; }
+
+/* ---------- Books ---------- */
+.book-list {
+  list-style: none;
+  margin: 8px 0 8px;
+  padding: 0;
+}
+
+.book {
+  border-top: 1px solid var(--line);
+  padding: 26px 0;
+  max-width: 68ch;
+}
+
+.book:last-child { border-bottom: 1px solid var(--line); }
+
+.book h2 { font-size: 1.3rem; margin: 0 0 4px; }
+
+.book .author {
+  color: var(--accent-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.book .reason { margin: 0; color: var(--ink-soft); }

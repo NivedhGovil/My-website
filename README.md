@@ -13,6 +13,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `articles.html` | All articles |
 | `poems.html` | All poems |
 | `short-stories.html` | All short stories |
+| `books.html` | Books to recommend, with a reason for each |
 | `pieces/` | One page per piece of writing (full text) |
 | `style.css` | Shared styling for every page |
 | `assets/` | Images |
@@ -23,9 +24,25 @@ The site is built to hold more than writing, so navigation works in two levels:
 
 - The **main navigation** (top bar, on every page) lists the sections of the
   site: Home, Literary and Engineering.
-- Inside Literary, a **sub-navigation** bar lists the three forms — Articles,
-  Poems and Short Stories — and stays visible on every page beneath it, so you
-  can move between them from anywhere without going back up.
+- Inside Literary, a **sub-navigation** bar lists Articles, Poems, Short Stories
+  and Books, and stays visible on every page beneath it, so you can move between
+  them from anywhere without going back up.
+
+## Adding a book
+
+Open `books.html` and copy one of the `<li class="book">` blocks:
+
+```html
+<li class="book">
+  <h2>The Title</h2>
+  <p class="author">Author Name &middot; Series and book number, if any</p>
+  <p class="reason">Why you would hand it to someone.</p>
+</li>
+```
+
+Keep the reason personal — what the book did for you, not what the back cover
+says. Books not yet read go in the "Next on the list" block at the bottom
+instead.
 
 ## Adding a build to the Engineering section
 
