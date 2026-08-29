@@ -15,7 +15,10 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `short-stories.html` | All short stories |
 | `books.html` | Books to recommend, with a reason for each |
 | `pieces/` | One page per piece of writing (full text) |
+| `404.html` | Shown for a bad URL; its links are absolute so it works at any depth |
 | `style.css` | Shared styling for every page |
+| `favicon.svg` | Browser tab icon |
+| `sitemap.xml`, `robots.txt` | For search engines |
 | `assets/` | Images |
 
 ## Design
@@ -45,6 +48,23 @@ There are three colour roles per section and they are **not** interchangeable:
 
 Type is split by job: headings are serif, interface text is sans, and the writing
 itself returns to serif on the reading pages, where it belongs.
+
+## Sharing and search
+
+Every page carries a canonical URL, Open Graph and Twitter card tags, and points
+at `assets/og-image.png` (1200x630) as its preview image. All of these use the
+base URL `https://nivedhgovil.github.io/My-website/` — **if the site ever moves
+to a custom domain, that string has to change in every page, plus
+`sitemap.xml`, `robots.txt` and the absolute links in `404.html`.**
+
+## Accessibility
+
+- Every page opens with a skip link to jump the navigation.
+- The current nav item is marked `aria-current="page"`.
+- Focus rings show for keyboard users (`:focus-visible`) but not on mouse clicks.
+- Every colour that carries text clears 4.5:1 contrast — on the page background,
+  on white cards, and on its own pill tint. Check any new hue against all three.
+- Images have alt text; motion respects `prefers-reduced-motion`.
 
 ## Artwork
 

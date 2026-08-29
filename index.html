@@ -5,16 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nivedh Govil</title>
 <meta name="description" content="Nivedh Govil — writer of articles, poems and short stories.">
+<link rel="canonical" href="https://nivedhgovil.github.io/My-website/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivedh Govil">
+<meta property="og:title" content="Nivedh Govil">
+<meta property="og:description" content="Nivedh Govil — writer of articles, poems and short stories.">
+<meta property="og:url" content="https://nivedhgovil.github.io/My-website/">
+<meta property="og:image" content="https://nivedhgovil.github.io/My-website/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fffaf6">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="s-home">
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html">Nivedh <span>Govil</span></a>
     <nav class="main-nav">
       <ul>
-        <li><a class="active" href="index.html">Home</a></li>
+        <li><a class="active" aria-current="page" href="index.html">Home</a></li>
         <li><a href="literary.html">Literary</a></li>
         <li><a href="engineering.html">Engineering</a></li>
       </ul>
@@ -22,7 +36,7 @@
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main" tabindex="-1">
 
   <section class="hero">
     <!-- Replace assets/portrait-placeholder.svg with the real photo,
@@ -69,6 +83,34 @@
 
     <p class="section-note more-note">More sections will appear as this website
     grows.</p>
+  </section>
+
+  <section class="section" id="featured">
+    <h2>A few things to read</h2>
+    <p class="section-note">If you only have a minute, start with one of these.</p>
+
+    <ul class="piece-list featured-list">
+      <li class="piece">
+        <h2><a href="pieces/blaming-the-indians.html">Blaming the Indians</a></h2>
+        <p class="meta k-poems">Poem</p>
+        <p class="summary">Every stereotype people reach for about Indians, answered in
+        turn &mdash; the world is too big and too diverse to be trapped in boxes.</p>
+      </li>
+      <li class="piece">
+        <h2><a href="pieces/a-boon-in-disguise.html">A boon in disguise</a></h2>
+        <p class="meta k-stories">Short story</p>
+        <p class="summary">By 2050 the world runs on AI and uses three percent of its own
+        mind. Then, at noon on the 28th of April, the Wi-Fi dies.</p>
+      </li>
+      <li class="piece">
+        <h2><a href="pieces/a-healthy-mind.html">A healthy mind is the foundation of a meaningful life</a></h2>
+        <p class="meta k-articles">Article</p>
+        <p class="summary">What mental health actually is, and how habits quietly build a
+        mind worth living in.</p>
+      </li>
+    </ul>
+
+    <p class="section-note more-note"><a href="literary.html">All seventeen pieces &rarr;</a></p>
   </section>
 
   <section class="section" id="about">

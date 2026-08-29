@@ -27,7 +27,7 @@
   --c-articles:    #0f766e;  --c-articles-br:    #14b8a6;  --c-articles-tt:    #d7f5f0;
   --c-poems:       #be123c;  --c-poems-br:       #f43f5e;  --c-poems-tt:       #ffe4e9;
   --c-stories:     #7c3aed;  --c-stories-br:     #a855f7;  --c-stories-tt:     #f0e6fe;
-  --c-books:       #4d7c0f;  --c-books-br:       #84cc16;  --c-books-tt:       #e9f7d5;
+  --c-books:       #487409;  --c-books-br:       #84cc16;  --c-books-tt:       #e9f7d5;
 
   --accent: var(--c-literary);
   --accent-bright: var(--c-literary-br);
@@ -192,6 +192,8 @@ nav.main-nav a.active { color: var(--accent); background: var(--accent-tint); }
 
 .hero h1 { font-size: 3.4rem; line-height: 1.04; margin: 16px 0 4px; font-weight: 700; }
 
+.hero p.pill { margin: 0 0 4px; }
+
 .hero .tagline {
   color: var(--accent);
   font-weight: 600;
@@ -199,7 +201,7 @@ nav.main-nav a.active { color: var(--accent); background: var(--accent-tint); }
   margin: 0 0 20px;
 }
 
-.hero p { margin: 0 0 14px; color: var(--ink-soft); font-size: 1.05rem; }
+.hero p:not(.pill) { margin: 0 0 14px; color: var(--ink-soft); font-size: 1.05rem; }
 
 /* ---------- Sections ---------- */
 .section { padding: 46px 0; border-top: 1px solid var(--line); }
@@ -516,3 +518,113 @@ article.prose .end-mark {
 @media (max-width: 760px) {
   .section-banner { height: 140px; }
 }
+
+/* ---------- Keyboard access ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus { left: 0; }
+
+/* A clear focus ring everywhere, without drawing one on mouse clicks. */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+main:focus { outline: none; }
+
+/* ---------- Moving between pieces ---------- */
+.piece-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 40rem;
+  margin: 0 auto 76px;
+}
+
+.piece-nav a {
+  display: block;
+  text-decoration: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 22px;
+  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .piece-nav a:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+}
+
+.piece-nav .dir {
+  display: block;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.piece-nav .name {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.piece-nav .next { text-align: right; }
+.piece-nav .next-placeholder { visibility: hidden; }
+
+@media (max-width: 620px) {
+  .piece-nav { grid-template-columns: 1fr; }
+  .piece-nav .next { text-align: left; }
+  .piece-nav .next-placeholder { display: none; }
+}
+
+/* ---------- 404 ---------- */
+.notfound { text-align: center; padding: 90px 0 100px; }
+.notfound h1 { font-size: 3.2rem; margin: 16px 0 12px; }
+.notfound p { color: var(--ink-soft); margin: 0 auto 26px; max-width: 46ch; }
+
+/* ---------- Print: the writing, nothing else ---------- */
+@media print {
+  body { background: #fff; color: #000; font-size: 12pt; }
+  .site-header, .sub-nav, .skip-link, .back-link,
+  .piece-nav, .site-footer, .section-banner, .end-mark { display: none; }
+  article.prose {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: none;
+  }
+  article.prose .byline { background: none; color: #444; padding: 0; }
+  a { text-decoration: none; color: #000; }
+}
+
+/* The featured list borrows each piece's own section colour for its label. */
+.featured-list { margin: 0 0 8px; }
+.featured-list .meta { background: var(--card-accent-tint, var(--accent-tint)); color: var(--card-accent, var(--accent)); }
+.featured-list .piece h2 a:hover { color: var(--card-accent, var(--accent)); }
+
+.meta.k-articles { --card-accent: var(--c-articles); --card-accent-tint: var(--c-articles-tt); }
+.meta.k-poems    { --card-accent: var(--c-poems);    --card-accent-tint: var(--c-poems-tt); }
+.meta.k-stories  { --card-accent: var(--c-stories);  --card-accent-tint: var(--c-stories-tt); }
+.meta.k-books    { --card-accent: var(--c-books);    --card-accent-tint: var(--c-books-tt); }
