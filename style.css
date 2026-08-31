@@ -28,6 +28,7 @@
   --c-poems:       #be123c;  --c-poems-br:       #f43f5e;  --c-poems-tt:       #ffe4e9;
   --c-stories:     #7c3aed;  --c-stories-br:     #a855f7;  --c-stories-tt:     #f0e6fe;
   --c-books:       #487409;  --c-books-br:       #84cc16;  --c-books-tt:       #e9f7d5;
+  --c-art:         #a21caf;  --c-art-br:         #d946ef;  --c-art-tt:         #fae8ff;
 
   --accent: var(--c-literary);
   --accent-bright: var(--c-literary-br);
@@ -52,6 +53,7 @@ body.s-engineering { --accent: var(--c-engineering); --accent-bright: var(--c-en
 body.s-articles    { --accent: var(--c-articles);    --accent-bright: var(--c-articles-br);    --accent-tint: var(--c-articles-tt); }
 body.s-poems       { --accent: var(--c-poems);       --accent-bright: var(--c-poems-br);       --accent-tint: var(--c-poems-tt); }
 body.s-stories     { --accent: var(--c-stories);     --accent-bright: var(--c-stories-br);     --accent-tint: var(--c-stories-tt); }
+body.s-art         { --accent: var(--c-art);         --accent-bright: var(--c-art-br);         --accent-tint: var(--c-art-tt); }
 body.s-books       { --accent: var(--c-books);       --accent-bright: var(--c-books-br);       --accent-tint: var(--c-books-tt); }
 
 * { box-sizing: border-box; }
@@ -276,6 +278,7 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 .k-poems       { --card-accent: var(--c-poems); }
 .k-stories     { --card-accent: var(--c-stories); }
 .k-books       { --card-accent: var(--c-books); }
+.k-art         { --card-accent: var(--c-art); }
 
 /* ---------- Page header ---------- */
 .page-head { padding: 56px 0 4px; }
@@ -629,6 +632,7 @@ main:focus { outline: none; }
 .meta.k-poems    { --card-accent: var(--c-poems);    --card-accent-tint: var(--c-poems-tt); }
 .meta.k-stories  { --card-accent: var(--c-stories);  --card-accent-tint: var(--c-stories-tt); }
 .meta.k-books    { --card-accent: var(--c-books);    --card-accent-tint: var(--c-books-tt); }
+.meta.k-art      { --card-accent: var(--c-art);      --card-accent-tint: var(--c-art-tt); }
 
 /* ---------- Fill-in placeholders ----------
    A slot waiting for real text. Each one shows what to write and roughly how
@@ -953,3 +957,38 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 
 .project .empty, .features .empty { font-style: italic; color: var(--ink-soft); }
 .project h3.empty { font-weight: 700; }
+
+/* ---------- Art gallery ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.art-piece {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .art-piece:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+}
+
+.art-piece img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--paper-alt);
+}
+
+.art-piece figcaption { padding: 16px 20px 20px; }
+.art-piece .art-title { display: block; font-weight: 600; margin-bottom: 3px; }
+.art-piece .art-meta { display: block; color: var(--ink-soft); font-size: 0.86rem; }
+.art-piece .empty { font-style: italic; color: var(--ink-soft); }

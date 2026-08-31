@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340" role="img" aria-label="">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a21caf"/>
+      <stop offset="100%" stop-color="#d946ef"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="340" fill="url(#g)"/>
+  <circle cx="690" cy="60" r="150" fill="#ffffff" opacity="0.10"/>
+  <circle cx="90" cy="310" r="120" fill="#ffffff" opacity="0.08"/>
+  <!-- Motifs are held inside a centre band so they survive both the card crop
+       and the shorter banner crop. -->
+  <g transform="translate(133, 47) scale(0.667)">
+  <circle cx="250" cy="170" r="72" fill="#ffffff" opacity="0.85"/>
+  <rect x="330" y="104" width="132" height="132" rx="14" fill="#ffffff" opacity="0.62"/>
+  <path d="M500 240 L566 108 L632 240 Z" fill="#ffffff" opacity="0.78"/>
+  <path d="M120 268 C 240 236, 420 300, 660 262" fill="none" stroke="#ffffff"
+        stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+  </g>
+</svg>

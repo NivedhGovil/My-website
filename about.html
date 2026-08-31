@@ -31,6 +31,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="literary.html">Literary</a></li>
         <li><a href="engineering.html">Engineering</a></li>
+        <li><a href="art.html">Art</a></li>
         <li><a class="active" aria-current="page" href="about.html">About</a></li>
       </ul>
     </nav>
@@ -123,24 +124,17 @@
   </section>
 
   <div class="big-head">
-    <p class="pill">Highlights</p>
-    <h2>My <span>Achievements</span></h2>
-    <p>Competitions, results, and things you were picked for.</p>
+    <p class="pill">School</p>
+    <h2>Academics &amp; <span>Olympiads</span></h2>
+    <p>Results that belong to school rather than to any one section.</p>
   </div>
 
-  <!-- One card per achievement. Copy a block to add one, delete a block to
-       remove one. Put a photo in assets/ and point the src at it; without a
-       photo the card still works, it just shows the placeholder. -->
+  <!-- Achievements that belong to a section live in that section:
+         writing prizes   -> literary.html
+         builds and fairs -> engineering.html
+         art competitions -> art.html
+       This page keeps only the academic ones. -->
   <div class="achievements">
-    <div class="achievement">
-      <img class="shot" src="assets/photo-placeholder.svg" alt="">
-      <div class="body">
-        <h3 class="empty">Name of the achievement</h3>
-        <p class="empty">Two lines on what it was, what you did, and why it was
-        hard. Replace the image above with a photo if you have one.</p>
-      </div>
-    </div>
-
     <div class="achievement">
       <img class="shot" src="assets/photo-placeholder.svg" alt="">
       <div class="body">
@@ -153,10 +147,26 @@
     <div class="achievement">
       <img class="shot" src="assets/photo-placeholder.svg" alt="">
       <div class="body">
-        <h3>2nd place, school science exhibition</h3>
-        <p>Add what the project was and who was on the team.</p>
+        <h3 class="empty">Another olympiad or exam</h3>
+        <p class="empty">Which one, the year, and where you placed.</p>
       </div>
     </div>
+
+    <div class="achievement">
+      <img class="shot" src="assets/photo-placeholder.svg" alt="">
+      <div class="body">
+        <h3 class="empty">Sport, music, or anything else</h3>
+        <p class="empty">Badminton, for instance &mdash; what level you reached and
+        where you train.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-intro">
+    <p>Achievements that belong to a particular kind of work live with that
+    work: <a href="literary.html">writing highlights are in Literary</a>,
+    <a href="engineering.html">build highlights in Engineering</a>, and
+    <a href="art.html">art highlights in Art</a>.</p>
   </div>
 
   <section class="section" id="contact">

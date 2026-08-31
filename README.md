@@ -15,6 +15,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `short-stories.html` | All short stories |
 | `books.html` | Books to recommend, with a reason for each |
 | `pieces/` | One page per piece of writing (full text) |
+| `art.html` | The Art section: intro, gallery and art highlights |
 | `about.html` | About page — mostly fill-in slots waiting for your text |
 | `404.html` | Shown for a bad URL; its links are absolute so it works at any depth |
 | `style.css` | Shared styling for every page |
@@ -36,6 +37,7 @@ badges and buttons.
 | Short Stories | violet |
 | Books | olive green |
 | Engineering | indigo |
+| Art | fuchsia |
 
 Each page names its section on the `<body>` tag — `<body class="s-poems">` — and
 every component inherits its colour from there. Adding a page means giving its
@@ -49,6 +51,22 @@ There are three colour roles per section and they are **not** interchangeable:
 
 Type is split by job: headings are serif, interface text is sans, and the writing
 itself returns to serif on the reading pages, where it belongs.
+
+## Achievements live in their section
+
+There is no single achievements page. Each kind of highlight sits with the work
+it belongs to, so a reader finds it where they are already looking:
+
+| Highlight | Lives in |
+| --- | --- |
+| Writing prizes, publications | `literary.html` |
+| Exhibitions, robotics competitions | `engineering.html` |
+| Art competitions, work shown | `art.html` |
+| Olympiads, school, sport | `about.html` |
+
+They all use the same `<div class="achievement">` markup and pick up the colour
+of whichever page they are on, so a card can be moved between sections by
+cutting and pasting it — nothing else needs changing.
 
 ## Filling in the placeholders
 
@@ -71,6 +89,9 @@ grey italic styling.
 
 **Highlight cards** (`<div class="highlight">`) — an icon, a bold line and a
 small line under it. Four of them sit beside the About prose.
+
+**Gallery pieces** (`<figure class="art-piece">`) — an image, a title and a
+medium/year line. One per artwork on `art.html`.
 
 **Achievement cards** (`<div class="achievement">`) — a photo, a title and two
 lines. Put a photo in `assets/` and point the `src` at it; without one the card
