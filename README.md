@@ -113,7 +113,7 @@ still works and shows the placeholder graphic.
 description, a parts list and a list of what it does. To add a build, copy one
 `<input>` + `<label>` pair *and* one `<div class="panel">`, keeping them in the
 same order, and give the new input a fresh `id` that the label's `for` points
-at. Four tabs are styled; ask for more if you need them. It works with no
+at. Six tabs are styled; ask for more if you need them. It works with no
 JavaScript at all — the tabs are radio buttons and CSS.
 
 **Emphasis inside prose** — wrap a phrase in `<span class="hl">` to colour it in

@@ -92,145 +92,168 @@
        ========================================================== -->
 
   <div class="tabs">
-    <!-- One tab per build. To add another: copy an <input> and a <label> here,
+    <!-- One tab per video. To add another: copy an <input> and a <label> here,
          and a <div class="panel"> below, keeping them in the same order. Give
          the new input a fresh id and point the label's "for" at it. Videos live
-         in assets/videos/. No JavaScript involved. -->
+         in assets/videos/. Six tabs are styled. No JavaScript involved. -->
     <input type="radio" name="build" id="build-1" checked>
     <input type="radio" name="build" id="build-2">
     <input type="radio" name="build" id="build-3">
+    <input type="radio" name="build" id="build-4">
+    <input type="radio" name="build" id="build-5">
 
     <div class="tab-labels">
       <label for="build-1">Arduino Radar</label>
-      <label for="build-2">Arduino Crane</label>
-      <label for="build-3">Tiranga on RGB LED</label>
+      <label for="build-2">Radar Tutorial</label>
+      <label for="build-3">Crane Tutorial</label>
+      <label for="build-4">Tiranga on RGB LED</label>
+      <label for="build-5">Rainbow on RGB LED</label>
     </div>
 
     <div class="panels">
     <div class="panel">
       <article class="project">
-        <div>
-          <h3>Arduino Radar</h3>
-          <p class="lede">An ultrasonic sensor mounted on a servo, sweeping back and forth and reporting how far away things are &mdash; the same idea as a radar, built out of two parts and a bit of trigonometry.</p>
+        <h3>Arduino Radar</h3>
+        <p class="lede">An Arduino-based radar system using an ultrasonic sensor mounted on a servo motor to detect objects at different angles.</p>
 
+        <div class="clips">
+          <figure class="clip">
+            <video controls preload="metadata" playsinline
+                   src="assets/videos/arduino-radar-1.mp4"></video>
+            <figcaption>The radar running &middot; 17s</figcaption>
+          </figure>
+        </div>
 
-          <span class="col-label">Built with</span>
-          <ul class="tags">
+        <div class="project-foot">
+          <div>
+            <span class="col-label">Built with</span>
+            <ul class="tags">
             <li>Arduino Uno</li>
-            <li>HC-SR04 ultrasonic sensor</li>
+            <li>Ultrasonic sensor</li>
+            <li>Servo motor</li>
+            </ul>
+          </div>
+          <div class="links">
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="panel">
+      <article class="project">
+        <h3>Arduino Radar Tutorial</h3>
+        <p class="lede">A step-by-step demonstration of building an Arduino radar, showing the electronic components, wiring, and setup used for the project.</p>
+
+        <div class="clips">
+          <figure class="clip">
+            <video controls preload="metadata" playsinline
+                   src="assets/videos/arduino-radar-2.mp4"></video>
+            <figcaption>Components, wiring and setup &middot; 25s</figcaption>
+          </figure>
+        </div>
+
+        <div class="project-foot">
+          <div>
+            <span class="col-label">Built with</span>
+            <ul class="tags">
+            <li>Arduino Uno</li>
+            <li>Ultrasonic sensor</li>
             <li>Servo motor</li>
             <li>Jumper wires</li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="col-label">What it does</span>
-          <ul class="features">
-            <li>Servo sweeps the sensor through an arc, a few degrees at a time</li>
-            <li>Ultrasonic sensor times an echo to measure distance at each angle</li>
-            <li>Angle and distance are plotted as a moving radar display</li>
-            <li>Objects show up as blips at the bearing where they were found</li>
-          </ul>
-
-          <div class="links">
-            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">More builds on YouTube &rarr;</a>
+            </ul>
           </div>
-        </div>
-        <div class="clips">
-        <figure class="clip">
-          <video controls preload="metadata" playsinline
-                 src="assets/videos/arduino-radar-1.mp4"></video>
-          <figcaption>The radar sweeping and picking up an object &middot; 17s</figcaption>
-        </figure>
-        <figure class="clip">
-          <video controls preload="metadata" playsinline
-                 src="assets/videos/arduino-radar-2.mp4"></video>
-          <figcaption>A closer look at the build &middot; 25s</figcaption>
-        </figure>
+          <div class="links">
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+          </div>
         </div>
       </article>
     </div>
 
     <div class="panel">
       <article class="project">
-        <div>
-          <h3>Arduino Crane</h3>
-          <p class="lede">A working crane arm driven by servos &mdash; it lifts, swings and sets a load down again. The hard part is not the lifting; it is stopping the arm from shaking itself apart on the way.</p>
+        <h3>Arduino Crane Tutorial</h3>
+        <p class="lede">A tutorial demonstrating how to build an Arduino-controlled mini crane, including the assembly and connection of its electronic components.</p>
 
+        <div class="clips">
+          <figure class="clip">
+            <video controls preload="metadata" playsinline
+                   src="assets/videos/arduino-crane-2.mp4"></video>
+            <figcaption>Assembly and wiring, step by step &middot; 42s</figcaption>
+          </figure>
+          <figure class="clip">
+            <video controls preload="metadata" playsinline
+                   src="assets/videos/arduino-crane-1.mp4"></video>
+            <figcaption>The crane in action &middot; 14s</figcaption>
+          </figure>
+        </div>
 
-          <span class="col-label">Built with</span>
-          <ul class="tags">
+        <div class="project-foot">
+          <div>
+            <span class="col-label">Built with</span>
+            <ul class="tags">
             <li>Arduino Uno</li>
             <li>Servo motors</li>
-            <li>Cardboard / frame</li>
-            <li>Thread and hook</li>
             <li>Jumper wires</li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="col-label">What it does</span>
-          <ul class="features">
-            <li>Servos drive the lift, the swing and the grab</li>
-            <li>The arm rotates to move a load from one place to another</li>
-            <li>Built from scratch rather than from a kit</li>
-            <li>The second video is a walkthrough of how it goes together</li>
-          </ul>
-
-          <div class="links">
-            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">More builds on YouTube &rarr;</a>
+            </ul>
           </div>
-        </div>
-        <div class="clips">
-        <figure class="clip">
-          <video controls preload="metadata" playsinline
-                 src="assets/videos/arduino-crane-1.mp4"></video>
-          <figcaption>The crane lifting and swinging a load &middot; 14s</figcaption>
-        </figure>
-        <figure class="clip">
-          <video controls preload="metadata" playsinline
-                 src="assets/videos/arduino-crane-2.mp4"></video>
-          <figcaption>Walking through how it was built &middot; 42s</figcaption>
-        </figure>
+          <div class="links">
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+          </div>
         </div>
       </article>
     </div>
 
     <div class="panel">
       <article class="project">
-        <div>
-          <h3>Tiranga on an RGB LED</h3>
-          <p class="lede">One RGB LED, three colours, and the Indian flag &mdash; made for Independence Day. Mixing an exact saffron out of red, green and blue is fiddlier than it sounds.</p>
+        <h3>Tiranga on RGB LED &#127470;&#127475;</h3>
+        <p class="lede">An Arduino project that uses an RGB LED to display the colours of the Indian national flag &mdash; saffron, white, and green.</p>
 
+        <div class="clips">
+          <figure class="clip">
+            <video controls preload="metadata" playsinline
+                   src="assets/videos/tiranga-rgb-led.mp4"></video>
+            <figcaption>The flag colours on a single LED &middot; 33s</figcaption>
+          </figure>
+        </div>
 
-          <span class="col-label">Built with</span>
-          <ul class="tags">
+        <div class="project-foot">
+          <div>
+            <span class="col-label">Built with</span>
+            <ul class="tags">
             <li>Arduino Uno</li>
             <li>RGB LED</li>
             <li>Resistors</li>
-            <li>Jumper wires</li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="col-label">What it does</span>
-          <ul class="features">
-            <li>A single RGB LED mixes each colour from red, green and blue channels</li>
-            <li>Cycles through saffron, white and green</li>
-            <li>Colour values are tuned by hand until the saffron looks right</li>
-            <li>Made for 15 August</li>
-          </ul>
-
+            </ul>
+          </div>
           <div class="links">
-            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">More builds on YouTube &rarr;</a>
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
           </div>
         </div>
+      </article>
+    </div>
+
+    <div class="panel">
+      <article class="project">
+        <h3>Rainbow on RGB LED</h3>
+        <p class="lede">An Arduino RGB LED project demonstrating how to program the LED to cycle through different colours and create a rainbow-like lighting effect.</p>
+
         <div class="clips">
-        <figure class="clip">
-          <video controls preload="metadata" playsinline
-                 src="assets/videos/tiranga-rgb-led.mp4"></video>
-          <figcaption>The LED cycling through the colours of the flag &middot; 33s</figcaption>
-        </figure>
+          <p class="empty-note">The video for this build has not been added yet. Put the file in <code>assets/videos/</code> and it will play here.</p>
+        </div>
+
+        <div class="project-foot">
+          <div>
+            <span class="col-label">Built with</span>
+            <ul class="tags">
+            <li>Arduino Uno</li>
+            <li>RGB LED</li>
+            <li>Resistors</li>
+            </ul>
+          </div>
+          <div class="links">
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+          </div>
         </div>
       </article>
     </div>
