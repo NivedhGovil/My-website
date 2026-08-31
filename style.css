@@ -45,6 +45,7 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+body.s-about       { --accent: #9a3412; --accent-bright: #ea580c; --accent-tint: #ffedd5; }
 body.s-home        { --accent: #c2410c; --accent-bright: #f97316; --accent-tint: #ffedd5; }
 body.s-literary    { --accent: var(--c-literary);    --accent-bright: var(--c-literary-br);    --accent-tint: var(--c-literary-tt); }
 body.s-engineering { --accent: var(--c-engineering); --accent-bright: var(--c-engineering-br); --accent-tint: var(--c-engineering-tt); }
@@ -628,3 +629,117 @@ main:focus { outline: none; }
 .meta.k-poems    { --card-accent: var(--c-poems);    --card-accent-tint: var(--c-poems-tt); }
 .meta.k-stories  { --card-accent: var(--c-stories);  --card-accent-tint: var(--c-stories-tt); }
 .meta.k-books    { --card-accent: var(--c-books);    --card-accent-tint: var(--c-books-tt); }
+
+/* ---------- Fill-in placeholders ----------
+   A slot waiting for real text. Each one shows what to write and roughly how
+   much. Replace the whole <div class="fill"> with your own paragraphs, and the
+   dashed styling disappears with it. */
+.fill {
+  border: 2px dashed var(--accent-soft, var(--accent-bright));
+  background: var(--accent-tint);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 0 0 20px;
+}
+
+.fill .fill-label {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.fill p { margin: 0 0 10px; color: var(--ink-soft); font-size: 0.97rem; }
+.fill p:last-child { margin-bottom: 0; }
+.fill .hint { font-style: italic; opacity: 0.85; font-size: 0.9rem; }
+
+/* A stack of short facts — school, city, what you are into. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin: 0 0 20px;
+}
+
+.fact {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 22px;
+}
+
+.fact .fact-label {
+  display: block;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.fact .fact-value { display: block; font-size: 1.02rem; }
+.fact .fact-value.empty { color: var(--ink-soft); font-style: italic; }
+
+/* Timeline — school years, competitions, anything with a date beside it. */
+.timeline { list-style: none; margin: 0 0 20px; padding: 0; }
+
+.timeline li {
+  position: relative;
+  padding: 0 0 24px 30px;
+  border-left: 2px solid var(--line);
+}
+
+.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  border: 3px solid var(--paper);
+}
+
+.timeline .when {
+  display: block;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.timeline .what { display: block; font-weight: 600; margin-bottom: 4px; }
+.timeline .detail { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+
+/* Contact */
+.contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+.contact-links a {
+  text-decoration: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  padding: 11px 22px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-links a:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+}

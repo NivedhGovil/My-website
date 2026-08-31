@@ -15,6 +15,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `short-stories.html` | All short stories |
 | `books.html` | Books to recommend, with a reason for each |
 | `pieces/` | One page per piece of writing (full text) |
+| `about.html` | About page — mostly fill-in slots waiting for your text |
 | `404.html` | Shown for a bad URL; its links are absolute so it works at any depth |
 | `style.css` | Shared styling for every page |
 | `favicon.svg` | Browser tab icon |
@@ -48,6 +49,27 @@ There are three colour roles per section and they are **not** interchangeable:
 
 Type is split by job: headings are serif, interface text is sans, and the writing
 itself returns to serif on the reading pages, where it belongs.
+
+## Filling in the placeholders
+
+`about.html` is built out of slots rather than finished text. There are three
+kinds, and each is designed to be replaced rather than edited around:
+
+**Dashed boxes** (`<div class="fill">`) — a prompt saying what to write and
+roughly how long. Delete the whole `<div>` and put your own `<p>` paragraphs
+where it was. The dashed styling disappears with it, because it belongs to the
+box, not to the section.
+
+**Fact cards** (`<span class="fact-value empty">`) — one short answer each.
+Type over the text and remove the word `empty` from the class, which drops the
+grey italic styling.
+
+**Timeline entries** (`<li>` inside `<ul class="timeline">`) — a year, a title
+and one line of detail. Copy an `<li>` for each new entry; delete the ones you
+do not need.
+
+Nothing on the page is required. Delete any whole `<section>` you do not want,
+and the page closes up around it.
 
 ## Sharing and search
 
