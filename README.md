@@ -25,7 +25,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `assets/` | Images and section artwork |
 | `assets/videos/` | Build videos (portrait MP4, played inline) |
 | `assets/site.js` | Theme toggle, search, analytics — the only JavaScript |
-| `assets/search-index.json` | Generated; do not edit by hand |
+| `assets/search-index.js` | Generated; do not edit by hand |
 | `tools/build.py` | Rebuilds the search index and stamps the date |
 
 ## After you change anything, run this
@@ -34,7 +34,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 python3 tools/build.py
 ```
 
-It rebuilds `assets/search-index.json` from the listing pages and stamps today's
+It rebuilds `assets/search-index.js` from the listing pages and stamps today's
 date into every footer. It reads the listings rather than keeping its own list,
 so search results can never drift from what the site shows.
 
@@ -49,7 +49,10 @@ page and card — the lowest is rose at 6.4:1.
 
 ## Search
 
-The magnifying glass in the header, or press `/` or `Cmd/Ctrl-K`. It searches
+The magnifying glass in the header, or press `/` or `Cmd/Ctrl-K`. It works both
+on the live site and when you open the files straight from disk — the index ships
+as a `<script>` rather than being fetched, because browsers block `fetch()` on
+`file://` URLs. It searches
 titles, summaries, sections and kinds across writing, builds and books. Arrow
 keys move, Enter opens, Escape closes.
 

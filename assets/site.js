@@ -103,11 +103,18 @@
     document.body.style.overflow = 'hidden';
     input.focus();
     if (index === null) {
-      index = [];
-      fetch(base + 'assets/search-index.json')
-        .then(function (r) { return r.json(); })
-        .then(function (d) { index = d; run(); })
-        .catch(function () { results.innerHTML = '<p class="search-empty">Search is unavailable.</p>'; });
+      if (window.SEARCH_INDEX) {
+        index = window.SEARCH_INDEX;
+      } else {
+        /* Fallback for anyone loading the page without the index script. */
+        index = [];
+        fetch(base + 'assets/search-index.json')
+          .then(function (r) { return r.json(); })
+          .then(function (d) { index = d; run(); })
+          .catch(function () {
+            results.innerHTML = '<p class="search-empty">Search is unavailable.</p>';
+          });
+      }
     }
   }
 
