@@ -24,6 +24,47 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `sitemap.xml`, `robots.txt` | For search engines |
 | `assets/` | Images and section artwork |
 | `assets/videos/` | Build videos (portrait MP4, played inline) |
+| `assets/site.js` | Theme toggle, search, analytics — the only JavaScript |
+| `assets/search-index.json` | Generated; do not edit by hand |
+| `tools/build.py` | Rebuilds the search index and stamps the date |
+
+## After you change anything, run this
+
+```bash
+python3 tools/build.py
+```
+
+It rebuilds `assets/search-index.json` from the listing pages and stamps today's
+date into every footer. It reads the listings rather than keeping its own list,
+so search results can never drift from what the site shows.
+
+## Dark mode
+
+The site follows the reader's system setting, and the moon/sun button in the
+header overrides it. The choice is remembered in `localStorage`.
+
+Dark mode redefines the section hue tokens at their brighter values, so every
+`body.s-*` rule keeps working untouched. All eight hues clear 4.5:1 on the dark
+page and card — the lowest is rose at 6.4:1.
+
+## Search
+
+The magnifying glass in the header, or press `/` or `Cmd/Ctrl-K`. It searches
+titles, summaries, sections and kinds across writing, builds and books. Arrow
+keys move, Enter opens, Escape closes.
+
+## Analytics
+
+Off by default. To switch it on, sign up free at
+[goatcounter.com](https://www.goatcounter.com), then set your counter URL at the
+top of `assets/site.js`:
+
+```js
+var ANALYTICS = 'https://YOURCODE.goatcounter.com/count';
+```
+
+GoatCounter sets no cookies and collects no personal data, so no cookie banner
+is needed. While the string is empty nothing loads and no request is made.
 
 ## Design
 

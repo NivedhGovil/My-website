@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Regenerate the search index and stamp the 'last updated' date.
+
+Run from the repository root after adding or editing content:
+
+    python3 tools/build.py
+
+It reads the listing pages rather than keeping a separate list, so the search
+results can never drift from what the site actually shows.
+"""
+import json, re, glob, datetime, html, os
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.chdir(ROOT)
+
+def strip(t):
+    t = re.sub(r'<[^>]+>', '', t)
+    return html.unescape(re.sub(r'\s+', ' ', t)).strip()
+
+records = []
+
+# --- writing, from each listing page ---
+for page, section, kind in [('articles.html', 'Literary', 'Article'),
+                            ('poems.html', 'Literary', 'Poem'),
+                            ('short-stories.html', 'Literary', 'Short story'),
+                            ('books.html', 'Literary', 'Book')]:
+    s = open(page).read()
+    if page == 'books.html':
+        for m in re.finditer(r'<li class="book">\s*<h2>(.*?)</h2>\s*<p class="author">(.*?)</p>\s*<p class="reason">(.*?)</p>', s, re.S):
+            records.append(dict(title=strip(m.group(1)), url=page, section=section,
+                                kind='Book', meta=strip(m.group(2)), text=strip(m.group(3))))
+        continue
+    for m in re.finditer(r'<li class="piece">\s*<h2><a href="([^"]+)">(.*?)</a></h2>\s*<p class="meta">(.*?)</p>\s*<p class="summary">(.*?)</p>', s, re.S):
+        records.append(dict(title=strip(m.group(2)), url=m.group(1), section=section,
+                            kind=kind, meta=strip(m.group(3)), text=strip(m.group(4))))
+
+# --- builds, from the Engineering tabs ---
+s = open('engineering.html').read()
+for m in re.finditer(r'<h3>(.*?)</h3>\s*<p class="lede">(.*?)</p>', s, re.S):
+    records.append(dict(title=strip(m.group(1)), url='engineering.html', section='Engineering',
+                        kind='Build', meta='Arduino', text=strip(m.group(2))))
+
+# --- the sections themselves, so a search for "art" finds the Art page ---
+for page, title, kind, text in [
+    ('literary.html', 'Literary', 'Section', 'Articles, poems, short stories and books to recommend.'),
+    ('engineering.html', 'Engineering', 'Section', 'Arduino builds and electronics, with the video from each build.'),
+    ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),
+    ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
+    ('about.html', 'About', 'Section', 'School, interests, achievements and how to get in touch.')]:
+    records.append(dict(title=title, url=page, section=title, kind=kind, meta='', text=text))
+
+json.dump(records, open('assets/search-index.json', 'w'), indent=0)
+print('search index:', len(records), 'records')
+
+# --- stamp today's date into every footer ---
+today = datetime.date.today()
+stamp = today.strftime('%-d %B %Y')
+iso = today.isoformat()
+n = 0
+for f in glob.glob('**/*.html', recursive=True):
+    t = open(f).read()
+    new = re.sub(r'<time class="updated" datetime="[^"]*">[^<]*</time>',
+                 f'<time class="updated" datetime="{iso}">{stamp}</time>', t)
+    if new != t:
+        open(f, 'w').write(new); n += 1
+print('date stamped on', n, 'pages ->', stamp)
