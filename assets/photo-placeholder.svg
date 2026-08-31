@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250" role="img" aria-label="">
+  <rect width="400" height="250" fill="#fdf3ea"/>
+  <g fill="none" stroke="#e0c3a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="146" y="92" width="108" height="80" rx="8"/>
+    <circle cx="176" cy="118" r="10"/>
+    <path d="M150 160l30-28 24 22 18-14 32 26"/>
+  </g>
+  <text x="200" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#b08a68">add a photo</text>
+</svg>

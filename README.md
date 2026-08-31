@@ -52,6 +52,11 @@ itself returns to serif on the reading pages, where it belongs.
 
 ## Filling in the placeholders
 
+`about.html` and the builds list in `engineering.html` are built from slots
+rather than finished text, in a layout borrowed from a portfolio Nivedh liked:
+prose beside a grid of highlight cards, tabbed projects, and achievement cards
+with a photo on top.
+
 `about.html` is built out of slots rather than finished text. There are three
 kinds, and each is designed to be replaced rather than edited around:
 
@@ -64,9 +69,23 @@ box, not to the section.
 Type over the text and remove the word `empty` from the class, which drops the
 grey italic styling.
 
-**Timeline entries** (`<li>` inside `<ul class="timeline">`) — a year, a title
-and one line of detail. Copy an `<li>` for each new entry; delete the ones you
-do not need.
+**Highlight cards** (`<div class="highlight">`) — an icon, a bold line and a
+small line under it. Four of them sit beside the About prose.
+
+**Achievement cards** (`<div class="achievement">`) — a photo, a title and two
+lines. Put a photo in `assets/` and point the `src` at it; without one the card
+still works and shows the placeholder graphic.
+
+**Build tabs** (`engineering.html`) — one tab per Arduino project, each with a
+description, a parts list and a list of what it does. To add a build, copy one
+`<input>` + `<label>` pair *and* one `<div class="panel">`, keeping them in the
+same order, and give the new input a fresh `id` that the label's `for` points
+at. Four tabs are styled; ask for more if you need them. It works with no
+JavaScript at all — the tabs are radio buttons and CSS.
+
+**Emphasis inside prose** — wrap a phrase in `<span class="hl">` to colour it in
+the section's hue, or `<strong>` to bold it. That is what gives the About
+paragraphs their shape.
 
 Nothing on the page is required. Delete any whole `<section>` you do not want,
 and the page closes up around it.

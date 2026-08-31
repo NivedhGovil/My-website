@@ -39,12 +39,6 @@
 
 <main class="wrap" id="main" tabindex="-1">
 
-  <div class="page-head">
-    <p class="pill">About</p>
-    <h1>About me</h1>
-    <p>Who is behind all of this.</p>
-  </div>
-
   <!-- ==========================================================
        HOW TO USE THIS PAGE
 
@@ -56,46 +50,65 @@
        Nothing here is required. Delete any section you do not want.
        ========================================================== -->
 
-  <section class="section" id="intro">
-    <h2>In short</h2>
-    <p class="section-note">A few facts, so a visitor knows who they are reading.</p>
+  <div class="big-head">
+    <p class="pill">Who I am</p>
+    <h2>About <span>Me</span></h2>
+    <p>The person behind the writing and the wiring.</p>
+  </div>
 
-    <!-- Replace the text inside each .fact-value. Keep the class="fact-value"
-         but drop the word "empty" once you have written something real. -->
-    <div class="facts">
-      <div class="fact">
-        <span class="fact-label">Name</span>
-        <span class="fact-value">Nivedh Govil</span>
-      </div>
-      <div class="fact">
-        <span class="fact-label">School</span>
-        <span class="fact-value empty">Your school and grade</span>
-      </div>
-      <div class="fact">
-        <span class="fact-label">Lives in</span>
-        <span class="fact-value empty">Your city</span>
-      </div>
-      <div class="fact">
-        <span class="fact-label">Into</span>
-        <span class="fact-value empty">Writing, Arduino, badminton&hellip;</span>
+  <!-- ==========================================================
+       HOW TO FILL THIS PAGE IN
+
+       Dashed boxes  -> delete the whole <div class="fill"> and put your
+                        own <p>paragraphs</p> in its place.
+       .empty         -> type over the italic text, then remove the word
+                        "empty" from the class so it stops looking grey.
+       Cards          -> copy a block to add one, delete a block to remove one.
+
+       Nothing is required. Delete any whole <section> you do not want.
+       ========================================================== -->
+
+  <div class="about-split">
+    <div class="prose-col">
+      <div class="fill">
+        <span class="fill-label">Write this</span>
+        <p>Three short paragraphs in your own voice. Worth covering: who you
+        are and where you study, what you are drawn to and why, the things you
+        have made, and where you want all of it to go.</p>
+        <p>Wrap the phrases that matter in
+        <code>&lt;span class="hl"&gt;like this&lt;/span&gt;</code> to colour
+        them, or <code>&lt;strong&gt;like this&lt;/strong&gt;</code> to make
+        them bold &mdash; that is what gives the paragraphs their shape.</p>
+        <p class="hint">Aim for 120&ndash;200 words in total. Written for someone your
+        own age, not for a CV.</p>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="story">
-    <h2>The longer version</h2>
-    <p class="section-note">The part people read after they have liked something you wrote.</p>
-
-    <div class="fill">
-      <span class="fill-label">Write this</span>
-      <p>Two or three paragraphs in your own voice. Useful things to cover:
-      where you are from and where you live now, what you are curious about,
-      how you got into writing and into building things, and what you are
-      working on at the moment.</p>
-      <p class="hint">Aim for 120&ndash;200 words. Write it the way you would explain
-      yourself to someone your own age, not the way a CV would.</p>
+    <!-- Four things you would want a stranger to know first. Type over the
+         italic text and drop "empty" from the class. -->
+    <div class="highlights">
+      <div class="highlight">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        <span class="h-title empty">Writer</span>
+        <span class="h-sub empty">What you would call yourself</span>
+      </div>
+      <div class="highlight">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>
+        <span class="h-title empty">Class and board</span>
+        <span class="h-sub empty">Your school</span>
+      </div>
+      <div class="highlight">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+        <span class="h-title empty">Maker</span>
+        <span class="h-sub empty">What you build</span>
+      </div>
+      <div class="highlight">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.1 14a5 5 0 1 0-6.2 0c.6.5 1.1 1.2 1.1 2h4c0-.8.5-1.5 1.1-2Z"/></svg>
+        <span class="h-title empty">Goal</span>
+        <span class="h-sub empty">Where you want to end up</span>
+      </div>
     </div>
-  </section>
+  </div>
 
   <section class="section" id="now">
     <h2>What I am doing now</h2>
@@ -103,38 +116,48 @@
 
     <div class="fill">
       <span class="fill-label">Write this</span>
-      <p>Three or four lines: what you are reading, what you are building,
-      what you are training for, what you are trying to get better at.</p>
-      <p class="hint">One paragraph is plenty. The date it was last updated is
-      worth adding at the end.</p>
+      <p>Three or four lines: what you are reading, what you are building, what
+      you are training for, what you are trying to get better at.</p>
+      <p class="hint">One paragraph is plenty. Add the date you last changed it.</p>
     </div>
   </section>
 
-  <section class="section" id="achievements">
-    <h2>Achievements</h2>
-    <p class="section-note">Competitions, results, and things you were picked for.</p>
+  <div class="big-head">
+    <p class="pill">Highlights</p>
+    <h2>My <span>Achievements</span></h2>
+    <p>Competitions, results, and things you were picked for.</p>
+  </div>
 
-    <!-- Copy an <li> for each entry. Delete the ones you do not need. -->
-    <ul class="timeline">
-      <li>
-        <span class="when">Year</span>
-        <span class="what">What you achieved</span>
-        <p class="detail">One line of detail &mdash; the competition, the level you
-        reached, who you were up against.</p>
-      </li>
-      <li>
-        <span class="when">2024</span>
-        <span class="what">Top 10, International Social Studies Olympiad</span>
-        <p class="detail">Also top 50 in the IMO the same year. (These two came from
-        your Letter to 2024 &mdash; check them and rewrite as you like.)</p>
-      </li>
-      <li>
-        <span class="when">2024</span>
-        <span class="what">2nd place, school science exhibition</span>
-        <p class="detail">Add what the project was and who was on the team.</p>
-      </li>
-    </ul>
-  </section>
+  <!-- One card per achievement. Copy a block to add one, delete a block to
+       remove one. Put a photo in assets/ and point the src at it; without a
+       photo the card still works, it just shows the placeholder. -->
+  <div class="achievements">
+    <div class="achievement">
+      <img class="shot" src="assets/photo-placeholder.svg" alt="">
+      <div class="body">
+        <h3 class="empty">Name of the achievement</h3>
+        <p class="empty">Two lines on what it was, what you did, and why it was
+        hard. Replace the image above with a photo if you have one.</p>
+      </div>
+    </div>
+
+    <div class="achievement">
+      <img class="shot" src="assets/photo-placeholder.svg" alt="">
+      <div class="body">
+        <h3>Top 10, International Social Studies Olympiad</h3>
+        <p>Also top 50 in the IMO the same year. (Taken from your Letter to
+        2024 &mdash; check it and rewrite in your own words.)</p>
+      </div>
+    </div>
+
+    <div class="achievement">
+      <img class="shot" src="assets/photo-placeholder.svg" alt="">
+      <div class="body">
+        <h3>2nd place, school science exhibition</h3>
+        <p>Add what the project was and who was on the team.</p>
+      </div>
+    </div>
+  </div>
 
   <section class="section" id="contact">
     <h2>Get in touch</h2>

@@ -52,8 +52,8 @@
     an idea apart on paper, this takes it apart on a breadboard &mdash; mostly Arduino,
     mostly sensors and wire and code that refuses to compile the first time.</p>
 
-    <p>Every build below has a video. If you would rather watch them all in one
-    place, they live on my YouTube channel.</p>
+    <p>Each build below has its own tab: what it does, what it is made of, and
+    the video from the bench. They all live on my YouTube channel too.</p>
 
     <p class="channel-link">
       <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">
@@ -61,42 +61,141 @@
     </p>
   </div>
 
-  <ul class="build-list">
+  <div class="big-head">
+    <p class="pill">Featured work</p>
+    <h2>My <span>Builds</span></h2>
+    <p>Real things I have made with sensors, wire, and code that refused to
+    compile the first time.</p>
+  </div>
 
-    <!-- ===================================================================
-         TEMPLATE FOR A BUILD.
+  <!-- ==========================================================
+       HOW TO FILL THIS IN
 
-         Copy this block for each Arduino video, then fill in:
-           VIDEO_ID  the part of the YouTube URL after "v=" or after "youtu.be/"
-                     e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                                                          ^^^^^^^^^^^
-           TITLE     the name of the build
-           META      what it is made of, or the date
-           SUMMARY   a line or two on what it does and what was hard about it
+       One tab per build. For each one:
+         1. Rename the tab in its <label>.
+         2. In the matching panel below, fill in the title, the description,
+            the parts list and what it does.
+         3. Type over anything italic, then remove the word "empty" from its
+            class so it stops looking like a placeholder.
+         4. Point the YouTube link at that build's own video.
 
-    <li class="build">
-      <div class="video">
-        <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
-                title="TITLE" loading="lazy" allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
-      <div class="build-text">
-        <h2>TITLE</h2>
-        <p class="meta">META</p>
-        <p class="summary">SUMMARY</p>
-      </div>
-    </li>
-    ==================================================================== -->
+       To ADD a build: copy one <input> + <label> pair AND one <div
+       class="panel">, keeping them in the same order. Give the new input a
+       new id and point the new label's "for" at it. Up to four tabs are
+       styled; tell Claude if you need more.
 
-    <li class="build">
-      <p class="empty-note">The build videos are being added here one by one, each
-      with a note on what it does and what went wrong on the way. Until then, they
-      are all on
-      <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">the
-      YouTube channel</a>.</p>
-    </li>
+       To REMOVE a build: delete its input, its label and its panel.
 
-  </ul>
+       This works without any JavaScript.
+       ========================================================== -->
+
+  <div class="tabs">
+    <input type="radio" name="build" id="build-1" checked>
+    <input type="radio" name="build" id="build-2">
+    <input type="radio" name="build" id="build-3">
+
+    <div class="tab-labels">
+      <label for="build-1">First build</label>
+      <label for="build-2">Second build</label>
+      <label for="build-3">Third build</label>
+    </div>
+
+    <div class="panels">
+    <div class="panel">
+      <article class="project">
+        <div>
+          <h3 class="empty">Name of your first build</h3>
+          <p class="lede empty">One or two sentences on what it does and the problem
+          it solves. Say it plainly &mdash; a stranger should understand in one read.</p>
+
+          <div class="links">
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+            <!-- <a href="#">View the code &rarr;</a> -->
+          </div>
+
+          <span class="col-label">Built with</span>
+          <ul class="tags">
+            <li>Arduino Uno</li>
+            <li>Add a part</li>
+            <li>Add a part</li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="col-label">What it does</span>
+          <ul class="features">
+            <li class="empty">First thing it does</li>
+            <li class="empty">Second thing it does</li>
+            <li class="empty">Third thing it does</li>
+            <li class="empty">What was hardest to get working</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <div class="panel">
+      <article class="project">
+        <div>
+          <h3 class="empty">Name of your second build</h3>
+          <p class="lede empty">One or two sentences on what it does and the problem
+          it solves. Say it plainly &mdash; a stranger should understand in one read.</p>
+
+          <div class="links">
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+            <!-- <a href="#">View the code &rarr;</a> -->
+          </div>
+
+          <span class="col-label">Built with</span>
+          <ul class="tags">
+            <li>Arduino Uno</li>
+            <li>Add a part</li>
+            <li>Add a part</li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="col-label">What it does</span>
+          <ul class="features">
+            <li class="empty">First thing it does</li>
+            <li class="empty">Second thing it does</li>
+            <li class="empty">Third thing it does</li>
+            <li class="empty">What was hardest to get working</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <div class="panel">
+      <article class="project">
+        <div>
+          <h3 class="empty">Name of your third build</h3>
+          <p class="lede empty">One or two sentences on what it does and the problem
+          it solves. Say it plainly &mdash; a stranger should understand in one read.</p>
+
+          <div class="links">
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+            <!-- <a href="#">View the code &rarr;</a> -->
+          </div>
+
+          <span class="col-label">Built with</span>
+          <ul class="tags">
+            <li>Arduino Uno</li>
+            <li>Add a part</li>
+            <li>Add a part</li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="col-label">What it does</span>
+          <ul class="features">
+            <li class="empty">First thing it does</li>
+            <li class="empty">Second thing it does</li>
+            <li class="empty">Third thing it does</li>
+            <li class="empty">What was hardest to get working</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    </div>
+  </div>
 
 </main>
 
