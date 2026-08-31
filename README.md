@@ -16,6 +16,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `books.html` | Books to recommend, with a reason for each |
 | `pieces/` | One page per piece of writing (full text) |
 | `art.html` | The Art section: intro, gallery and art highlights |
+| `music.html` | The Music section: what he plays, recordings and music highlights |
 | `about.html` | About page — mostly fill-in slots waiting for your text |
 | `404.html` | Shown for a bad URL; its links are absolute so it works at any depth |
 | `style.css` | Shared styling for every page |
@@ -38,6 +39,7 @@ badges and buttons.
 | Books | olive green |
 | Engineering | indigo |
 | Art | fuchsia |
+| Music | blue |
 
 Each page names its section on the `<body>` tag — `<body class="s-poems">` — and
 every component inherits its colour from there. Adding a page means giving its
@@ -62,6 +64,7 @@ it belongs to, so a reader finds it where they are already looking:
 | Writing prizes, publications | `literary.html` |
 | Exhibitions, robotics competitions | `engineering.html` |
 | Art competitions, work shown | `art.html` |
+| Performances, grades, bands | `music.html` |
 | Olympiads, school, sport | `about.html` |
 
 They all use the same `<div class="achievement">` markup and pick up the colour
@@ -89,6 +92,10 @@ grey italic styling.
 
 **Highlight cards** (`<div class="highlight">`) — an icon, a bold line and a
 small line under it. Four of them sit beside the About prose.
+
+**Recording cards** (`<div class="recording">`) — a video and a caption, on
+`music.html`. Paste a YouTube ID where the comment says `VIDEO_ID`, uncomment
+the `<iframe>`, and delete the placeholder `<div>` above it.
 
 **Gallery pieces** (`<figure class="art-piece">`) — an image, a title and a
 medium/year line. One per artwork on `art.html`.
