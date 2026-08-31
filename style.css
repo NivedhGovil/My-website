@@ -1038,3 +1038,69 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 .recording-body h3 { font-size: 1.15rem; margin: 0 0 10px; }
 .recording-body .empty { font-style: italic; color: var(--ink-soft); }
 .recording-body .meta.empty { font-style: normal; }
+
+/* ---------- Video clips inside a build panel ----------
+   The clips are portrait phone recordings, so they sit side by side at a
+   fixed height rather than stretching to the column width. */
+.clips {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 4px 0 0;
+}
+
+.clip { margin: 0; max-width: 100%; }
+
+.clip video {
+  display: block;
+  height: 340px;
+  width: auto;
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  background: #000;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 520px) {
+  .clip video { height: 300px; }
+}
+
+.clip figcaption {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+/* A highlight card with no photo spans the row and holds a list. */
+.achievement.wide { grid-column: 1 / -1; }
+.achievement.wide .body { padding: 26px 28px 28px; }
+
+.pub-list { list-style: none; margin: 16px 0 0; padding: 0; }
+
+.pub-list li {
+  border-top: 1px solid var(--line);
+  padding: 12px 0;
+}
+
+.pub-list li:last-child { padding-bottom: 0; }
+
+.pub-list a { font-weight: 600; text-decoration: none; }
+.pub-list a:hover { text-decoration: underline; }
+
+.pub-list .pub-date {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  margin-top: 2px;
+}
+
+/* The note at the foot of a piece that ran somewhere else. */
+.published-note {
+  margin: 26px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.92rem !important;
+  font-family: var(--font-sans) !important;
+}

@@ -22,7 +22,8 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `style.css` | Shared styling for every page |
 | `favicon.svg` | Browser tab icon |
 | `sitemap.xml`, `robots.txt` | For search engines |
-| `assets/` | Images |
+| `assets/` | Images and section artwork |
+| `assets/videos/` | Build videos (portrait MP4, played inline) |
 
 ## Design
 
@@ -92,6 +93,10 @@ grey italic styling.
 
 **Highlight cards** (`<div class="highlight">`) — an icon, a bold line and a
 small line under it. Four of them sit beside the About prose.
+
+**Build videos** — put the file in `assets/videos/` and add a `<figure class="clip">`
+inside that build's `<div class="clips">`. They are portrait phone clips, shown at a
+fixed height side by side, so the panel stays a sensible shape whatever you add.
 
 **Recording cards** (`<div class="recording">`) — a video and a caption, on
 `music.html`. Paste a YouTube ID where the comment says `VIDEO_ID`, uncomment
