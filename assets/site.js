@@ -171,6 +171,49 @@
     }
   });
 
+  /* ---------------- Contact form ----------------
+     There is no server behind a static site, so the form opens a pre-filled
+     email addressed to the owner. To use a real form service instead, give the
+     form an action and a method — see the README — and this handler stands
+     aside automatically. */
+  var form = document.querySelector('.contact-form[data-mailto]');
+  if (form && !form.getAttribute('action')) {
+    var note = form.querySelector('.form-note');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var phone = form.phone.value.trim();
+      var message = form.message.value.trim();
+
+      [form.name, form.email, form.message].forEach(function (f) { f.classList.remove('invalid'); });
+      var missing = [];
+      if (!name) { missing.push(form.name); }
+      if (!email || email.indexOf('@') < 1) { missing.push(form.email); }
+      if (!message) { missing.push(form.message); }
+      if (missing.length) {
+        missing.forEach(function (f) { f.classList.add('invalid'); });
+        note.textContent = 'Please fill in your name, a valid email, and a message.';
+        note.className = 'form-note error';
+        missing[0].focus();
+        return;
+      }
+
+      var body = message + '\n\n---\nFrom: ' + name + '\nEmail: ' + email +
+                 (phone ? '\nPhone: ' + phone : '');
+      var href = 'mailto:' + form.getAttribute('data-mailto') +
+                 '?subject=' + encodeURIComponent('Message from ' + name + ' via your website') +
+                 '&body=' + encodeURIComponent(body);
+
+      note.className = 'form-note';
+      note.textContent = 'Opening your email app with the message ready to send…';
+      window.location.href = href;
+    });
+
+    form.addEventListener('input', function (e) { e.target.classList.remove('invalid'); });
+  }
+
   /* ---------------- Analytics ---------------- */
   if (ANALYTICS) {
     var a = document.createElement('script');

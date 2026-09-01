@@ -253,38 +253,62 @@
     <p>For feedback on a piece, a question about a build, or anything else.</p>
   </div>
 
-  <div class="contact-grid">
-    <a class="contact-card" href="mailto:nivedh.govil@outlook.com">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></span>
-      <span>
-        <span class="c-label">Email</span>
-        <span class="c-value">nivedh.govil@outlook.com</span>
-      </span>
-    </a>
+  <div class="contact-split">
 
-    <div class="contact-card">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
-      <span>
-        <span class="c-label">Location</span>
-        <span class="c-value">Vadodara, India</span>
-      </span>
+    <div class="contact-details">
+      <div class="detail">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+        <span>
+          <span class="d-label">Location</span>
+          <span class="d-value">Vadodara, India</span>
+        </span>
+      </div>
+
+      <div class="detail">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span>
+          <span class="d-label">Email</span>
+          <a class="d-value" href="mailto:nivedh.govil@outlook.com">nivedh.govil@outlook.com</a>
+        </span>
+      </div>
+
+      <div class="detail">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
+        <span>
+          <span class="d-label">Elsewhere</span>
+          <span class="d-value">
+            <a href="https://medium.com/@nivedh.govil" target="_blank" rel="noopener">Medium</a> &middot;
+            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">YouTube</a>
+          </span>
+        </span>
+      </div>
     </div>
 
-    <a class="contact-card" href="https://medium.com/@nivedh.govil" target="_blank" rel="noopener">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
-      <span>
-        <span class="c-label">Writing</span>
-        <span class="c-value">Medium</span>
-      </span>
-    </a>
+    <!-- This is a static site, so there is no server to receive a form. On
+         submit the browser opens a pre-filled email instead, addressed to
+         nivedh.govil@outlook.com. See the README for how to switch it to a
+         real form service later without changing the markup. -->
+    <form class="contact-form" data-mailto="nivedh.govil@outlook.com" novalidate>
+      <label class="sr-only" for="cf-name">Your name</label>
+      <input id="cf-name" name="name" type="text" placeholder="Your Name" autocomplete="name" required>
 
-    <a class="contact-card" href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z"/></svg></span>
-      <span>
-        <span class="c-label">Builds</span>
-        <span class="c-value">YouTube</span>
-      </span>
-    </a>
+      <label class="sr-only" for="cf-email">Your email</label>
+      <input id="cf-email" name="email" type="email" placeholder="Your Email" autocomplete="email" required>
+
+      <label class="sr-only" for="cf-phone">Your contact number (optional)</label>
+      <input id="cf-phone" name="phone" type="tel" placeholder="Your Contact Number (optional)" autocomplete="tel">
+
+      <label class="sr-only" for="cf-message">Your message</label>
+      <textarea id="cf-message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+      <button type="submit" class="send-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.8 18-3.7-7.5L3 9.8 21 3Z"/></svg>
+        Send Message
+      </button>
+
+      <p class="form-note" role="status" aria-live="polite"></p>
+    </form>
+
   </div>
 
 </main>

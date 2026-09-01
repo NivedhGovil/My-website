@@ -56,6 +56,25 @@ as a `<script>` rather than being fetched, because browsers block `fetch()` on
 titles, summaries, sections and kinds across writing, builds and books. Arrow
 keys move, Enter opens, Escape closes.
 
+## The contact form
+
+A static site has no server, so nothing can receive a form post. On submit the
+form validates the fields and then opens the visitor's email app with the
+message already written, addressed to `nivedh.govil@outlook.com` (set by
+`data-mailto` on the form).
+
+That works everywhere with no account and no third party, but it does mean the
+visitor has to press send in their own mail app. To take real submissions
+instead, sign up somewhere like [Formspree](https://formspree.io) or
+[Web3Forms](https://web3forms.com) and give the form their endpoint:
+
+```html
+<form class="contact-form" action="https://formspree.io/f/YOURID" method="POST">
+```
+
+The built-in handler stands aside automatically as soon as the form has an
+`action`, so nothing else needs changing.
+
 ## Analytics
 
 Off by default. To switch it on, sign up free at
