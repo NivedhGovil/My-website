@@ -135,6 +135,10 @@ box, not to the section.
 Type over the text and remove the word `empty` from the class, which drops the
 grey italic styling.
 
+**Q&A entries** (`<details class="qa">`) — a question that opens to reveal its
+answer. Replace the dashed box inside with your own paragraphs. Copy a whole
+`<details>` to add a question, delete one to remove it. It needs no JavaScript.
+
 **Highlight cards** (`<div class="highlight">`) — an icon, a bold line and a
 small line under it. Four of them sit beside the About prose.
 
