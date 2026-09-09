@@ -44,6 +44,7 @@ for m in re.finditer(r'<h3>(.*?)</h3>\s*<p class="lede">(.*?)</p>', s, re.S):
 for page, title, kind, text in [
     ('literary.html', 'Literary', 'Section', 'Articles, poems, short stories and books to recommend.'),
     ('engineering.html', 'Engineering', 'Section', 'Arduino builds and electronics, with the video from each build.'),
+    ('designs.html', 'Designs', 'Section', 'CAD models — parts and assemblies drawn before they were built.'),
     ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),
     ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
     ('about.html', 'About', 'Section', 'School, interests, achievements and how to get in touch.')]:

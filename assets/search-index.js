@@ -225,6 +225,14 @@ window.SEARCH_INDEX = [
 "text": "Arduino builds and electronics, with the video from each build."
 },
 {
+"title": "Designs",
+"url": "designs.html",
+"section": "Designs",
+"kind": "Section",
+"meta": "",
+"text": "CAD models \u2014 parts and assemblies drawn before they were built."
+},
+{
 "title": "Art",
 "url": "art.html",
 "section": "Art",

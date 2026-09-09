@@ -1547,3 +1547,51 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
     filter: brightness(0.26) saturate(0.7);
   }
 }
+
+/* ---------- CAD design gallery ---------- */
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.design {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .design:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+}
+
+.design img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--paper-alt);
+}
+
+.design figcaption { padding: 18px 22px 22px; }
+
+.design .design-title { display: block; font-weight: 700; font-size: 1.06rem; margin-bottom: 3px; }
+
+.design .design-meta {
+  display: block;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.design .design-note { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
+.design .empty { font-style: italic; color: var(--ink-soft); }
+.design .design-meta.empty { font-style: normal; }

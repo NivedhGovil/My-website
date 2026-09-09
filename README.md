@@ -9,7 +9,8 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | --- | --- |
 | `index.html` | Home: photo, introduction, and the list of sections |
 | `literary.html` | The Literary section: an intro and doors into the three forms |
-| `engineering.html` | The Engineering section: intro and the list of builds |
+| `engineering.html` | The Engineering section: intro and the build tabs |
+| `designs.html` | Engineering &rarr; Designs: CAD models and design highlights |
 | `articles.html` | All articles |
 | `poems.html` | All poems |
 | `short-stories.html` | All short stories |
@@ -127,6 +128,7 @@ it belongs to, so a reader finds it where they are already looking:
 | --- | --- |
 | Writing prizes, publications | `literary.html` |
 | Exhibitions, robotics competitions | `engineering.html` |
+| Design competitions, prints that worked | `designs.html` |
 | Art competitions, work shown | `art.html` |
 | Performances, grades, bands | `music.html` |
 | Olympiads, school, sport | `about.html` |
@@ -168,6 +170,10 @@ fixed height side by side, so the panel stays a sensible shape whatever you add.
 **Recording cards** (`<div class="recording">`) — a video and a caption, on
 `music.html`. Paste a YouTube ID where the comment says `VIDEO_ID`, uncomment
 the `<iframe>`, and delete the placeholder `<div>` above it.
+
+**Design cards** (`<figure class="design">`) — a render, a name, the software and
+year, and a note. One per CAD model on `designs.html`. Export a render or
+screenshot from your CAD program into `assets/` and point the `src` at it.
 
 **Gallery pieces** (`<figure class="art-piece">`) — an image, a title and a
 medium/year line. One per artwork on `art.html`.
@@ -221,6 +227,7 @@ The site is built to hold more than writing, so navigation works in two levels:
 
 - The **main navigation** (top bar, on every page) lists the sections of the
   site: Home, Literary and Engineering.
+- Inside Engineering, a **sub-navigation** bar lists Builds and Designs.
 - Inside Literary, a **sub-navigation** bar lists Articles, Poems, Short Stories
   and Books, and stays visible on every page beneath it, so you can move between
   them from anywhere without going back up.
