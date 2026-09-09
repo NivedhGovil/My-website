@@ -209,6 +209,22 @@ window.SEARCH_INDEX = [
 "text": "An Arduino project that uses an RGB LED to display the colours of the Indian national flag \u2014 saffron, white, and green."
 },
 {
+"title": "Dream backyard design",
+"url": "designs.html",
+"section": "Engineering",
+"kind": "Design",
+"meta": "CAD model \u00b7 Backyard Challenge",
+"text": "A whole backyard modelled end to end for a Backyard Challenge: a two-storey house with a covered veranda, a garden shed, a tiered fountain beside a raised circular pond, a lamp post, a picnic table, a planting bed under a lattice, and a covered seating area against a rock feature. About seventy thousand triangles in the finished mesh."
+},
+{
+"title": "Submarine",
+"url": "designs.html",
+"section": "Engineering",
+"kind": "Design",
+"meta": "CAD model",
+"text": "A submarine modelled from scratch: a cylindrical pressure hull with a domed bow, a conning tower, a three-bladed propeller on the stern, and a flag flying from a short mast. My initials are embossed into the side of the hull."
+},
+{
 "title": "Literary",
 "url": "literary.html",
 "section": "Literary",

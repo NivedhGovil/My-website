@@ -28,6 +28,8 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `assets/site.js` | Theme toggle, search, analytics — the only JavaScript |
 | `assets/search-index.js` | Generated; do not edit by hand |
 | `tools/build.py` | Rebuilds the search index and stamps the date |
+| `tools/render_stl.py` | Renders an STL to a PNG preview |
+| `assets/models/` | Downloadable CAD models (.stl) |
 
 ## After you change anything, run this
 
@@ -172,8 +174,16 @@ fixed height side by side, so the panel stays a sensible shape whatever you add.
 the `<iframe>`, and delete the placeholder `<div>` above it.
 
 **Design cards** (`<figure class="design">`) — a render, a name, the software and
-year, and a note. One per CAD model on `designs.html`. Export a render or
-screenshot from your CAD program into `assets/` and point the `src` at it.
+year, and a note. One per CAD model on `designs.html`. Export a render from your
+CAD program into `assets/` and point the `src` at it, or let the script do it:
+
+```bash
+python3 tools/render_stl.py model.stl assets/design-name.png 1200 900 -35 -60
+```
+
+The last two numbers are the yaw and pitch in degrees — change them until the
+model reads well. Put the `.stl` itself in `assets/models/` and link it from a
+`<p class="design-files">` so people can download it.
 
 **Gallery pieces** (`<figure class="art-piece">`) — an image, a title and a
 medium/year line. One per artwork on `art.html`.

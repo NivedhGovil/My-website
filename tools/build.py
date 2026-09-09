@@ -40,6 +40,16 @@ for m in re.finditer(r'<h3>(.*?)</h3>\s*<p class="lede">(.*?)</p>', s, re.S):
     records.append(dict(title=strip(m.group(1)), url='engineering.html', section='Engineering',
                         kind='Build', meta='Arduino', text=strip(m.group(2))))
 
+# --- CAD models, from the Designs gallery (skips unfilled placeholders) ---
+s = open('designs.html').read()
+for m in re.finditer(r'<figure class="design">.*?<span class="design-title([^"]*)">(.*?)</span>\s*'
+                     r'<span class="design-meta[^"]*">(.*?)</span>\s*'
+                     r'<p class="design-note[^"]*">(.*?)</p>', s, re.S):
+    if 'empty' in m.group(1):
+        continue
+    records.append(dict(title=strip(m.group(2)), url='designs.html', section='Engineering',
+                        kind='Design', meta=strip(m.group(3)), text=strip(m.group(4))))
+
 # --- the sections themselves, so a search for "art" finds the Art page ---
 for page, title, kind, text in [
     ('literary.html', 'Literary', 'Section', 'Articles, poems, short stories and books to recommend.'),
