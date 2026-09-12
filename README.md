@@ -11,6 +11,7 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `literary.html` | The Literary section: an intro and doors into the three forms |
 | `engineering.html` | The Engineering section: intro and the build tabs |
 | `designs.html` | Engineering &rarr; Designs: CAD models and design highlights |
+| `electrical.html` | Engineering &rarr; Electrical: schematics, PCB layouts, circuit diagrams |
 | `articles.html` | All articles |
 | `poems.html` | All poems |
 | `short-stories.html` | All short stories |
@@ -185,6 +186,12 @@ The last two numbers are the yaw and pitch in degrees — change them until the
 model reads well. Put the `.stl` itself in `assets/models/` and link it from a
 `<p class="design-files">` so people can download it.
 
+**Electrical cards** — the same `<figure class="design">` markup as the CAD
+gallery, reused on `electrical.html` across three groups: schematics, PCB
+layouts and circuit diagrams. Export a PNG from your EDA tool into `assets/`
+and point the `src` at it. The PCB cards carry a download line for zipped
+Gerbers; delete it where there is nothing to download.
+
 **Gallery pieces** (`<figure class="art-piece">`) — an image, a title and a
 medium/year line. One per artwork on `art.html`.
 
@@ -237,7 +244,7 @@ The site is built to hold more than writing, so navigation works in two levels:
 
 - The **main navigation** (top bar, on every page) lists the sections of the
   site: Home, Literary and Engineering.
-- Inside Engineering, a **sub-navigation** bar lists Builds and Designs.
+- Inside Engineering, a **sub-navigation** bar lists Builds, Designs and Electrical.
 - Inside Literary, a **sub-navigation** bar lists Articles, Poems, Short Stories
   and Books, and stays visible on every page beneath it, so you can move between
   them from anywhere without going back up.

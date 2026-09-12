@@ -249,6 +249,14 @@ window.SEARCH_INDEX = [
 "text": "CAD models \u2014 parts and assemblies drawn before they were built."
 },
 {
+"title": "Electrical",
+"url": "electrical.html",
+"section": "Electrical",
+"kind": "Section",
+"meta": "",
+"text": "Schematics, PCB layouts and circuit diagrams."
+},
+{
 "title": "Art",
 "url": "art.html",
 "section": "Art",
