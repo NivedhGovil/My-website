@@ -30,6 +30,8 @@
   --c-books:       #487409;  --c-books-br:       #84cc16;  --c-books-tt:       #e9f7d5;
   --c-art:         #a21caf;  --c-art-br:         #d946ef;  --c-art-tt:         #fae8ff;
   --c-music:       #0369a1;  --c-music-br:       #0ea5e9;  --c-music-tt:       #e0f2fe;
+  --c-essays:      #1d4ed8;  --c-essays-br:      #3b82f6;  --c-essays-tt:      #dbeafe;
+  --c-research:    #92400e;  --c-research-br:    #d97706;  --c-research-tt:    #fdead3;
 
   --accent: var(--c-literary);
   --accent-bright: var(--c-literary-br);
@@ -69,6 +71,8 @@ body.s-about       { --accent: var(--c-literary);    --accent-bright: var(--c-li
   --c-books:       #a3e635;  --c-books-br:       #84cc16;  --c-books-tt:       #a3e63526;
   --c-art:         #e879f9;  --c-art-br:         #d946ef;  --c-art-tt:         #e879f926;
   --c-music:       #38bdf8;  --c-music-br:       #0ea5e9;  --c-music-tt:       #38bdf826;
+  --c-essays:      #93b4fd;  --c-essays-br:      #3b82f6;  --c-essays-tt:      #93b4fd26;
+  --c-research:    #fbbf24;  --c-research-br:    #d97706;  --c-research-tt:    #fbbf2426;
 
   --shadow: 0 4px 20px rgb(0 0 0 / 34%);
   --shadow-lift: 0 14px 34px rgb(0 0 0 / 46%);
@@ -104,6 +108,8 @@ body.s-about       { --accent: var(--c-literary);    --accent-bright: var(--c-li
     --c-books:       #a3e635;  --c-books-br:       #84cc16;  --c-books-tt:       #a3e63526;
     --c-art:         #e879f9;  --c-art-br:         #d946ef;  --c-art-tt:         #e879f926;
     --c-music:       #38bdf8;  --c-music-br:       #0ea5e9;  --c-music-tt:       #38bdf826;
+  --c-essays:      #93b4fd;  --c-essays-br:      #3b82f6;  --c-essays-tt:      #93b4fd26;
+  --c-research:    #fbbf24;  --c-research-br:    #d97706;  --c-research-tt:    #fbbf2426;
   
     --shadow: 0 4px 20px rgb(0 0 0 / 34%);
     --shadow-lift: 0 14px 34px rgb(0 0 0 / 46%);
@@ -127,6 +133,8 @@ body.s-poems       { --accent: var(--c-poems);       --accent-bright: var(--c-po
 body.s-stories     { --accent: var(--c-stories);     --accent-bright: var(--c-stories-br);     --accent-tint: var(--c-stories-tt); }
 body.s-music       { --accent: var(--c-music);       --accent-bright: var(--c-music-br);       --accent-tint: var(--c-music-tt); }
 body.s-art         { --accent: var(--c-art);         --accent-bright: var(--c-art-br);         --accent-tint: var(--c-art-tt); }
+body.s-essays      { --accent: var(--c-essays);      --accent-bright: var(--c-essays-br);      --accent-tint: var(--c-essays-tt); }
+body.s-research    { --accent: var(--c-research);    --accent-bright: var(--c-research-br);    --accent-tint: var(--c-research-tt); }
 body.s-books       { --accent: var(--c-books);       --accent-bright: var(--c-books-br);       --accent-tint: var(--c-books-tt); }
 
 * { box-sizing: border-box; }
@@ -353,6 +361,8 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 .k-books       { --card-accent: var(--c-books); }
 .k-art         { --card-accent: var(--c-art); }
 .k-music       { --card-accent: var(--c-music); }
+.k-essays      { --card-accent: var(--c-essays); }
+.k-research    { --card-accent: var(--c-research); }
 
 /* ---------- Page header ---------- */
 .page-head { padding: 56px 0 4px; }
@@ -708,6 +718,7 @@ main:focus { outline: none; }
 .meta.k-books    { --card-accent: var(--c-books);    --card-accent-tint: var(--c-books-tt); }
 .meta.k-art      { --card-accent: var(--c-art);      --card-accent-tint: var(--c-art-tt); }
 .meta.k-music    { --card-accent: var(--c-music);    --card-accent-tint: var(--c-music-tt); }
+.meta.k-essays   { --card-accent: var(--c-essays);   --card-accent-tint: var(--c-essays-tt); }
 
 /* ---------- Fill-in placeholders ----------
    A slot waiting for real text. Each one shows what to write and roughly how
@@ -1620,3 +1631,25 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 @media (hover: hover) and (pointer: fine) {
   .design .design-files a:hover { text-decoration: underline; }
 }
+
+/* ---------- Cited sources at the foot of an essay ---------- */
+article.prose ol.sources {
+  margin: 0 0 22px;
+  padding-left: 1.4em;
+  font-family: var(--font-sans);
+}
+
+article.prose ol.sources li {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 12px;
+  color: var(--ink-soft);
+}
+
+.sources .src-what { font-style: italic; color: var(--ink); }
+.sources .src-use { display: block; font-size: 0.86rem; opacity: 0.85; }
+
+/* Placeholder styling for the research listing and the build log. */
+.piece h2.empty, .timeline .empty { font-style: italic; color: var(--ink-soft); }
+.timeline .when.empty { font-style: normal; }

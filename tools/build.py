@@ -21,6 +21,7 @@ records = []
 
 # --- writing, from each listing page ---
 for page, section, kind in [('articles.html', 'Literary', 'Article'),
+                            ('essays.html', 'Literary', 'Essay'),
                             ('poems.html', 'Literary', 'Poem'),
                             ('short-stories.html', 'Literary', 'Short story'),
                             ('books.html', 'Literary', 'Book')]:
@@ -55,6 +56,9 @@ for page, title, kind, text in [
     ('literary.html', 'Literary', 'Section', 'Articles, poems, short stories and books to recommend.'),
     ('engineering.html', 'Engineering', 'Section', 'Arduino builds and electronics, with the video from each build.'),
     ('designs.html', 'Designs', 'Section', 'CAD models — parts and assemblies drawn before they were built.'),
+    ('essays.html', 'Essays', 'Section', 'Longer arguments, researched and cited.'),
+    ('research.html', 'Research', 'Section', 'Papers, investigations and the questions behind them.'),
+    ('robotic-arm.html', 'Robotic Arm', 'Project', 'A jointed robotic arm — photographs, build log and code.'),
     ('electrical.html', 'Electrical', 'Section', 'Schematics, PCB layouts and circuit diagrams.'),
     ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),
     ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),

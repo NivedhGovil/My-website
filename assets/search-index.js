@@ -41,6 +41,14 @@ window.SEARCH_INDEX = [
 "text": "A farewell to a year that held a first trip abroad, a move to a new city, a startup that failed, and 4,500 steps."
 },
 {
+"title": "Planted, But Never Prosperous: India\u2019s Struggle with Low Agricultural Yield",
+"url": "pieces/planted-but-never-prosperous.html",
+"section": "Literary",
+"kind": "Essay",
+"meta": "Essay \u00b7 IPA \u00b7 2026",
+"text": "Nearly half of India works the land and produces under a fifth of its economy. An essay on the yield gap behind that arithmetic, the poverty cycle it feeds, and what students, lenders and universities could actually do about it."
+},
+{
 "title": "My mother, the Earth",
 "url": "pieces/my-mother-the-earth.html",
 "section": "Literary",
@@ -247,6 +255,30 @@ window.SEARCH_INDEX = [
 "kind": "Section",
 "meta": "",
 "text": "CAD models \u2014 parts and assemblies drawn before they were built."
+},
+{
+"title": "Essays",
+"url": "essays.html",
+"section": "Essays",
+"kind": "Section",
+"meta": "",
+"text": "Longer arguments, researched and cited."
+},
+{
+"title": "Research",
+"url": "research.html",
+"section": "Research",
+"kind": "Section",
+"meta": "",
+"text": "Papers, investigations and the questions behind them."
+},
+{
+"title": "Robotic Arm",
+"url": "robotic-arm.html",
+"section": "Robotic Arm",
+"kind": "Project",
+"meta": "",
+"text": "A jointed robotic arm \u2014 photographs, build log and code."
 },
 {
 "title": "Electrical",

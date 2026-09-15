@@ -12,7 +12,10 @@ stylesheet. Open `index.html` in a browser to view it locally.
 | `engineering.html` | The Engineering section: intro and the build tabs |
 | `designs.html` | Engineering &rarr; Designs: CAD models and design highlights |
 | `electrical.html` | Engineering &rarr; Electrical: schematics, PCB layouts, circuit diagrams |
+| `robotic-arm.html` | A single project page: photos, build log and code link |
 | `articles.html` | All articles |
+| `essays.html` | All essays |
+| `research.html` | Research papers |
 | `poems.html` | All poems |
 | `short-stories.html` | All short stories |
 | `books.html` | Books to recommend, with a reason for each |
@@ -245,8 +248,8 @@ The site is built to hold more than writing, so navigation works in two levels:
 - The **main navigation** (top bar, on every page) lists the sections of the
   site: Home, Literary and Engineering.
 - Inside Engineering, a **sub-navigation** bar lists Builds, Designs and Electrical.
-- Inside Literary, a **sub-navigation** bar lists Articles, Poems, Short Stories
-  and Books, and stays visible on every page beneath it, so you can move between
+- Inside Literary, a **sub-navigation** bar lists Articles, Essays, Research,
+  Poems, Short Stories and Books, and stays visible on every page beneath it, so you can move between
   them from anywhere without going back up.
 
 ## Adding a book
