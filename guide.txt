@@ -1,5 +1,7 @@
 &amp; -> Makes an Ampersand
-<span> </span> -> 
+<span> </span> -> Group and mark up a specific part of a text or document.
+Ex: <p>The weather today is <span style="color: red; font-weight: bold;">extremely hot</span> out there.</p>
+
 The code <html lang="en"> Specifies that the primary language of the webpage is English
 aria-current="page": tells that this link represents the current page in the navigation structure.
 &mdash; : Makes an em dash
