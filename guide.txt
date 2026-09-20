@@ -1,0 +1,6 @@
+&amp; -> Makes an Ampersand
+<span> </span> -> 
+The code <html lang="en"> Specifies that the primary language of the webpage is English
+aria-current="page": tells that this link represents the current page in the navigation structure.
+&mdash; : Makes an em dash
+&middot;
