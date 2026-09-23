@@ -7,3 +7,4 @@ aria-current="page": tells that this link represents the current page in the nav
 &mdash; : Makes an em dash
 &middot; : middle dot symbol (·)
  <p class="pill">Student &middot; Writer &middot; Maker</p> for a pill like box
+ &rsquo; : apostrophe
