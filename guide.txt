@@ -5,4 +5,5 @@ Ex: <p>The weather today is <span style="color: red; font-weight: bold;">extreme
 The code <html lang="en"> Specifies that the primary language of the webpage is English
 aria-current="page": tells that this link represents the current page in the navigation structure.
 &mdash; : Makes an em dash
-&middot;
+&middot; : middle dot symbol (·)
+ <p class="pill">Student &middot; Writer &middot; Maker</p> for a pill like box
