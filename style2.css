@@ -1,18 +1,4 @@
-/* ============================================================
-   Nivedh Govil — site styles
 
-   Colour: one hue per section. Each page names its section on
-   <body> (class="s-poems") and every component below inherits it.
-   Three roles, not interchangeable:
-     --accent        carries TEXT; every value clears 4.5:1
-     --accent-bright fills shapes; never small text
-     --accent-tint   pale wash behind pills and tags
-
-   Type: serif headings, sans interface, serif again for the
-   writing itself on reading pages.
-   ============================================================ */
-
-/* ---------- Tokens ---------- */
 :root {
   --ink: #26201c;
   --ink-soft: #7c6c62;
@@ -48,10 +34,7 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Dark theme: the same hues at their brighter values, so every
-   body.s-* rule below keeps working untouched. Declared twice
-   because an explicit choice and a system preference cannot share
-   one rule. */
+
 :root[data-theme="dark"] {
   --ink: #f3ece6;
   --ink-soft: #b0a49a;
