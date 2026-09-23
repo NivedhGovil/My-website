@@ -9,3 +9,7 @@ aria-current="page": tells that this link represents the current page in the nav
  <p class="pill">Student &middot; Writer &middot; Maker</p> for a pill like box
  &rsquo; : apostrophe
 class="acheivement"
+<label>: This tag defines a caption for an item in a user interface.
+for="build-1": This attribute explicitly binds the label to a form element (like an <input>) that has th
+the matching id. 
+xyz: This is the actual text that the user will see on the screen.
