@@ -8,6 +8,20 @@ I've used **HTML**, **CSS**, and a little bit of **JavaScript**.
 ## Use of AI
 I have used AI, only for help on CSS and Javascript.
 
+## Pages
+
+| File | Description |
+| --- | --- |
+| `index.html` | Home |
+| `literary.html` | Literary |
+| `articles.html` | Articles |
+| `essays.html` | Essays |
+| `poems.html` | Poems |
+| `engineering.html` | Engineering |
+| `robotic-arm.html` | Robotic arm |
+| `art.html` | Art |
+| `about.html` | About |
+
 ## Deployments
 You can see the website in action by either going to: 
 ``` https://nivedhgovil.github.io/nivedh-website/``` 
