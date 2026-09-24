@@ -5,6 +5,8 @@ I am Nivedh and this is the README for my own personal website, a project I've b
 On opening my website the first page is the home page, which has a brief description of the entire website, some more things, and a Contact Me button. The other pages, for example, the Literary page, have links to my work, for example, the articles, essays, and poems I have written.
 
 I've used HTML, CSS, and a little bit of JavaScript.
+## Use of AI
+I have used AI, only for help on CSS and Javascript.
 
 ## How to run it
 
