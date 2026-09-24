@@ -19,4 +19,9 @@ cd nivedh-website
 ```
 3. Click on index.html
 
+## Images of the progress
+
 Here are some screenshots:
+![Code][assets/code.png]
+![home page][assets/homepage.png]
+![Electrical page][assets/pcb.png]
