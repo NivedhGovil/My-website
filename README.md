@@ -12,15 +12,15 @@ I have used AI, only for help on CSS and Javascript.
 
 | File | Description |
 | --- | --- |
-| `index.html` | Home |
-| `literary.html` | Literary |
-| `articles.html` | Articles |
-| `essays.html` | Essays |
-| `poems.html` | Poems |
-| `engineering.html` | Engineering |
-| `robotic-arm.html` | Robotic arm |
-| `art.html` | Art |
-| `about.html` | About |
+| `index.html` | Home Page |
+| `literary.html` | My Write-ups |
+| `articles.html` | Articles I have written |
+| `essays.html` | Essays I have written |
+| `poems.html` | Poems I have written |
+| `engineering.html` | Engineering projects |
+| `robotic-arm.html` | Robot I am building |
+| `art.html` | My drawings |
+| `about.html` | About Me |
 
 ## Deployments
 You can see the website in action by either going to: 
