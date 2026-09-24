@@ -8,6 +8,12 @@ I've used **HTML**, **CSS**, and a little bit of **JavaScript**.
 ## Use of AI
 I have used AI, only for help on CSS and Javascript.
 
+## Deployments
+You can see the website in action by either going to: 
+``` https://nivedhgovil.github.io/nivedh-website/``` 
+or
+``` https://my-website-red-six-87.vercel.app/index.html ```
+
 ## How to run it
 
 1. Clone the repo:
