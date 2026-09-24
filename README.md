@@ -22,6 +22,6 @@ cd nivedh-website
 ## Images of the progress
 
 Here are some screenshots:
-![Code][assets/code.png]
-![home page][assets/homepage.png]
-![Electrical page][assets/pcb.png]
+![Code](assets/code.png)
+![home page](assets/homepage.png)
+![Electrical page](assets/pcb.png)
