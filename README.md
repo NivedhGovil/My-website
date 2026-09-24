@@ -11,7 +11,12 @@ I've used HTML, CSS, and a little bit of JavaScript.
 1. Clone the repo:
 
 ```bash
-git clone https://github.com/NivedhGovil/My-website.git
-cd My-website
+ git clone https://github.com/NivedhGovil/nivedh-website.git
+```
+2. Open the repository
+```bash
+cd nivedh-website
+```
+3. Click on index.html
 
 Here are some screenshots:
