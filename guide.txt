@@ -13,3 +13,4 @@ class="acheivement"
 for="build-1": This attribute explicitly binds the label to a form element (like an <input>) that has th
 the matching id. 
 xyz: This is the actual text that the user will see on the screen.
+&copy; Makes the copyright symbol
