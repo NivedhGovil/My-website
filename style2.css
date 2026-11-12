@@ -7,13 +7,22 @@
   --paper-alt: #eeeee8;
   --line: #e0e0d7;
   --rule: #111111;              /* the hard black borders */
-  --yellow: #ffd400;            /* the one accent */
-  --bar-bg: #111111;            /* the section strip */
-  --bar-fg: #ffd400;
 
-  --accent: #111111;            /* accent TEXT stays black and readable */
-  --accent-bright: #ffd400;     /* fills and markers */
-  --accent-tint: #ffd400;       /* badge backgrounds */
+  /* A muted hue per section: a deep tone for type and fills,
+     a pale tint for badges. Nothing saturated. */
+  --c-literary:    #9d5137;  --c-literary-tt:    #f4e4dc;
+  --c-engineering: #4d5f82;  --c-engineering-tt: #e3e8f0;
+  --c-articles:    #3d6f69;  --c-articles-tt:    #dfebe9;
+  --c-poems:       #93505d;  --c-poems-tt:       #f3e1e4;
+  --c-stories:     #6b5680;  --c-stories-tt:     #e9e3f0;
+  --c-books:       #5a6d45;  --c-books-tt:       #e7ecdf;
+  --c-art:         #8a5572;  --c-art-tt:         #f1e3eb;
+  --c-music:       #45688a;  --c-music-tt:       #e1eaf2;
+  --c-essays:      #4f5b8c;  --c-essays-tt:      #e4e6f1;
+  --c-research:    #806130;  --c-research-tt:    #f1e8d7;
+
+  --accent: var(--c-literary);
+  --accent-tint: var(--c-literary-tt);
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
@@ -36,9 +45,17 @@
   --paper-alt: #1e1e1b;
   --line: #2f2f2a;
   --rule: #f4f4ef;
-  --accent: #ffd400;
-  --bar-bg: #ffd400;
-  --bar-fg: #111111;
+
+  --c-literary:    #e0a58a;  --c-literary-tt:    #e0a58a26;
+  --c-engineering: #a8b6d4;  --c-engineering-tt: #a8b6d426;
+  --c-articles:    #8ec7bf;  --c-articles-tt:    #8ec7bf26;
+  --c-poems:       #dfa2ad;  --c-poems-tt:       #dfa2ad26;
+  --c-stories:     #bda9d2;  --c-stories-tt:     #bda9d226;
+  --c-books:       #afc293;  --c-books-tt:       #afc29326;
+  --c-art:         #d6a2bd;  --c-art-tt:         #d6a2bd26;
+  --c-music:       #9ec0dd;  --c-music-tt:       #9ec0dd26;
+  --c-essays:      #a9b1dc;  --c-essays-tt:      #a9b1dc26;
+  --c-research:    #d9b878;  --c-research-tt:    #d9b87826;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,11 +67,44 @@
     --paper-alt: #1e1e1b;
     --line: #2f2f2a;
     --rule: #f4f4ef;
-    --accent: #ffd400;
-    --bar-bg: #ffd400;
-    --bar-fg: #111111;
+
+  --c-literary:    #e0a58a;  --c-literary-tt:    #e0a58a26;
+    --c-engineering: #a8b6d4;  --c-engineering-tt: #a8b6d426;
+    --c-articles:    #8ec7bf;  --c-articles-tt:    #8ec7bf26;
+    --c-poems:       #dfa2ad;  --c-poems-tt:       #dfa2ad26;
+    --c-stories:     #bda9d2;  --c-stories-tt:     #bda9d226;
+    --c-books:       #afc293;  --c-books-tt:       #afc29326;
+    --c-art:         #d6a2bd;  --c-art-tt:         #d6a2bd26;
+    --c-music:       #9ec0dd;  --c-music-tt:       #9ec0dd26;
+    --c-essays:      #a9b1dc;  --c-essays-tt:      #a9b1dc26;
+    --c-research:    #d9b878;  --c-research-tt:    #d9b87826;
   }
 }
+
+/* Which hue each page wears. */
+body.s-literary { --accent: var(--c-literary); --accent-tint: var(--c-literary-tt); }
+body.s-engineering { --accent: var(--c-engineering); --accent-tint: var(--c-engineering-tt); }
+body.s-articles { --accent: var(--c-articles); --accent-tint: var(--c-articles-tt); }
+body.s-poems { --accent: var(--c-poems); --accent-tint: var(--c-poems-tt); }
+body.s-stories { --accent: var(--c-stories); --accent-tint: var(--c-stories-tt); }
+body.s-books { --accent: var(--c-books); --accent-tint: var(--c-books-tt); }
+body.s-art { --accent: var(--c-art); --accent-tint: var(--c-art-tt); }
+body.s-music { --accent: var(--c-music); --accent-tint: var(--c-music-tt); }
+body.s-essays { --accent: var(--c-essays); --accent-tint: var(--c-essays-tt); }
+body.s-research { --accent: var(--c-research); --accent-tint: var(--c-research-tt); }
+body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-research-tt); }
+
+/* Cards borrow the hue of wherever they lead. */
+.k-literary { --card-accent: var(--c-literary); --card-accent-tint: var(--c-literary-tt); }
+.k-engineering { --card-accent: var(--c-engineering); --card-accent-tint: var(--c-engineering-tt); }
+.k-articles { --card-accent: var(--c-articles); --card-accent-tint: var(--c-articles-tt); }
+.k-poems { --card-accent: var(--c-poems); --card-accent-tint: var(--c-poems-tt); }
+.k-stories { --card-accent: var(--c-stories); --card-accent-tint: var(--c-stories-tt); }
+.k-books { --card-accent: var(--c-books); --card-accent-tint: var(--c-books-tt); }
+.k-art { --card-accent: var(--c-art); --card-accent-tint: var(--c-art-tt); }
+.k-music { --card-accent: var(--c-music); --card-accent-tint: var(--c-music-tt); }
+.k-essays { --card-accent: var(--c-essays); --card-accent-tint: var(--c-essays-tt); }
+.k-research { --card-accent: var(--c-research); --card-accent-tint: var(--c-research-tt); }
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
@@ -102,7 +152,7 @@ a { color: var(--accent); }
   .search-results a:hover { background: var(--paper-alt); }
   .pub-list a:hover, .design .design-files a:hover { text-decoration: underline; }
   .icon-btn:hover { border-color: var(--rule); color: var(--ink); }
-  .channel-link a:hover, .send-btn:hover { background: var(--yellow); color: #111; }
+  .channel-link a:hover, .send-btn:hover { background: var(--accent); border-color: var(--accent); }
 }
 
 .card, .achievement, .design, .art-piece, .recording, .piece, .book,
@@ -130,9 +180,9 @@ a { color: var(--accent); }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--yellow);
-  color: #111;
-  border: 1px solid #111;
+  background: var(--accent-tint);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
@@ -200,7 +250,7 @@ article.prose .byline { margin: 0 0 30px; }
 }
 
 .brand { font-size: 1.2rem; font-weight: 700; text-decoration: none; color: var(--ink); }
-.brand span { background: var(--yellow); color: #111; padding: 0 7px; }
+.brand span { color: var(--accent); }
 
 nav.main-nav ul, .sub-nav ul {
   list-style: none;
@@ -224,7 +274,7 @@ nav.main-nav a { font-size: 0.92rem; padding: 7px 14px; }
 .sub-nav { border-bottom: 1px solid var(--line); }
 .sub-nav a { font-size: 0.88rem; padding: 6px 13px; }
 
-nav.main-nav a.active, .sub-nav a.active { color: #111; background: var(--yellow); }
+nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var(--accent-tint); }
 
 .header-tools { display: flex; align-items: center; gap: 6px; }
 
@@ -276,13 +326,13 @@ nav.main-nav a.active, .sub-nav a.active { color: #111; background: var(--yellow
 .hero h1 { font-size: 3.6rem; line-height: 0.98; margin: 16px 0 10px; font-weight: 800; letter-spacing: -0.04em; }
 .hero p.pill { margin: 0 0 4px; }
 .hero p:not(.pill) { margin: 0 0 14px; color: var(--ink-soft); font-size: 1.05rem; }
-.hero p.tagline { display: inline-block; background: var(--yellow); color: #111; font-weight: 700; font-size: 0.98rem; margin: 0 0 20px; padding: 2px 8px; }
+.hero p.tagline { display: inline-block; background: var(--accent-tint); color: var(--accent); font-weight: 700; font-size: 0.98rem; margin: 0 0 20px; padding: 3px 9px; }
 
 /* ---------- Page and section headings ---------- */
 .section { padding: 0 0 46px; border-top: 1px solid var(--line); }
 .section > h2, .big-head > h2 {
-  background: var(--bar-bg);
-  color: var(--bar-fg);
+  background: var(--accent);
+  color: var(--paper);
   font-family: var(--font-mono);
   font-size: 0.92rem;
   font-weight: 700;
@@ -315,7 +365,7 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
   width: 100%;
   height: 190px;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.05);
+  filter: saturate(0.42) brightness(1.04);
   border: 1px solid var(--line);
   border-radius: 0;
   box-shadow: var(--shadow);
@@ -329,8 +379,8 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 
 .channel-link a, .send-btn {
   color: var(--paper);
-  background: var(--ink);
-  border: 1px solid var(--ink);
+  background: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 0;
   font-weight: 700;
 }
@@ -382,7 +432,7 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 
 .card { display: block; overflow: hidden; text-decoration: none; color: inherit; }
 .card-media { display: block; width: 100%; aspect-ratio: 800 / 340; object-fit: cover;
-  filter: grayscale(1) contrast(1.05); border-bottom: 1px solid var(--line); }
+  filter: saturate(0.42) brightness(1.04); border-bottom: 1px solid var(--line); }
 .card-body { padding: 20px 24px 24px; }
 .card h3 { margin: 0 0 8px; font-size: 1.3rem; color: var(--card-accent, var(--accent)); }
 .card p { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
@@ -570,9 +620,9 @@ article.prose ol.sources li { margin-bottom: 12px; }
 .tabs > input:nth-of-type(4):checked ~ .tab-labels > label:nth-of-type(4),
 .tabs > input:nth-of-type(5):checked ~ .tab-labels > label:nth-of-type(5),
 .tabs > input:nth-of-type(6):checked ~ .tab-labels > label:nth-of-type(6) {
-  background: var(--yellow);
-  border-color: #111;
-  color: #111;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
 }
 
 .tabs > input:nth-of-type(1):focus-visible ~ .tab-labels > label:nth-of-type(1),
@@ -800,8 +850,8 @@ article.prose ol.sources li { margin-bottom: 12px; }
   height: 38px;
   flex: none;
   border-radius: 0;
-  background: var(--yellow);
-  color: #111;
+  background: var(--accent-tint);
+  color: var(--accent);
 }
 
 .detail .ic svg { width: 18px; height: 18px; }
@@ -833,7 +883,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
 
 .contact-form input:focus, .contact-form textarea:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--yellow);
+  box-shadow: 0 0 0 3px var(--accent-tint);
 }
 
 .contact-form .invalid, .form-note.error { border-color: #dc2626; color: #dc2626; }
@@ -920,7 +970,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
   color: inherit;
 }
 
-.search-results a.on { background: var(--yellow); color: #111; }
+.search-results a.on { background: var(--accent-tint); }
 
 .search-results .s-title {
   display: block;
@@ -960,8 +1010,8 @@ article.prose ol.sources li { margin-bottom: 12px; }
   width: 8px;
   height: 8px;
   border-radius: 0;
-  background: var(--yellow);
-  border: 1px solid var(--rule);
+  background: var(--accent);
+  border: 1px solid var(--accent);
   flex: none;
 }
 
