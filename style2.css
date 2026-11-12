@@ -224,7 +224,7 @@ a { color: var(--accent); }
 
 /* ---------- Shared surfaces ----------
    Everything that sits on the page as a raised white card. */
-.card, .piece, .book, .achievement, .design, .art-piece, .recording,
+.card, .achievement, .design, .art-piece, .recording,
 .highlight, .project, .elsewhere, .qa, .piece-nav a {
   background: var(--card);
   border: 0;
@@ -235,8 +235,14 @@ a { color: var(--accent); }
    :hover on tap and it sticks. */
 @media (hover: hover) and (pointer: fine) {
   .achievement:hover, .design:hover, .art-piece:hover,
-  .recording:hover, .piece:hover, .book:hover, .highlight:hover,
+  .recording:hover, .highlight:hover,
   .piece-nav a:hover { background: var(--paper-alt); }
+
+  .piece:has(h2 a):hover, .book:has(h2 a):hover { background: var(--accent-tint); }
+  .piece:has(h2 a):hover::after, .book:has(h2 a):hover::after {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
   .card:hover { filter: brightness(0.975); }
   .card:hover .card-media { transform: scale(1.03); }
   .card .go { transition: transform 240ms var(--ease); }
@@ -433,7 +439,7 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
   box-shadow: var(--shadow-lift);
 }
 
-.hero h1 { font-size: var(--t-display); line-height: 1.02; margin: 20px 0 14px; font-weight: 800; letter-spacing: -0.04em; max-width: 14ch; }
+.hero h1 { text-wrap: balance; font-size: var(--t-display); line-height: 1.02; margin: 20px 0 14px; font-weight: 800; letter-spacing: -0.04em; max-width: 14ch; }
 .hero p.pill { margin: 0 0 4px; }
 .hero p:not(.pill) { margin: 0 0 14px; color: var(--ink-soft); font-size: var(--t-body); max-width: 46ch; }
 .hero p.tagline { display: inline-block; background: var(--accent-tint); color: var(--accent); font-weight: 700; font-size: var(--t-base); margin: 0 0 20px; padding: 5px 14px; border-radius: var(--radius-pill); }
@@ -510,7 +516,8 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
   letter-spacing: -0.04em;
   line-height: 1.08;
   text-align: center;
-  max-width: 16ch;
+  text-wrap: balance;
+  max-width: 22ch;
   margin: 0 auto 14px;
 }
 .section .section-note { color: var(--ink-soft); margin: 0 auto 40px; text-align: center; max-width: 48ch; }
@@ -521,7 +528,7 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
 .section-intro p { margin: 0 0 16px; }
 
 .page-head { padding: 56px 0 4px; }
-.page-head h1 { font-size: calc(var(--t-xl) * 1.2); margin: 14px 0 12px; font-weight: 800; letter-spacing: -0.04em; }
+.page-head h1 { text-wrap: balance; font-size: calc(var(--t-xl) * 1.2); margin: 14px 0 12px; font-weight: 800; letter-spacing: -0.04em; }
 .page-head > p:not(.pill) { color: var(--ink-soft); margin: 0; max-width: 58ch; font-size: var(--t-body); }
 
 .big-head { text-align: center; margin: 54px 0 44px; }
@@ -698,7 +705,7 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   background: var(--paper-alt);
 }
 
-.achievement .shot { aspect-ratio: 16 / 10; }
+.achievement .shot { aspect-ratio: 16 / 10; max-height: 320px; }
 .design img, .art-piece img { aspect-ratio: 4 / 3; }
 
 .achievement .body { padding: 20px 22px 24px; }
@@ -797,11 +804,60 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 
 @media (max-width: 620px) {
   .sw-project { padding: 22px 20px 24px; }
+
 }
 
 /* ---------- Listings ---------- */
 .piece-list, .book-list { list-style: none; margin: 30px 0 76px; padding: 0; }
-.piece, .book { padding: 26px 28px; margin-bottom: 18px; }
+/* ---------- Listings ----------
+   An archive reads better as an index than as a stack of identical
+   boxes: a quiet number, a rule between entries, and the whole row
+   clickable where there is somewhere to go. */
+.piece-list, .book-list { counter-reset: idx; border-top: 1px solid var(--line); }
+
+.piece, .book {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) 1.6rem;
+  align-items: start;
+  gap: 0 18px;
+  padding: 26px 10px;
+  margin: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.piece::before, .book::before {
+  counter-increment: idx;
+  content: counter(idx, decimal-leading-zero);
+  grid-column: 1;
+  grid-row: 1 / -1;
+  padding-top: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  color: var(--ink-soft);
+}
+
+.piece > *, .book > * { grid-column: 2; }
+/* Chips are grid items now, so they must be told not to stretch. */
+.piece .meta, .book .author { justify-self: start; }
+.piece .summary, .book .reason { max-width: 68ch; }
+
+/* The arrow, and the whole-row link, only where the title leads somewhere. */
+.piece:has(h2 a)::after, .book:has(h2 a)::after {
+  content: "\2192";
+  grid-column: 3;
+  grid-row: 1 / -1;
+  align-self: center;
+  justify-self: end;
+  color: var(--ink-soft);
+  transition: transform 240ms var(--ease), color 240ms var(--ease);
+}
+
+.piece h2 a::after, .book h2 a::after { content: ""; position: absolute; inset: 0; }
+.piece .summary a, .book .reason a { position: relative; z-index: 1; }
 .piece h2, .book h2 { font-size: var(--t-md); margin: 0 0 10px; }
 .piece h2 a { text-decoration: none; color: var(--ink); }
 .piece .summary, .book .reason { margin: 0; color: var(--ink-soft); }
@@ -1069,7 +1125,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
 .about-split .prose-col .hl { color: var(--accent); font-weight: 600; }
 
 .highlights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.highlight { padding: 24px 20px; text-align: center; }
+.highlight { padding: 20px 18px; text-align: center; }
 .highlight svg { width: 30px; height: 30px; color: var(--accent); margin-bottom: 12px; }
 .highlight .h-title { display: block; font-weight: 700; font-size: var(--t-body); margin-bottom: 3px; }
 .highlight .h-sub { display: block; color: var(--ink-soft); font-size: var(--t-meta); }
@@ -1624,6 +1680,14 @@ main:focus { outline: none; }
   .piece-nav { grid-template-columns: 1fr; }
   .piece-nav .next { text-align: left; }
   .piece-nav .next-placeholder { display: none; }
+
+  /* On a phone the number and arrow columns cost more width than they
+     are worth; the number moves above the title and the row stays
+     tappable without the arrow. */
+  .piece, .book { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 22px 2px; }
+  .piece::before, .book::before { grid-row: auto; grid-column: 1; padding: 0 0 6px; }
+  .piece > *, .book > * { grid-column: 1; }
+  .piece:has(h2 a)::after, .book:has(h2 a)::after { display: none; }
 }
 
 @media (max-width: 520px) {
