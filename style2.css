@@ -1,7 +1,7 @@
 
 :root {
   --ink: #111111;
-  --ink-soft: #6b6b66;
+  --ink-soft: #656560;
   --paper: #ffffff;
   --card: #f5f5f3;
   --paper-alt: #ededea;
@@ -135,6 +135,19 @@ body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-
 html { scroll-behavior: smooth; }
 body { overflow-x: clip; }
 
+/* A soft band of the section's own colour behind the top of every page.
+   Fixed, so it stays put while the content scrolls over it. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: 460px;
+  background: linear-gradient(var(--accent-tint), transparent);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: -1;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -194,9 +207,10 @@ a { color: var(--accent); }
 /* Lift on hover, but only where there is a real pointer: phones fire
    :hover on tap and it sticks. */
 @media (hover: hover) and (pointer: fine) {
-  .card:hover, .achievement:hover, .design:hover, .art-piece:hover,
+  .achievement:hover, .design:hover, .art-piece:hover,
   .recording:hover, .piece:hover, .book:hover, .highlight:hover,
   .piece-nav a:hover { background: var(--paper-alt); }
+  .card:hover { filter: brightness(0.975); }
   .card:hover .card-media { transform: scale(1.015); }
 
   .piece h2 a:hover, .back-link:hover,
@@ -369,7 +383,7 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
   align-items: center;
   text-align: center;
   gap: 4px;
-  padding: 72px 0 24px;
+  padding: 64px 0 8px;
 }
 
 .portrait {
@@ -388,7 +402,7 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
 .hero p.tagline { display: inline-block; background: var(--accent-tint); color: var(--accent); font-weight: 700; font-size: var(--t-base); margin: 0 0 20px; padding: 5px 14px; border-radius: var(--radius-pill); }
 
 /* ---------- Page and section headings ---------- */
-.section { padding: 56px 0 46px; border-top: 0; }
+.section { padding: 40px 0 46px; border-top: 0; }
 .section > h2, .big-head > h2 {
   font-size: var(--t-xl);
   font-weight: 800;
@@ -544,15 +558,22 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 
 main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 
-.card { display: flex; flex-direction: column-reverse; justify-content: flex-end;
-  overflow: hidden; text-decoration: none; color: inherit; }
+.card {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-accent-tint, var(--card));
+}
 .card-media { display: block; width: 100%; aspect-ratio: 800 / 340; object-fit: cover;
   filter: saturate(0.42) brightness(1.04);
   border-radius: var(--radius-sm);
-  width: calc(100% - 32px);
-  margin: 0 16px 16px;
+  width: calc(100% - 36px);
+  margin: 0 18px 18px;
 }
-.card-body { padding: 30px 26px 22px; text-align: center; }
+.card-body { padding: 32px 28px 24px; text-align: center; }
 .card h3 { margin: 0 0 10px; font-size: var(--t-md); color: var(--card-accent, var(--accent)); }
 .card p { margin: 0; color: var(--ink-soft); font-size: var(--t-base); }
 
