@@ -255,6 +255,7 @@ a { color: var(--accent); }
   .pub-list a:hover, .design .design-files a:hover { text-decoration: underline; }
   .icon-btn:hover { border-color: var(--rule); color: var(--ink); }
   .channel-link a:hover, .send-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .channel-link + .channel-link a:hover { color: var(--paper); }
 }
 
 .card, .achievement, .design, .art-piece, .recording, .piece, .book,
@@ -323,6 +324,21 @@ article.prose .byline { margin: 0 0 30px; }
 .piece-nav .dir { margin-bottom: 6px; }
 .search-results .s-kind { display: inline-block; margin-bottom: 4px; }
 .design .design-meta { margin-bottom: 10px; }
+
+/* A build that is not finished yet. A chip rather than a coloured word, so
+   it carries the same weight in both themes. */
+.wip {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
 
 /* Unfilled placeholder text, wherever it appears. */
 .empty { font-style: italic; color: var(--ink-soft); }
@@ -417,12 +433,31 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
 
 /* ---------- Hero ---------- */
 .hero {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 4px;
   padding: 64px 0 8px;
+}
+
+/* Two washes of colour behind the hero: the warm one the writing uses and
+   the cool one the engineering uses, which is what the tagline says out
+   loud. Kept faint enough that the text contrast below is untouched. */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  translate: -50% 0;
+  top: -90px;
+  width: 150vw;
+  height: 520px;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 58% at 34% 32%, color-mix(in oklab, var(--c-literary) 15%, transparent), transparent 70%),
+    radial-gradient(42% 58% at 66% 38%, color-mix(in oklab, var(--c-engineering) 13%, transparent), transparent 70%);
 }
 
 .portrait {
@@ -535,22 +570,56 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 .big-head > p:not(.pill) { color: var(--ink-soft); margin: 0 auto; max-width: 52ch; }
 
 
+/* ---------- Section masthead ----------
+   The title and the section's cover art share one band, so the art reads as
+   the heading's own plate rather than a picture dropped above it. */
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 40px;
+  align-items: center;
+  margin: 40px 0 10px;
+}
+.masthead .page-head { padding: 0; }
+
 .section-banner {
   display: block;
   width: 100%;
-  height: 190px;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  filter: saturate(0.42) brightness(1.04);
-  border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-top: 34px;
+  margin: 0;
 }
 
-.section-banner + .page-head { padding-top: 30px; }
+/* One column under the point where 40px of gutter stops being affordable.
+   The art leads, because a plate above a title still reads as a masthead. */
+@media (max-width: 860px) {
+  .masthead {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+    margin: 28px 0 6px;
+  }
+  .masthead .section-banner { order: -1; aspect-ratio: 21 / 9; }
+}
 
 /* ---------- Buttons and links ---------- */
-.channel-link { margin-top: 26px; }
+/* Consecutive calls to action read as one row of choices, not a stack of
+   three equal demands. Inline-flex lets a run of them sit on one line and
+   wrap on their own when the column gets narrow. */
+.channel-link {
+  display: inline-flex;
+  vertical-align: top;
+  margin: 26px 10px 0 0;
+}
+
+/* Only the first of a run is the primary action; the rest step back to an
+   outline so the eye is given somewhere to land. */
+.channel-link + .channel-link a {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--rule);
+}
 
 .channel-link a, .send-btn {
   color: var(--paper);
@@ -664,27 +733,47 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 
 .card {
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
+  flex-direction: column;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
+  background: var(--card);
+}
+/* The cover is the lid of the card: full-bleed across the top, no inset. */
+.card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 800 / 300;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+}
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px 26px 22px;
   background: var(--card-accent-tint, var(--card));
 }
-.card-media { display: block; width: 100%; aspect-ratio: 800 / 340; object-fit: cover;
-  filter: saturate(0.42) brightness(1.04);
-  border-radius: var(--radius-sm);
-  width: calc(100% - 36px);
-  margin: 0 18px 18px;
+.card h3 {
+  margin: 0 0 8px;
+  font-size: var(--t-md);
+  color: var(--card-accent, var(--accent));
 }
-.card-body { padding: 32px 28px 24px; text-align: center; }
-.card h3 { margin: 0 0 10px; font-size: var(--t-md); color: var(--card-accent, var(--accent)); }
-.card p { margin: 0; color: var(--ink-soft); font-size: var(--t-base); }
+.card p {
+  margin: 0 0 18px;
+  color: var(--ink-soft);
+  font-size: var(--t-base);
+  text-wrap: pretty;
+}
 
+/* The call to action sits on the floor of the card, so a row of cards
+   lines its arrows up however long the descriptions are. */
 .card .go {
-  display: inline-block;
-  margin-top: 4px;
-  margin-top: 2px;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--card-accent, var(--accent));
   font-size: var(--t-meta);
   font-weight: 600;
@@ -1668,7 +1757,6 @@ main:focus { outline: none; }
   .portrait { width: 88px; height: 88px; border-radius: 20px; }
   .hero h1 { font-size: 2.6rem; }
   .page-head h1 { font-size: 2.1rem; }
-  .section-banner { height: 140px; }
   .section > h2, .big-head > h2 { font-size: 1.9rem; }
   .site-header .wrap, nav.main-nav ul { justify-content: center; }
   article.prose { padding: 32px 26px 38px; }

@@ -1,20 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340" role="img" aria-label="">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340"
+     role="img" aria-label="An open book with lines of text on both pages">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c2410c"/>
-      <stop offset="100%" stop-color="#f97316"/>
+    <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#a9583c"/>
+      <stop offset="100%" stop-color="#7d3f2a"/>
     </linearGradient>
+    <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
+      <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    </pattern>
+    <radialGradient id="vig" cx="0.32" cy="0.3" r="0.95">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </radialGradient>
   </defs>
+
   <rect width="800" height="340" fill="url(#g)"/>
-  <circle cx="690" cy="60" r="150" fill="#ffffff" opacity="0.10"/>
-  <circle cx="90" cy="310" r="120" fill="#ffffff" opacity="0.08"/>
-  <!-- Motifs are held inside a centre band so they survive both the card crop
-       and the shorter banner crop. -->
-  <g transform="translate(133, 47) scale(0.667)">
-  <path d="M400 120 C 340 92, 240 92, 170 112 L 170 262 C 240 242, 340 242, 400 268 Z"
-        fill="#ffffff" opacity="0.92"/>
-  <path d="M400 120 C 460 92, 560 92, 630 112 L 630 262 C 560 242, 460 242, 400 268 Z"
-        fill="#ffffff" opacity="0.72"/>
-  <path d="M400 120 L 400 268" stroke="#c2410c" stroke-width="5" opacity="0.35"/>
+  <rect width="800" height="340" fill="url(#rule)"/>
+  <rect width="800" height="340" fill="url(#vig)"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M400 118 C 342 94, 258 92, 206 108 L 206 240 C 258 224, 342 226, 400 250"
+          stroke="rgba(255,255,255,.95)" stroke-width="5"/>
+    <path d="M400 118 C 458 94, 542 92, 594 108 L 594 240 C 542 224, 458 226, 400 250"
+          stroke="#f4e4dc" stroke-width="5"/>
+    <path d="M400 118 V 250" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
+    <path d="M250 142 H 352 M250 172 H 340 M250 202 H 356" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/>
+    <path d="M448 142 H 550 M460 172 H 550 M444 202 H 550" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/>
   </g>
 </svg>

@@ -1,21 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340" role="img" aria-label="">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340"
+     role="img" aria-label="A speech bubble with lines of dialogue in it">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#a855f7"/>
+    <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#6f5885"/>
+      <stop offset="100%" stop-color="#51405f"/>
     </linearGradient>
+    <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
+      <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    </pattern>
+    <radialGradient id="vig" cx="0.32" cy="0.3" r="0.95">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </radialGradient>
   </defs>
+
   <rect width="800" height="340" fill="url(#g)"/>
-  <circle cx="690" cy="60" r="150" fill="#ffffff" opacity="0.10"/>
-  <circle cx="90" cy="310" r="120" fill="#ffffff" opacity="0.08"/>
-  <!-- Motifs are held inside a centre band so they survive both the card crop
-       and the shorter banner crop. -->
-  <g transform="translate(133, 47) scale(0.667)">
-  <path d="M110 250 C 220 250, 210 120, 320 120 S 460 250, 560 190 S 660 90, 700 110"
-        fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity="0.85"/>
-  <circle cx="110" cy="250" r="16" fill="#ffffff" opacity="0.95"/>
-  <circle cx="320" cy="120" r="12" fill="#ffffff" opacity="0.7"/>
-  <circle cx="560" cy="190" r="12" fill="#ffffff" opacity="0.7"/>
-  <circle cx="700" cy="110" r="18" fill="#ffffff" opacity="0.95"/>
+  <rect width="800" height="340" fill="url(#rule)"/>
+  <rect width="800" height="340" fill="url(#vig)"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M286 110 H 514 a22 22 0 0 1 22 22 V 212 a22 22 0 0 1 -22 22 H 376 L 330 272 V 234 H 286
+             a22 22 0 0 1 -22 -22 V 132 a22 22 0 0 1 22 -22 Z" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
+    <path d="M304 148 H 486 M304 176 H 440" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
+    <path d="M304 204 H 404" stroke="#e9e3f0" stroke-width="5"/>
   </g>
 </svg>

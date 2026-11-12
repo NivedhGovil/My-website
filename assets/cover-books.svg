@@ -1,23 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340" role="img" aria-label="">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340"
+     role="img" aria-label="An open book with lines of text on both pages">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#487409"/>
-      <stop offset="100%" stop-color="#65a30d"/>
+    <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#5a7d57"/>
+      <stop offset="100%" stop-color="#3f5a3d"/>
     </linearGradient>
+    <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
+      <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    </pattern>
+    <radialGradient id="vig" cx="0.32" cy="0.3" r="0.95">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </radialGradient>
   </defs>
+
   <rect width="800" height="340" fill="url(#g)"/>
-  <circle cx="690" cy="60" r="150" fill="#ffffff" opacity="0.10"/>
-  <circle cx="90" cy="310" r="120" fill="#ffffff" opacity="0.08"/>
-  <!-- Motifs are held inside a centre band so they survive both the card crop
-       and the shorter banner crop. -->
-  <g transform="translate(133, 47) scale(0.667)">
-  <rect x="140" y="86" width="46" height="190" rx="6" fill="#ffffff" opacity="0.92"/>
-  <rect x="208" y="108" width="46" height="168" rx="6" fill="#ffffff" opacity="0.75"/>
-  <rect x="276" y="94" width="46" height="182" rx="6" fill="#ffffff" opacity="0.88"/>
-  <rect x="344" y="120" width="46" height="156" rx="6" fill="#ffffff" opacity="0.68"/>
-  <rect x="412" y="100" width="46" height="176" rx="6" fill="#ffffff" opacity="0.82"/>
-  <rect x="480" y="86" width="46" height="190" rx="6" fill="#ffffff" opacity="0.9"/>
-  <rect x="548" y="112" width="46" height="164" rx="6" fill="#ffffff" opacity="0.72"/>
-  <rect x="120" y="276" width="500" height="10" rx="5" fill="#ffffff" opacity="0.95"/>
+  <rect width="800" height="340" fill="url(#rule)"/>
+  <rect width="800" height="340" fill="url(#vig)"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M400 118 C 342 94, 258 92, 206 108 L 206 240 C 258 224, 342 226, 400 250"
+          stroke="rgba(255,255,255,.95)" stroke-width="5"/>
+    <path d="M400 118 C 458 94, 542 92, 594 108 L 594 240 C 542 224, 458 226, 400 250"
+          stroke="#e7ecdf" stroke-width="5"/>
+    <path d="M400 118 V 250" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
+    <path d="M250 142 H 352 M250 172 H 340 M250 202 H 356" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/>
+    <path d="M448 142 H 550 M460 172 H 550 M444 202 H 550" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/>
   </g>
 </svg>
