@@ -20,6 +20,7 @@
   --c-music:       #45688a;  --c-music-tt:       #e1eaf2;
   --c-essays:      #4f5b8c;  --c-essays-tt:      #e4e6f1;
   --c-research:    #806130;  --c-research-tt:    #f1e8d7;
+  --c-software:    #2f6b5d;  --c-software-tt:    #dfecea;
 
   --accent: var(--c-literary);
   --accent-tint: var(--c-literary-tt);
@@ -57,6 +58,7 @@
   --c-music:       #9ec0dd;  --c-music-tt:       #9ec0dd26;
   --c-essays:      #a9b1dc;  --c-essays-tt:      #a9b1dc26;
   --c-research:    #d9b878;  --c-research-tt:    #d9b87826;
+  --c-software:    #8ec9ba;  --c-software-tt:    #8ec9ba26;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,6 +81,8 @@
     --c-music:       #9ec0dd;  --c-music-tt:       #9ec0dd26;
     --c-essays:      #a9b1dc;  --c-essays-tt:      #a9b1dc26;
     --c-research:    #d9b878;  --c-research-tt:    #d9b87826;
+    --c-software:    #8ec9ba;  --c-software-tt:    #8ec9ba26;
+  --c-software:    #8ec9ba;  --c-software-tt:    #8ec9ba26;
   }
 }
 
@@ -93,6 +97,7 @@ body.s-art { --accent: var(--c-art); --accent-tint: var(--c-art-tt); }
 body.s-music { --accent: var(--c-music); --accent-tint: var(--c-music-tt); }
 body.s-essays { --accent: var(--c-essays); --accent-tint: var(--c-essays-tt); }
 body.s-research { --accent: var(--c-research); --accent-tint: var(--c-research-tt); }
+body.s-software { --accent: var(--c-software); --accent-tint: var(--c-software-tt); }
 body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-research-tt); }
 
 /* Cards borrow the hue of wherever they lead. */
@@ -106,6 +111,7 @@ body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-
 .k-music { --card-accent: var(--c-music); --card-accent-tint: var(--c-music-tt); }
 .k-essays { --card-accent: var(--c-essays); --card-accent-tint: var(--c-essays-tt); }
 .k-research { --card-accent: var(--c-research); --card-accent-tint: var(--c-research-tt); }
+.k-software { --card-accent: var(--c-software); --card-accent-tint: var(--c-software-tt); }
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
@@ -1138,16 +1144,6 @@ article.prose ol.sources li { margin-bottom: 12px; }
 }
 
 .site-footer a { color: #e9e9e4; text-decoration: none; }
-.site-status { display: inline-flex; align-items: center; gap: 8px; }
-
-.live-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 1px solid var(--accent);
-  flex: none;
-}
 
 /* ---------- 404 ---------- */
 .notfound { text-align: center; padding: 90px 0 100px; }

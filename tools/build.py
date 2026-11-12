@@ -60,7 +60,7 @@ for m in re.finditer(r'<article class="sw-project">\s*'
     if 'empty' in m.group(3):
         continue
     tags = ', '.join(strip(t) for t in re.findall(r'<li>(.*?)</li>', m.group(5), re.S))
-    records.append(dict(title=strip(m.group(2)), url='software.html', section='Engineering',
+    records.append(dict(title=strip(m.group(2)), url='software.html', section='Software',
                         kind='Software', meta=tags or strip(m.group(1)), text=strip(m.group(4))))
 
 # --- the sections themselves, so a search for "art" finds the Art page ---
@@ -86,16 +86,3 @@ with open('assets/search-index.js', 'w') as fh:
     json.dump(records, fh, indent=0)
     fh.write(';\n')
 print('search index:', len(records), 'records')
-
-# --- stamp today's date into every footer ---
-today = datetime.date.today()
-stamp = today.strftime('%-d %B %Y')
-iso = today.isoformat()
-n = 0
-for f in glob.glob('**/*.html', recursive=True):
-    t = open(f).read()
-    new = re.sub(r'<time class="updated" datetime="[^"]*">[^<]*</time>',
-                 f'<time class="updated" datetime="{iso}">{stamp}</time>', t)
-    if new != t:
-        open(f, 'w').write(new); n += 1
-print('date stamped on', n, 'pages ->', stamp)
