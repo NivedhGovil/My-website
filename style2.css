@@ -184,10 +184,6 @@ body.s-books h2, body.s-essays h2, body.s-research h2 {
   letter-spacing: -0.02em;
 }
 
-/* A piece always reads in the serif, whatever section it sits under. */
-article.prose p, article.prose li, article.prose blockquote {
-  font-family: var(--font-serif);
-}
 a { color: var(--accent); }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
@@ -867,10 +863,9 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 .featured-list .meta { border-color: var(--rule); color: var(--ink); }
 .featured-list .piece h2 a:hover { color: var(--card-accent, var(--accent)); }
 
-.meta.meta.meta.meta.meta.meta.meta
 /* ---------- Reading pages ---------- */
 article.prose {
-  max-width: 40rem;
+  max-width: 43rem;          /* about 68 characters at this size */
   margin: 0 auto 76px;
   background: var(--card);
   border: 1px solid var(--line);
@@ -882,11 +877,12 @@ article.prose {
 article.prose h1 { font-size: calc(var(--t-xl) * 1.04); line-height: 1.08; margin: 18px 0 14px; font-weight: 800; letter-spacing: -0.03em; }
 article.prose h2 { font-size: var(--t-sm); margin: 34px 0 14px; }
 
-/* The writing itself reads better in the serif. */
-article.prose p, article.prose li {
-  font-family: var(--font-sans);
-  font-size: var(--t-body);
-  line-height: 1.72;
+/* The writing itself reads better in the serif, whatever section the
+   piece sits under. */
+article.prose p, article.prose li, article.prose blockquote {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  line-height: 1.75;
 }
 
 article.prose p { margin: 0 0 20px; }
