@@ -250,7 +250,11 @@
       var first = strip.children[0];
       if (!first) return;
       var gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
-      strip.scrollBy({ left: n * (first.getBoundingClientRect().width + gap), behavior: 'smooth' });
+      /* Honour the same preference the stylesheet does: someone who has asked
+         for reduced motion gets the jump, not the glide. */
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      strip.scrollBy({ left: n * (first.getBoundingClientRect().width + gap),
+                       behavior: calm ? 'auto' : 'smooth' });
     }
 
     function sync() {

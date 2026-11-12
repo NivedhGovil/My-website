@@ -31,6 +31,8 @@
                "Liberation Mono", monospace;
 
   --max: 940px;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+
   --radius: 24px;
   --radius-sm: 14px;
   --radius-pill: 999px;
@@ -135,6 +137,37 @@ h1, h2, h3, .brand { font-family: var(--font-sans); font-weight: 800; letter-spa
 a { color: var(--accent); }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
+/* ---------- Motion ----------
+   One recipe, used sparingly: fade up out of a slight blur, so a thing
+   materialises rather than simply appearing. Durations are short enough
+   that nobody should consciously notice them.
+
+   Deliberately NOT animated: the nav, the section headings, the project
+   grid and every listing. Scroll-triggered reveals on ordinary content
+   read as decoration, and on a page you return to they become friction. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+
+/* Once per page load, on the one block that sets up the page. */
+.hero, .page-head {
+  animation: rise 420ms var(--ease) backwards;
+}
+
+/* The search panel is opened by key as often as by click, so it is quick:
+   enough to place the panel, not enough to make anyone wait for it. */
+.search-overlay:not([hidden]) .search-box {
+  animation: rise 160ms var(--ease) backwards;
+}
+
+/* A preview leaning in slightly is the whole hover signal on a card; the
+   card itself only changes shade. */
+.card-media { transition: transform 320ms var(--ease); }
+
+/* The carousel arrows fade rather than blink as they reach an end. */
+.carousel-btn { transition: opacity 180ms var(--ease), background-color 180ms var(--ease); }
+
 /* ---------- Shared surfaces ----------
    Everything that sits on the page as a raised white card. */
 .card, .piece, .book, .achievement, .design, .art-piece, .recording,
@@ -150,6 +183,7 @@ a { color: var(--accent); }
   .card:hover, .achievement:hover, .design:hover, .art-piece:hover,
   .recording:hover, .piece:hover, .book:hover, .highlight:hover,
   .piece-nav a:hover { background: var(--paper-alt); }
+  .card:hover .card-media { transform: scale(1.015); }
 
   .piece h2 a:hover, .back-link:hover,
   .detail a.d-value:hover, .detail .d-value a:hover { color: var(--ink); }
@@ -166,16 +200,16 @@ a { color: var(--accent); }
 
 .card, .achievement, .design, .art-piece, .recording, .piece, .book,
 .highlight, .piece-nav a {
-  transition: background-color 160ms ease-out;
+  transition: background-color 160ms var(--ease);
 }
 
 .channel-link a, .send-btn {
-  transition: background-color 160ms ease-out, color 160ms ease-out;
+  transition: background-color 160ms var(--ease), color 160ms var(--ease);
 }
 
 .icon-btn {
-  transition: color 200ms var(--ease-out), border-color 200ms var(--ease-out),
-              transform 200ms var(--ease-out);
+  transition: color 200ms var(--ease), border-color 200ms var(--ease),
+              transform 200ms var(--ease);
 }
 
 
@@ -277,7 +311,7 @@ nav.main-nav a, .sub-nav a {
   color: var(--ink-soft);
   font-weight: 500;
   border-radius: var(--radius-pill);
-  transition: background-color 200ms var(--ease-out), color 200ms var(--ease-out);
+  transition: background-color 200ms var(--ease), color 200ms var(--ease);
 }
 
 nav.main-nav a { font-size: 0.92rem; padding: 7px 14px; }
@@ -744,7 +778,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--ink-soft);
-  transition: background-color 200ms var(--ease-out), color 200ms var(--ease-out);
+  transition: background-color 200ms var(--ease), color 200ms var(--ease);
 }
 
 /* Pair each hidden radio with its own label and panel by position.
@@ -939,7 +973,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
   font-size: 1.1rem;
   font-weight: 600;
   list-style: none;
-  transition: color 200ms var(--ease-out);
+  transition: color 200ms var(--ease);
 }
 
 .qa summary::-webkit-details-marker { display: none; }
@@ -954,7 +988,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
   border-right: 2px solid var(--accent);
   border-bottom: 2px solid var(--accent);
   transform: rotate(45deg) translate(-2px, -2px);
-  transition: transform 220ms var(--ease-out);
+  transition: transform 220ms var(--ease);
 }
 
 .qa[open] summary::after { transform: rotate(225deg) translate(-2px, -2px); }
@@ -1010,7 +1044,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
   border-radius: var(--radius-sm);
   padding: 15px 18px;
   outline: none;
-  transition: border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
 }
 
 .contact-form textarea { resize: vertical; min-height: 130px; }
@@ -1238,17 +1272,17 @@ main:focus { outline: none; }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .qa summary::after { transition: none; }
-
-  .card, .card:hover, .card:active, .piece:hover, .book:hover,
-  .achievement:hover, .design:hover, .art-piece:hover, .recording:hover,
-  .highlight:hover, .piece-nav a:hover,
-  .channel-link a, .channel-link a:hover, .channel-link a:active,
-  .send-btn:hover, .send-btn:active {
-    transition: box-shadow 200ms ease;
-    transform: none;
+  /* Covers keyframes as well as transitions, and keeps the end state so
+     nothing that faded in is left invisible. */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+
+  html, .gallery { scroll-behavior: auto; }
+  .card:hover .card-media { transform: none; }
 }
 
 /* ---------- Print: the writing, nothing else ---------- */
