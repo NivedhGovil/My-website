@@ -2,8 +2,8 @@
      role="img" aria-label="A terminal window with a prompt and a cursor">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#357264"/>
-      <stop offset="100%" stop-color="#245349"/>
+      <stop offset="0%" stop-color="#9a7ede"/>
+      <stop offset="100%" stop-color="#5d44a0"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -20,11 +20,11 @@
 
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <rect x="248" y="104" width="304" height="180" rx="12" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
-    <path d="M248 144 H 552" stroke="#dfecea" stroke-width="4"/>
+    <path d="M248 144 H 552" stroke="#fdf6ff" stroke-width="4"/>
     <circle cx="274" cy="124" r="6" fill="rgba(255,255,255,.45)" stroke="none"/>
     <circle cx="296" cy="124" r="6" fill="rgba(255,255,255,.45)" stroke="none"/>
     <circle cx="318" cy="124" r="6" fill="rgba(255,255,255,.45)" stroke="none"/>
     <path d="M286 186 L 318 212 L 286 238" stroke="rgba(255,255,255,.95)" stroke-width="6"/>
-    <path d="M338 240 H 430" stroke="#dfecea" stroke-width="6"/>
+    <path d="M338 240 H 430" stroke="#fdf6ff" stroke-width="6"/>
   </g>
 </svg>

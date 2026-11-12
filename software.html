@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="style2.css">
 </head>
 <body class="s-software">
@@ -51,28 +51,37 @@
 
 <main class="wrap" id="main" tabindex="-1">
 
-  <div class="masthead">
-    <div class="page-head">
-      <p class="pill">Code</p>
-      <h1>Software Projects</h1>
-      <p>Web pages, Python tools and small games &mdash; with the repository and, where there is one, something you can open and try.</p>
+  <!-- The one page on the site that opens dark. A software section earns a
+       different room: deep indigo, a drafting grid, and the cover art
+       sitting in it rather than beside it. -->
+  <header class="sw-hero">
+    <div class="sw-hero-inner">
+      <div class="sw-hero-text">
+        <p class="pill">Code</p>
+        <h1>Software Projects</h1>
+        <p>Web pages, Python tools and small games &mdash; with the repository and, where there is one, something you can open and try.</p>
+      </div>
+      <img class="sw-hero-art" src="assets/cover-software.svg" alt="A terminal window with a cursor and brackets" width="800" height="340">
     </div>
-    <img class="section-banner" src="assets/cover-software.svg" alt="A terminal window with a cursor and brackets">
-  </div>
+  </header>
 
   <div class="sw-grid">
-    <article class="sw-project">
-      <span class="sw-kind">Web</span>
-      <h2>SW-Crawl</h2>
-      <p>A one-page tribute to the opening crawl from Star Wars, built to see how far plain CSS animation could be pushed. The text climbs away into a starfield over a space backdrop, and the story scrolling past is one I wrote myself. There is no framework and no JavaScript in it &mdash; only HTML and a stylesheet &mdash; and I kept a journal in the repository of what broke along the way and how I fixed it.</p>
-      <ul class="sw-tags">
-        <li>HTML</li>
-        <li>CSS</li>
-      </ul>
-      <p class="sw-links"><a href="https://github.com/NivedhGovil/SW-Crawl" target="_blank" rel="noopener">GitHub</a><a href="https://sw-crawl.vercel.app/" target="_blank" rel="noopener">Demo</a></p>
+
+    <article class="sw-project sw-feature" data-sw="crawl">
+      <div class="sw-body">
+        <span class="sw-kind">Web</span>
+        <h2>SW-Crawl</h2>
+        <p>A one-page tribute to the opening crawl from Star Wars, built to see how far plain CSS animation could be pushed. The text climbs away into a starfield over a space backdrop, and the story scrolling past is one I wrote myself. There is no framework and no JavaScript in it &mdash; only HTML and a stylesheet &mdash; and I kept a journal in the repository of what broke along the way and how I fixed it.</p>
+        <ul class="sw-tags">
+          <li>HTML</li>
+          <li>CSS</li>
+        </ul>
+        <p class="sw-links"><a class="sw-demo" href="https://sw-crawl.vercel.app/" target="_blank" rel="noopener">Open the demo</a><a class="sw-repo" href="https://github.com/NivedhGovil/SW-Crawl" target="_blank" rel="noopener">GitHub</a></p>
+      </div>
+      <div class="sw-art sw-art-crawl" aria-hidden="true"><span class="sw-crawl-text"></span></div>
     </article>
 
-    <article class="sw-project">
+    <article class="sw-project sw-wide" data-sw="math">
       <span class="sw-kind">Python</span>
       <h2>MathCanvas</h2>
       <p>An interactive maths and physics explorer. It plots constant, linear, quadratic, sine, cosine and tangent curves; takes a small set of observations and returns the mean, median, standard deviation, variance and range with a bar chart beside them; and simulates projectile motion from a launch angle, speed and mass. Pick a mode, change an input, and the graph redraws. The whole interface is Streamlit, NumPy and Matplotlib &mdash; there is not a single HTML tag in it.</p>
@@ -82,10 +91,17 @@
         <li>NumPy</li>
         <li>Matplotlib</li>
       </ul>
-      <p class="sw-links"><a href="https://github.com/NivedhGovil/MathCanvas" target="_blank" rel="noopener">GitHub</a><a href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Demo</a></p>
+      <p class="sw-links"><a class="sw-demo" href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Open the demo</a><a class="sw-repo" href="https://github.com/NivedhGovil/MathCanvas" target="_blank" rel="noopener">GitHub</a></p>
     </article>
 
-    <article class="sw-project">
+    <article class="sw-project sw-narrow" data-sw="culina">
+      <span class="sw-kind">Web</span>
+      <h2>Culina AI</h2>
+      <p class="empty">Write a paragraph here: what Culina AI does, what you built it with, and what was hard about it.</p>
+      <p class="sw-links"><a class="sw-demo" href="https://culina-ai1.lovable.app/" target="_blank" rel="noopener">Open the demo</a></p>
+    </article>
+
+    <article class="sw-project" data-sw="culinary">
       <span class="sw-kind">Web</span>
       <h2>Culinary Guide</h2>
       <p>A small recipe site with a page for each dish: garlic butter pasta, a caprese salad, a stir-fry with tofu and a veggie quesadilla. Each page carries a progress bar showing how hard the recipe is to cook, and a dialog box at the end holding a bonus link. It is almost entirely HTML, with just enough JavaScript to make the dialog work and no stylesheet at all.</p>
@@ -93,25 +109,20 @@
         <li>HTML</li>
         <li>JavaScript</li>
       </ul>
-      <p class="sw-links"><a href="https://github.com/NivedhGovil/Culinary-Guide" target="_blank" rel="noopener">GitHub</a><a href="https://culinaryguide-nivedh.vercel.app/" target="_blank" rel="noopener">Demo</a></p>
+      <p class="sw-links"><a class="sw-demo" href="https://culinaryguide-nivedh.vercel.app/" target="_blank" rel="noopener">Open the demo</a><a class="sw-repo" href="https://github.com/NivedhGovil/Culinary-Guide" target="_blank" rel="noopener">GitHub</a></p>
     </article>
 
-    <article class="sw-project">
+    <article class="sw-project" data-sw="hangman">
       <span class="sw-kind">Python</span>
       <h2>Hangman</h2>
       <p>The word-guessing game, written in Python and played in the terminal. The computer picks a word at random, you guess one letter at a time, and every letter that is not in the word costs you an attempt. It is a single file that needs nothing beyond Python itself, and I packaged it with PyInstaller so it can be run on Windows without installing anything first.</p>
       <ul class="sw-tags">
         <li>Python</li>
       </ul>
-      <p class="sw-links"><a href="https://github.com/NivedhGovil/Hangman" target="_blank" rel="noopener">GitHub</a></p>
+      <p class="sw-tiles" aria-hidden="true"><span>H</span><span>A</span><span>N</span><span>G</span><span>M</span><span>A</span><span>N</span></p>
+      <p class="sw-links"><a class="sw-repo" href="https://github.com/NivedhGovil/Hangman" target="_blank" rel="noopener">GitHub</a></p>
     </article>
 
-    <article class="sw-project">
-      <span class="sw-kind">Web</span>
-      <h2>Culina AI</h2>
-      <p class="empty">Write a paragraph here: what Culina AI does, what you built it with, and what was hard about it.</p>
-      <p class="sw-links"><a href="https://culina-ai1.lovable.app/" target="_blank" rel="noopener">Demo</a></p>
-    </article>
   </div>
 
 </main>

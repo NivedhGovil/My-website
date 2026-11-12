@@ -2,8 +2,8 @@
      role="img" aria-label="A circle, a square and a triangle above a brush stroke">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#8e5873"/>
-      <stop offset="100%" stop-color="#6b4257"/>
+      <stop offset="0%" stop-color="#c2669f"/>
+      <stop offset="100%" stop-color="#833a75"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -19,7 +19,7 @@
   <rect width="800" height="340" fill="url(#vig)"/>
 
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="316" cy="166" r="42" stroke="#f1e3eb" stroke-width="5"/>
+    <circle cx="316" cy="166" r="42" stroke="#fff3ff" stroke-width="5"/>
     <rect x="384" y="124" width="84" height="84" rx="8" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
     <path d="M492 208 L 540 124 L 588 208 Z" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
     <path d="M250 250 C 350 226, 450 274, 560 246" stroke="rgba(255,255,255,.95)" stroke-width="8"/>

@@ -12,19 +12,19 @@ import os
 
 # deep ground, lighter ground, light accent — all from the site's palette
 HUES = {
-    'literary':    ('#7d3f2a', '#a9583c', '#f4e4dc'),
-    'articles':    ('#2d5450', '#3f756e', '#dfebe9'),
-    'essays':      ('#3b4570', '#55619a', '#e4e6f1'),
-    'research':    ('#64491f', '#8d6a33', '#f1e8d7'),
-    'poems':       ('#733d48', '#9c5361', '#f3e1e4'),
-    'stories':     ('#51405f', '#6f5885', '#e9e3f0'),
-    'books':       ('#3f5a3d', '#5a7d57', '#e7ecdf'),
-    'engineering': ('#3a4663', '#515f87', '#e3e8f0'),
+    'literary':    ('#8f3a19', '#d1693a', '#fff5e9'),
+    'articles':    ('#00604a', '#0f9c7b', '#e1fffb'),
+    'essays':      ('#3f4aa8', '#7684e0', '#f2faff'),
+    'research':    ('#005d66', '#0f98a3', '#deffff'),
+    'poems':       ('#8f3442', '#d2636f', '#fff3f4'),
+    'stories':     ('#713f8a', '#ab6cc6', '#fff6ff'),
+    'books':       ('#7d4500', '#c17a1e', '#fff9e0'),
+    'engineering': ('#02559a', '#2a8ddb', '#e6fdff'),
     'designs':     ('#3a4663', '#515f87', '#e3e8f0'),
     'electrical':  ('#3a4663', '#515f87', '#e3e8f0'),
-    'software':    ('#245349', '#357264', '#dfecea'),
-    'art':         ('#6b4257', '#8e5873', '#f1e3eb'),
-    'music':       ('#2f4f6b', '#426b8e', '#e1eaf2'),
+    'software':    ('#5d44a0', '#9a7ede', '#fdf6ff'),
+    'art':         ('#833a75', '#c2669f', '#fff3ff'),
+    'music':       ('#005886', '#2492c7', '#e0ffff'),
 }
 
 def motif(kind, A):

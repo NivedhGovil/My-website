@@ -209,7 +209,7 @@
                  '?subject=' + encodeURIComponent('Message from ' + name + ' via your website') +
                  '&body=' + encodeURIComponent(body);
 
-      note.className = 'form-note';
+      note.className = 'form-note ok';
       note.textContent = 'Opening your email app with the message ready to send…';
       window.location.href = href;
     });
@@ -217,92 +217,31 @@
     form.addEventListener('input', function (e) { e.target.classList.remove('invalid'); });
   }
 
-  /* ---------------- Art carousel ----------------
-     The gallery strip scrolls one picture at a time. The arrows are built
-     here rather than in the markup, so art.html stays a plain list of
-     figures and still reads fine with JavaScript switched off. */
-  var strip = document.querySelector('.gallery');
-  if (strip && strip.children.length > 1) {
-    var frame = document.createElement('div');
-    frame.className = 'carousel';
-    strip.parentNode.insertBefore(frame, strip);
-    frame.appendChild(strip);
-
-    strip.setAttribute('role', 'region');
-    strip.setAttribute('aria-label', 'Artwork, use the left and right arrow keys');
-    strip.tabIndex = 0;
-
-    function arrow(dir) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'carousel-btn ' + dir;
-      b.setAttribute('aria-label', dir === 'prev' ? 'Previous artwork' : 'Next artwork');
-      b.innerHTML = CHEV;
-      if (dir === 'next') b.style.transform = 'scaleX(-1)';
-      b.addEventListener('click', function () { step(dir === 'prev' ? -1 : 1); });
-      frame.appendChild(b);
-      return b;
-    }
-    var prevBtn = arrow('prev'), nextBtn = arrow('next');
-
-    function step(n) {
-      var first = strip.children[0];
-      if (!first) return;
-      var gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
-      /* Honour the same preference the stylesheet does: someone who has asked
-         for reduced motion gets the jump, not the glide. */
-      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      strip.scrollBy({ left: n * (first.getBoundingClientRect().width + gap),
-                       behavior: calm ? 'auto' : 'smooth' });
-    }
-
-    function sync() {
-      var max = strip.scrollWidth - strip.clientWidth;
-      prevBtn.disabled = strip.scrollLeft < 8;
-      nextBtn.disabled = max < 8 || strip.scrollLeft > max - 8;
-      hint.hidden = max < 8;
-    }
-    /* Tell people the keys exist, but only once there is somewhere to go. */
-    var hint = document.createElement('p');
-    hint.className = 'carousel-hint';
-    hint.textContent = 'Use the arrow keys, or the buttons, to move through the gallery.';
-    hint.hidden = true;
-    frame.parentNode.insertBefore(hint, frame.nextSibling);
-
-    strip.addEventListener('scroll', sync);
-    window.addEventListener('resize', sync);
-    sync();
-
-    /* Arrow keys drive the strip, but never while someone is typing or
-       has the search overlay open. */
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      if (overlay && !overlay.hidden) return;
-      var lb = document.querySelector('.lightbox');
-      if (lb && !lb.hidden) return;          /* the lightbox has the keys */
-      if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      e.preventDefault();
-      step(e.key === 'ArrowLeft' ? -1 : 1);
-    });
-  }
-
   /* ---------------- Reading progress ----------------
-     Only on a piece. It answers "how much is left", which is a real
-     question in a long story and no question at all on a listing page. */
-  var piece = document.querySelector('article.prose');
-  /* Nothing to track on a piece that already fits the window. */
-  if (piece && piece.offsetHeight > window.innerHeight * 1.6) {
+     On a piece it tracks the article, so it reads 100% exactly when the
+     last line clears rather than at the foot of the page. Everywhere else
+     it tracks the document, and only when there is enough of it that "how
+     much is left" is a real question. */
+  (function () {
+    var piece = document.querySelector('article.prose');
+    var tall = document.documentElement.scrollHeight > window.innerHeight * 2.2;
+    if (!piece && !tall) return;
+    if (piece && piece.offsetHeight <= window.innerHeight * 1.6 && !tall) return;
+
     var bar = document.createElement('div');
     bar.className = 'read-progress';
     document.body.appendChild(bar);
+
     var tick = false;
     function drawBar() {
-      /* How much of the piece has passed the bottom of the window, so it
-         reads 100% exactly when the last line clears — not at the page
-         foot, which is below the footer. */
-      var seen = window.scrollY + window.innerHeight - piece.offsetTop;
-      var done = piece.offsetHeight > 0 ? seen / piece.offsetHeight : 1;
+      var done;
+      if (piece && piece.offsetHeight > 0) {
+        var seen = window.scrollY + window.innerHeight - piece.offsetTop;
+        done = seen / piece.offsetHeight;
+      } else {
+        var room = document.documentElement.scrollHeight - window.innerHeight;
+        done = room > 0 ? window.scrollY / room : 1;
+      }
       bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, done)) + ')';
       tick = false;
     }
@@ -311,7 +250,82 @@
     }, { passive: true });
     addEventListener('resize', drawBar);
     drawBar();
-  }
+  })();
+
+  /* ---------------- The menu on small screens ----------------
+     Above the breakpoint the nav is a row and this does nothing. Below it
+     the row becomes a panel behind a button: the button owns aria-expanded,
+     Escape and a click outside close it, and focus is kept inside while it
+     is open so a keyboard cannot wander behind it. */
+  (function () {
+    var header = document.querySelector('.site-header');
+    var nav = header && header.querySelector('nav.main-nav');
+    var tools = header && header.querySelector('.header-tools');
+    if (!nav || !tools) return;
+
+    var navId = nav.id || (nav.id = 'site-menu');
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'icon-btn nav-toggle';
+    btn.setAttribute('aria-label', 'Menu');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', navId);
+    btn.innerHTML = '<span class="nav-bars" aria-hidden="true"></span>';
+    tools.appendChild(btn);
+
+    var wide = window.matchMedia('(min-width: 761px)');
+
+    function setOpen(on) {
+      header.classList.toggle('nav-open', on);
+      btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? 'Close menu' : 'Menu');
+    }
+
+    btn.addEventListener('click', function () {
+      var on = !header.classList.contains('nav-open');
+      setOpen(on);
+      if (on) {
+        var first = nav.querySelector('a');
+        if (first) first.focus();
+      }
+    });
+
+    // Following a link navigates, so the panel should not be left open
+    // behind the new page in the back/forward cache.
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !header.classList.contains('nav-open')) return;
+      setOpen(false);
+      btn.focus();
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!header.classList.contains('nav-open')) return;
+      if (header.contains(e.target)) return;
+      setOpen(false);
+    });
+
+    // Tab must not reach the page behind an open panel.
+    header.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab' || !header.classList.contains('nav-open')) return;
+      var stops = [btn].concat([].slice.call(nav.querySelectorAll('a')));
+      var i = stops.indexOf(document.activeElement);
+      if (i === -1) return;
+      var next = e.shiftKey ? i - 1 : i + 1;
+      if (next < 0) next = stops.length - 1;
+      if (next >= stops.length) next = 0;
+      e.preventDefault();
+      stops[next].focus();
+    });
+
+    // Growing past the breakpoint turns the panel back into a row, and an
+    // open panel would otherwise leave the page scroll-locked.
+    wide.addEventListener('change', function (e) { if (e.matches) setOpen(false); });
+  })();
 
   /* ---------------- Copy the email ----------------
      Saves selecting a long address by hand. The tick is the only
@@ -348,7 +362,7 @@
   /* Anything with a picture worth looking at closely: artwork, CAD models,
      schematics and photographs all behave the same way here. */
   var art = document.querySelectorAll(
-    '.gallery .art-piece:has(img), figure.design:has(img), .achievement:has(.shot)');
+    '.art-gallery .art-piece:has(img), figure.design:has(img), .achievement:has(.shot)');
   /* A placeholder tile is not worth opening. */
   art = [].filter.call(art, function (f) {
     var img = f.querySelector('img');
@@ -481,7 +495,9 @@
      adds a class; the animation itself runs on a fixed duration, so a
      slow scroll does not drag it out. Each item fires once. */
   var toReveal = document.querySelectorAll(
-    'main.wrap > .cards > .card, main.wrap > .section .card, .featured-list > .piece');
+    'main.wrap > .cards > .card, main.wrap > .section .card, ' +
+    '.featured-list > .piece, .art-gallery > .art-piece, ' +
+    '.sw-grid > .sw-project, .achievements > .achievement, .qa-list > .qa');
   if (toReveal.length && 'IntersectionObserver' in window) {
     toReveal.forEach(function (el, i) {
       el.classList.add('reveal');

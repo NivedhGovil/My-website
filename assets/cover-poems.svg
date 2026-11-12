@@ -2,8 +2,8 @@
      role="img" aria-label="Six short lines of verse, uneven in length">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#9c5361"/>
-      <stop offset="100%" stop-color="#733d48"/>
+      <stop offset="0%" stop-color="#d2636f"/>
+      <stop offset="100%" stop-color="#8f3442"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -20,9 +20,9 @@
 
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M300 118 H 450" stroke="rgba(255,255,255,.45)" stroke-width="5.5"/>
-    <path d="M300 143 H 510" stroke="#f3e1e4" stroke-width="5.5"/>
+    <path d="M300 143 H 510" stroke="#fff3f4" stroke-width="5.5"/>
     <path d="M300 168 H 420" stroke="rgba(255,255,255,.45)" stroke-width="5.5"/>
-    <path d="M300 193 H 486" stroke="#f3e1e4" stroke-width="5.5"/>
+    <path d="M300 193 H 486" stroke="#fff3f4" stroke-width="5.5"/>
     <path d="M300 218 H 396" stroke="rgba(255,255,255,.45)" stroke-width="5.5"/>
     <path d="M300 243 H 468" stroke="rgba(255,255,255,.45)" stroke-width="5.5"/>
   </g>

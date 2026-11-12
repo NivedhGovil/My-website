@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="style2.css">
 </head>
 <body class="s-about">
@@ -56,36 +56,44 @@
     <p>Where I am, what I am learning, and what I am trying to get better at.</p>
   </div>
 
-  <div class="about-split">
-    <div class="prose-col">
+  <!-- The introduction and the portrait share one band, so the page opens
+       with a person rather than with a paragraph. -->
+  <div class="about-intro">
+    <div class="about-words">
       <p>I live in India and am a student who has a passion for making
       innovative projects interacting with STEAM.</p>
       <p>I am in the science stream and love to solve problems.</p>
     </div>
-    
-    <div class="highlights">
-      <div class="highlight">
-        <span class="h-title">Writer</span>
-        <span class="h-sub">Sharing my opinions with the world</span>
-      </div>
-      <div class="highlight">
-       
-        <span class="h-title">Grade 9 IGCSE</span>
-        <span class="h-sub">VIBGYOR HIGH</span>
-      </div>
-      <div class="highlight">
-       
-        <span class="h-title">Maker</span>
-        <span class="h-sub">Embedded Systems and beginner software</span>
-      </div>
-      <div class="highlight">
-        
-        <span class="h-title">Goal</span>
-        <span class="h-sub">A top-class innovator and to be a Nobel Prize winner</span>
-      </div>
-    </div>
+    <figure class="about-portrait">
+      <img src="assets/me and mona lisa.jpg" width="640" height="640"
+           alt="Nivedh Govil" loading="lazy" decoding="async">
+    </figure>
   </div>
 
+  <!-- Four facts, each wearing a different section colour, so the page
+       carries the whole site's palette in one row. -->
+  <div class="highlights">
+    <div class="highlight k-literary">
+      <span class="h-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M14.5 4.5 19 9 9 19H4.5V14.5Z"/></svg></span>
+      <span class="h-title">Writer</span>
+      <span class="h-sub">Sharing my opinions with the world</span>
+    </div>
+    <div class="highlight k-research">
+      <span class="h-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5Z"/><path d="M7 12v5c0 1.2 2.2 2.2 5 2.2s5-1 5-2.2v-5"/></svg></span>
+      <span class="h-title">Grade 9 IGCSE</span>
+      <span class="h-sub">VIBGYOR HIGH</span>
+    </div>
+    <div class="highlight k-engineering">
+      <span class="h-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1 5 5l-9 9-5-5Z"/><path d="M5 19.5 4 20l.5-1"/><circle cx="17" cy="9" r="1"/></svg></span>
+      <span class="h-title">Maker</span>
+      <span class="h-sub">Embedded Systems and beginner software</span>
+    </div>
+    <div class="highlight k-art">
+      <span class="h-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+      <span class="h-title">Goal</span>
+      <span class="h-sub">A top-class innovator and to be a Nobel Prize winner</span>
+    </div>
+  </div>
 
   <div class="big-head">
     <p class="pill">School</p>
@@ -94,7 +102,7 @@
   </div>
   <div class="achievements">
     <div class="achievement">
-      <img class="shot" src="assets/ISSO medal.png" alt="My ISSO medal">
+      <img class="shot" src="assets/ISSO medal.png" alt="My ISSO medal" loading="lazy" decoding="async">
       <div class="body">
         <h3>Top 10, International Social Studies Olympiad (SOF)</h3>
         <p>Also top 50 in the IMO the same year.</p>
@@ -111,27 +119,29 @@
     </div>
   </section>
 
-  <div class="qa-list">
-  
-    <details class="qa">
+  <!-- A timeline rather than a stack of boxes: each setback is a node on a
+       rail, and the answer unfolds from it. The questions and answers are
+       exactly as they were. -->
+  <ol class="qa-list timeline-qa">
+
+    <li class="qa-step k-poems"><details class="qa">
       <summary>You did not top your class one year. What did you do about it?</summary>
       <div class="answer">
           <p> I learned from my mistakes, I improved, and continued to work harder. 
             That's my advice to all of you: if one mistake happens, learn from it and then move on.</p>
       </div>
-    </details>
+    </details></li>
 
-
-    <details class="qa">
+    <li class="qa-step k-engineering"><details class="qa">
       <summary>What do you do when a build refuses to work?</summary>
       <div class="answer">
         
           <p>I try to think what went wrong. If I get it, then I fix it,
              or sometimes I just rework and try to think what could work out.</p>
       </div>
-    </details>
+    </details></li>
 
-    <details class="qa">
+    <li class="qa-step k-literary"><details class="qa">
       <summary>What is the hardest part of writing for you?</summary>
       <div class="answer">
           <p> Sometimes the hardest thing is just choosing what to write about,
@@ -139,8 +149,8 @@
             is using language techniques like assonance.
             I guess I need to improve my vocabulary and the writer's effect.</p>
       </div>
-    </details>
-  </div>
+    </details></li>
+  </ol>
 
   <div class="big-head">
 
@@ -170,17 +180,13 @@
 
    
     <form class="contact-form" data-mailto="nivedh.govil@outlook.com" novalidate>
-      <label class="sr-only" for="cf-name">Your name</label>
-      <input id="cf-name" name="name" type="text" placeholder="Your Name" autocomplete="name" required>
+      <div class="field"><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" placeholder="Your Name" autocomplete="name" required></div>
 
-      <label class="sr-only" for="cf-email">Your email</label>
-      <input id="cf-email" name="email" type="email" placeholder="Your Email" autocomplete="email" required>
+      <div class="field"><label for="cf-email">Your email</label><input id="cf-email" name="email" type="email" placeholder="Your Email" autocomplete="email" required></div>
 
-      <label class="sr-only" for="cf-phone">Your contact number (optional)</label>
-      <input id="cf-phone" name="phone" type="tel" placeholder="Your Contact Number (optional)" autocomplete="tel">
+      <div class="field"><label for="cf-phone">Your contact number <span class="opt">(optional)</span></label><input id="cf-phone" name="phone" type="tel" placeholder="Your Contact Number (optional)" autocomplete="tel"></div>
 
-      <label class="sr-only" for="cf-message">Your message</label>
-      <textarea id="cf-message" name="message" rows="5" placeholder="Your Message" required></textarea>
+      <div class="field"><label for="cf-message">Your message</label><textarea id="cf-message" name="message" rows="5" placeholder="Your Message" required></textarea></div>
 
       <button type="submit" class="send-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.8 18-3.7-7.5L3 9.8 21 3Z"/></svg>

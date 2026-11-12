@@ -2,8 +2,8 @@
      role="img" aria-label="An open book with lines of text on both pages">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#a9583c"/>
-      <stop offset="100%" stop-color="#7d3f2a"/>
+      <stop offset="0%" stop-color="#d1693a"/>
+      <stop offset="100%" stop-color="#8f3a19"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -22,7 +22,7 @@
     <path d="M400 118 C 342 94, 258 92, 206 108 L 206 240 C 258 224, 342 226, 400 250"
           stroke="rgba(255,255,255,.95)" stroke-width="5"/>
     <path d="M400 118 C 458 94, 542 92, 594 108 L 594 240 C 542 224, 458 226, 400 250"
-          stroke="#f4e4dc" stroke-width="5"/>
+          stroke="#fff5e9" stroke-width="5"/>
     <path d="M400 118 V 250" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
     <path d="M250 142 H 352 M250 172 H 340 M250 202 H 356" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/>
     <path d="M448 142 H 550 M460 172 H 550 M444 202 H 550" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/>

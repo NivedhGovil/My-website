@@ -10,20 +10,23 @@
 
   /* A muted hue per section: a deep tone for type and fills,
      a pale tint for badges. Nothing saturated. */
-  --c-literary:    #9d5137;  --c-literary-tt:    #f4e4dc;
-  --c-engineering: #4d5f82;  --c-engineering-tt: #e3e8f0;
-  --c-articles:    #3d6f69;  --c-articles-tt:    #dfebe9;
-  --c-poems:       #93505d;  --c-poems-tt:       #f3e1e4;
-  --c-stories:     #6b5680;  --c-stories-tt:     #e9e3f0;
-  --c-books:       #5a6d45;  --c-books-tt:       #e7ecdf;
-  --c-art:         #8a5572;  --c-art-tt:         #f1e3eb;
-  --c-music:       #45688a;  --c-music-tt:       #e1eaf2;
-  --c-essays:      #4f5b8c;  --c-essays-tt:      #e4e6f1;
-  --c-research:    #806130;  --c-research-tt:    #f1e8d7;
-  --c-software:    #2f6b5d;  --c-software-tt:    #dfecea;
+  --c-literary:    #b54517;  --c-literary-tt:    #fff5e9;
+  --c-engineering: #006abd;  --c-engineering-tt: #e6fdff;
+  --c-articles:    #007859;  --c-articles-tt:    #e1fffb;
+  --c-poems:       #b73e51;  --c-poems-tt:       #fff3f4;
+  --c-stories:     #8f4cab;  --c-stories-tt:     #fff6ff;
+  --c-books:       #a15400;  --c-books-tt:       #fff9e0;
+  --c-art:         #a24592;  --c-art-tt:         #fff3ff;
+  --c-music:       #006fa9;  --c-music-tt:       #e0ffff;
+  --c-essays:      #545fc3;  --c-essays-tt:      #f2faff;
+  --c-research:    #007480;  --c-research-tt:    #deffff;
+  --c-software:    #7555bc;  --c-software-tt:    #fdf6ff;
 
   --accent: var(--c-literary);
   --accent-tint: var(--c-literary-tt);
+
+  /* 4.9:1 on white. The dark theme swaps in a lighter one below. */
+  --danger: #c2261d;
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
@@ -32,10 +35,25 @@
      Interface chrome — nav, buttons, labels — stays in the grotesk
      throughout, so only the writing changes voice. */
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-head: var(--font-sans);
+  /* Major headings are set in a grotesk with real character, so a page
+     title does not read as body text that happens to be large. The
+     literary pages override it with the serif further down: what is
+     written keeps the serif voice, what is built takes this one. */
+  --font-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont,
+                  "Segoe UI", Roboto, sans-serif;
+  --font-head: var(--font-display);
 
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
                "Liberation Mono", monospace;
+
+  /* One spacing scale, so padding and gaps stop being ad-hoc numbers. */
+  --s-1: 6px;   --s-2: 12px;  --s-3: 18px;  --s-4: 26px;
+  --s-5: 38px;  --s-6: 56px;  --s-7: 80px;  --s-8: 112px;
+
+  /* Three durations: a state change, a movement, a whole panel. */
+  --d-fast: 160ms;
+  --d-mid: 280ms;
+  --d-slow: 460ms;
 
   --max: 940px;
   /* Type scale. Before this there were six heading sizes between 1.12 and
@@ -70,18 +88,19 @@
   --paper-alt: #1e1e1b;
   --line: #2f2f2a;
   --rule: #f4f4ef;
+  --danger: #ff8a7a;
 
-  --c-literary:    #e0a58a;  --c-literary-tt:    #e0a58a26;
-  --c-engineering: #a8b6d4;  --c-engineering-tt: #a8b6d426;
-  --c-articles:    #8ec7bf;  --c-articles-tt:    #8ec7bf26;
-  --c-poems:       #dfa2ad;  --c-poems-tt:       #dfa2ad26;
-  --c-stories:     #bda9d2;  --c-stories-tt:     #bda9d226;
-  --c-books:       #afc293;  --c-books-tt:       #afc29326;
-  --c-art:         #d6a2bd;  --c-art-tt:         #d6a2bd26;
-  --c-music:       #9ec0dd;  --c-music-tt:       #9ec0dd26;
-  --c-essays:      #a9b1dc;  --c-essays-tt:      #a9b1dc26;
-  --c-research:    #d9b878;  --c-research-tt:    #d9b87826;
-  --c-software:    #8ec9ba;  --c-software-tt:    #8ec9ba26;
+  --c-literary:    #da8365;  --c-literary-tt:    #da836526;
+  --c-engineering: #5f9ede;  --c-engineering-tt: #5f9ede26;
+  --c-articles:    #2dad92;  --c-articles-tt:    #2dad9226;
+  --c-poems:       #dc7f87;  --c-poems-tt:       #dc7f8726;
+  --c-stories:     #b988cf;  --c-stories-tt:     #b988cf26;
+  --c-books:       #c98e45;  --c-books-tt:       #c98e4526;
+  --c-art:         #cb83bb;  --c-art-tt:         #cb83bb26;
+  --c-music:       #3aa5d1;  --c-music-tt:       #3aa5d126;
+  --c-essays:      #8795e3;  --c-essays-tt:      #8795e326;
+  --c-research:    #00abb2;  --c-research-tt:    #00abb226;
+  --c-software:    #a28edd;  --c-software-tt:    #a28edd26;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -93,19 +112,19 @@
     --paper-alt: #1e1e1b;
     --line: #2f2f2a;
     --rule: #f4f4ef;
+    --danger: #ff8a7a;
 
-  --c-literary:    #e0a58a;  --c-literary-tt:    #e0a58a26;
-    --c-engineering: #a8b6d4;  --c-engineering-tt: #a8b6d426;
-    --c-articles:    #8ec7bf;  --c-articles-tt:    #8ec7bf26;
-    --c-poems:       #dfa2ad;  --c-poems-tt:       #dfa2ad26;
-    --c-stories:     #bda9d2;  --c-stories-tt:     #bda9d226;
-    --c-books:       #afc293;  --c-books-tt:       #afc29326;
-    --c-art:         #d6a2bd;  --c-art-tt:         #d6a2bd26;
-    --c-music:       #9ec0dd;  --c-music-tt:       #9ec0dd26;
-    --c-essays:      #a9b1dc;  --c-essays-tt:      #a9b1dc26;
-    --c-research:    #d9b878;  --c-research-tt:    #d9b87826;
-    --c-software:    #8ec9ba;  --c-software-tt:    #8ec9ba26;
-  --c-software:    #8ec9ba;  --c-software-tt:    #8ec9ba26;
+  --c-literary:    #da8365;  --c-literary-tt:    #da836526;
+    --c-engineering: #5f9ede;  --c-engineering-tt: #5f9ede26;
+    --c-articles:    #2dad92;  --c-articles-tt:    #2dad9226;
+    --c-poems:       #dc7f87;  --c-poems-tt:       #dc7f8726;
+    --c-stories:     #b988cf;  --c-stories-tt:     #b988cf26;
+    --c-books:       #c98e45;  --c-books-tt:       #c98e4526;
+    --c-art:         #cb83bb;  --c-art-tt:         #cb83bb26;
+    --c-music:       #3aa5d1;  --c-music-tt:       #3aa5d126;
+    --c-essays:      #8795e3;  --c-essays-tt:      #8795e326;
+    --c-research:    #00abb2;  --c-research-tt:    #00abb226;
+    --c-software:    #a28edd;  --c-software-tt:    #a28edd26;
   }
 }
 
@@ -140,6 +159,11 @@ body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+/* Both, deliberately. A body-only rule does nothing here: with html at
+   overflow: visible the body's overflow propagates to the viewport and
+   the body itself computes back to visible, so nothing ever clipped. The
+   full-bleed hero wash and the software hero both rely on this. */
+html { overflow-x: clip; }
 body { overflow-x: clip; }
 
 /* The section's own colour, held across the whole viewport rather than in
@@ -152,12 +176,27 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background:
-    linear-gradient(var(--accent-tint), transparent 420px),
+  /* The first layer is grain. Without it the two wide radial washes below
+     band into visible rings on a near-white page, because 8 bits cannot
+     hold that shallow a gradient over that much area. */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E"),
+    linear-gradient(color-mix(in oklab, var(--accent-tint) 62%, var(--paper)),
+                    transparent 400px),
     radial-gradient(60% 45% at 88% 78%,
-      color-mix(in oklab, var(--accent) 7%, transparent), transparent 70%),
+      color-mix(in oklab, var(--accent) 5%, transparent), transparent 70%),
     radial-gradient(50% 40% at 6% 46%,
-      color-mix(in oklab, var(--accent) 5%, transparent), transparent 70%);
+      color-mix(in oklab, var(--accent) 3.5%, transparent), transparent 70%);
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 160px 160px, auto, auto, auto;
+  /* The grain only has to break the bands up, not be seen doing it. */
+  background-blend-mode: soft-light, normal, normal, normal;
+  opacity: 1;
+}
+
+/* The grain is a texture, not a tint: it must not survive into print. */
+@media print {
+  body::before { display: none; }
 }
 
 body {
@@ -172,7 +211,7 @@ body {
   background-attachment: fixed;
 }
 
-h1, h2, h3 { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.03em; }
+h1, h2, h3 { font-family: var(--font-head); font-weight: 700; letter-spacing: -0.03em; }
 .brand { font-family: var(--font-sans); font-weight: 800; letter-spacing: -0.03em; }
 
 /* The writing side. */
@@ -220,8 +259,6 @@ a { color: var(--accent); }
    card itself only changes shade. */
 .card-media { transition: transform 320ms var(--ease); }
 
-/* The carousel arrows fade rather than blink as they reach an end. */
-.carousel-btn { transition: opacity 180ms var(--ease), background-color 180ms var(--ease); }
 
 /* ---------- Shared surfaces ----------
    Everything that sits on the page as a raised white card. */
@@ -368,10 +405,43 @@ article.prose .byline { margin: 0 0 30px; }
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: var(--paper);
+  z-index: 30;
+  background: color-mix(in oklab, var(--paper) 82%, transparent);
   border-bottom: 1px solid var(--line);
 }
+
+/* The bar goes translucent only where the browser can blur what is behind
+   it; without that the text would sit on a see-through strip. */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .site-header {
+    -webkit-backdrop-filter: saturate(1.6) blur(14px);
+    backdrop-filter: saturate(1.6) blur(14px);
+  }
+}
+
+/* ---------- The menu button ----------
+   Built by site.js and shown only below the breakpoint, so the row of
+   links stays a row wherever there is room for one. */
+/* .icon-btn is declared further down and would otherwise win on source
+   order, so this carries both classes. */
+.icon-btn.nav-toggle { display: none; }
+
+.nav-bars, .nav-bars::before, .nav-bars::after {
+  display: block;
+  width: 17px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform var(--d-mid) var(--ease), opacity var(--d-fast) var(--ease);
+}
+.nav-bars::before, .nav-bars::after { content: ""; position: absolute; }
+.nav-bars::before { transform: translateY(-6px); }
+.nav-bars::after  { transform: translateY(6px); }
+
+/* The three bars fold into a cross. */
+.nav-open .nav-bars { background: transparent; }
+.nav-open .nav-bars::before { transform: rotate(45deg); }
+.nav-open .nav-bars::after  { transform: rotate(-45deg); }
 
 .site-header .wrap {
   display: flex;
@@ -503,8 +573,8 @@ nav.main-nav.has-glide a.active { background: transparent; }
   height: 520px;
   pointer-events: none;
   background:
-    radial-gradient(42% 58% at 34% 32%, color-mix(in oklab, var(--c-literary) 15%, transparent), transparent 70%),
-    radial-gradient(42% 58% at 66% 38%, color-mix(in oklab, var(--c-engineering) 13%, transparent), transparent 70%);
+    radial-gradient(42% 58% at 34% 32%, color-mix(in oklab, var(--c-literary) 9%, transparent), transparent 70%),
+    radial-gradient(42% 58% at 66% 38%, color-mix(in oklab, var(--c-engineering) 8%, transparent), transparent 70%);
 }
 
 .portrait {
@@ -517,7 +587,7 @@ nav.main-nav.has-glide a.active { background: transparent; }
   box-shadow: var(--shadow-lift);
 }
 
-.hero h1 { text-wrap: balance; font-size: var(--t-display); line-height: 1.02; margin: 20px 0 14px; font-weight: 800; letter-spacing: -0.04em; max-width: 14ch; }
+.hero h1 { text-wrap: balance; font-size: var(--t-display); line-height: 1.02; margin: 20px 0 14px; font-weight: 700; letter-spacing: -0.04em; max-width: 14ch; }
 .hero p.pill { margin: 0 0 4px; }
 .hero p:not(.pill) { margin: 0 0 14px; color: var(--ink-soft); font-size: var(--t-body); max-width: 46ch; }
 .hero p.tagline { display: inline-block; background: var(--accent-tint); color: var(--accent); font-weight: 700; font-size: var(--t-base); margin: 0 0 20px; padding: 5px 14px; border-radius: var(--radius-pill); }
@@ -623,7 +693,7 @@ nav.main-nav.has-glide a.active { background: transparent; }
 .section { padding: 40px 0 46px; border-top: 0; }
 .section > h2, .big-head > h2 {
   font-size: var(--t-xl);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.08;
   text-align: center;
@@ -639,7 +709,7 @@ nav.main-nav.has-glide a.active { background: transparent; }
 .section-intro p { margin: 0 0 16px; }
 
 .page-head { padding: 56px 0 4px; }
-.page-head h1 { text-wrap: balance; font-size: calc(var(--t-xl) * 1.2); margin: 14px 0 12px; font-weight: 800; letter-spacing: -0.04em; }
+.page-head h1 { text-wrap: balance; font-size: calc(var(--t-xl) * 1.2); margin: 14px 0 12px; font-weight: 700; letter-spacing: -0.04em; }
 .page-head > p:not(.pill) { color: var(--ink-soft); margin: 0; max-width: 58ch; font-size: var(--t-body); }
 
 .big-head { text-align: center; margin: 54px 0 44px; }
@@ -713,6 +783,105 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
   .masthead .section-banner { order: -1; aspect-ratio: 21 / 9; }
 }
 
+
+/* ---------- The art gallery ----------
+   Two drawings, hung rather than tiled. The first takes the larger wall;
+   the second is smaller and sits lower, which is what stops a pair of
+   pictures reading as a row of thumbnails. Each one is matted inside a
+   frame, so the paper around the drawing is part of the presentation. */
+.art-gallery {
+  display: grid;
+  grid-template-columns: 1.24fr 1fr;
+  gap: var(--s-6);
+  align-items: start;
+  margin: var(--s-5) 0 var(--s-7);
+}
+
+/* The drop is what makes the hang asymmetric. */
+.art-gallery > .art-piece:nth-child(2) { margin-top: var(--s-7); }
+
+.art-piece {
+  position: relative;
+  margin: 0;
+  background: none;
+  border: 0;
+  cursor: zoom-in;
+}
+
+/* The mat and the frame. The inner shadow is the lip of the mount. */
+.art-frame {
+  display: block;
+  overflow: hidden;
+  padding: var(--s-3);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 18px 40px -22px rgb(0 0 0 / 0.42);
+}
+
+.art-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Never cropped: a drawing decides its own proportions. */
+  object-fit: contain;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.07) inset;
+  transition: transform var(--d-slow) var(--ease);
+}
+
+.art-piece figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 0 var(--s-2);
+  margin-top: var(--s-3);
+}
+
+.art-no {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.art-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--t-md);
+  color: var(--ink);
+}
+
+.art-open {
+  grid-column: 2;
+  margin-top: 2px;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--d-mid) var(--ease), transform var(--d-mid) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .art-piece:hover .art-frame img { transform: scale(1.035); }
+  .art-piece:hover .art-open { opacity: 1; transform: none; }
+}
+
+/* The invitation has to be visible to a keyboard too, not only a pointer. */
+.art-piece:focus-within .art-open { opacity: 1; transform: none; }
+
+/* One column below the point where two drawings stop having room to
+   differ in size; the drop goes with it. */
+@media (max-width: 760px) {
+  .art-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-5);
+    margin-bottom: var(--s-6);
+  }
+  .art-gallery > .art-piece:nth-child(2) { margin-top: 0; }
+}
+
+
 /* ---------- Buttons and links ---------- */
 /* Consecutive calls to action read as one row of choices, not a stack of
    three equal demands. Inline-flex lets a run of them sit on one line and
@@ -776,63 +945,167 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 .cards { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 .achievements { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 76px; }
 .design-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 20px; }
-/* ---------- Art carousel ----------
-   The gallery is a scrolling strip rather than a grid. site.js wraps it
-   in .carousel and adds the two arrow buttons; without JavaScript it
-   stays a plain strip you can still swipe and scroll. */
-.carousel { position: relative; margin-bottom: 20px; }
-
-.gallery {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 0;
-  overflow-x: auto;
-  /* A short strip sits centred; `safe` stops a long one being clipped. */
-  justify-content: center;
-  justify-content: safe center;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  padding: 4px;
+/* ---------- The art gallery ----------
+   Two drawings, hung rather than tiled. The first takes the larger wall;
+   the second is smaller and sits lower, which is what stops a pair of
+   pictures reading as a row of thumbnails. Each one is matted inside a
+   frame, so the paper around the drawing is part of the presentation. */
+.art-gallery {
+  display: grid;
+  grid-template-columns: 1.24fr 1fr;
+  gap: var(--s-6);
+  align-items: start;
+  margin: var(--s-5) 0 var(--s-7);
 }
 
-.gallery::-webkit-scrollbar { display: none; }
-.gallery > .art-piece { flex: 0 0 clamp(230px, 31%, 330px); scroll-snap-align: start; }
-.gallery:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+/* The drop is what makes the hang asymmetric. */
+.art-gallery > .art-piece:nth-child(2) { margin-top: var(--s-7); }
 
-.carousel-btn {
-  position: absolute;
-  top: calc(50% - 22px);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
+.art-piece {
+  position: relative;
+  margin: 0;
+  background: none;
   border: 0;
-  border-radius: var(--radius-pill);
-  background: var(--ink);
+  cursor: zoom-in;
+}
+
+/* The mat and the frame. The inner shadow is the lip of the mount. */
+.art-frame {
+  display: block;
+  overflow: hidden;
+  padding: var(--s-3);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 18px 40px -22px rgb(0 0 0 / 0.42);
+}
+
+.art-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Never cropped: a drawing decides its own proportions. */
+  object-fit: contain;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.07) inset;
+  transition: transform var(--d-slow) var(--ease);
+}
+
+.art-piece figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 0 var(--s-2);
+  margin-top: var(--s-3);
+}
+
+.art-no {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.art-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--t-md);
+  color: var(--ink);
+}
+
+.art-open {
+  grid-column: 2;
+  margin-top: 2px;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--d-mid) var(--ease), transform var(--d-mid) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .art-piece:hover .art-frame img { transform: scale(1.035); }
+  .art-piece:hover .art-open { opacity: 1; transform: none; }
+}
+
+/* The invitation has to be visible to a keyboard too, not only a pointer. */
+.art-piece:focus-within .art-open { opacity: 1; transform: none; }
+
+/* One column below the point where two drawings stop having room to
+   differ in size; the drop goes with it. */
+@media (max-width: 760px) {
+  .art-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-5);
+    margin-bottom: var(--s-6);
+  }
+  .art-gallery > .art-piece:nth-child(2) { margin-top: 0; }
+}
+
+
+/* ---------- Buttons and links ---------- */
+/* Consecutive calls to action read as one row of choices, not a stack of
+   three equal demands. Inline-flex lets a run of them sit on one line and
+   wrap on their own when the column gets narrow. */
+.channel-link {
+  display: inline-flex;
+  vertical-align: top;
+  margin: 26px 10px 0 0;
+}
+
+/* Only the first of a run is the primary action; the rest step back to an
+   outline so the eye is given somewhere to land. */
+.channel-link + .channel-link a {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--rule);
+}
+
+.channel-link a, .send-btn {
   color: var(--paper);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+}
+
+.channel-link a { display: inline-block; text-decoration: none; padding: 14px 28px; font-size: var(--t-base); }
+
+.send-btn {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
   cursor: pointer;
-  padding: 0;
+  padding: 14px 26px;
+  font: inherit;
+  font-weight: 600;
 }
 
-.carousel-btn.prev { left: -14px; }
-.carousel-btn.next { right: -14px; }
+.send-btn svg { width: 17px; height: 17px; }
 
-@media (max-width: 620px) {
-  .carousel-btn.prev { left: 2px; }
-  .carousel-btn.next { right: 2px; }
-}
-.carousel-btn svg { width: 19px; height: 19px; }
-.carousel-btn[disabled] { opacity: 0; pointer-events: none; }
-
-.carousel-hint {
-  margin: 14px 0 0;
-  text-align: center;
-  color: var(--ink-soft);
+.back-link {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 9px 17px;
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--ink);
   font-size: var(--t-meta);
+  font-weight: 600;
+  text-decoration: none;
 }
+
+/* ---------- Card grids ---------- */
+.cards, .achievements, .design-grid, .recordings {
+  display: grid;
+  gap: 24px;
+}
+
+.cards { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.achievements { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 76px; }
+.design-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 20px; }
 .recordings { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 20px; }
 
 @media (min-width: 720px) {
@@ -957,70 +1230,306 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 /* ---------- Software projects ----------
    A bordered grid rather than separate cards: the cells share their rules,
    so the whole block reads as one table of work. */
+/* ---------- Software: the studio ----------
+   The only page that opens dark. Everything here is deep indigo, a
+   drafting grid and electric blue, because a software section should not
+   look like the same room as the poems. */
+.sw-hero {
+  --sw-ink: #f3f1ff;
+  position: relative;
+  isolation: isolate;
+  /* Breaks out of the 940px text column to the full window. body carries
+     overflow-x: clip, so the viewport unit cannot start a sideways
+     scrollbar on a page that has one vertically. */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: var(--s-6);
+  padding: var(--s-7) 0 var(--s-6);
+  overflow: hidden;
+  /* An explicit base colour under the gradients. Without it the computed
+     background-color is transparent, so if a gradient ever fails to paint
+     the pale text would land on white paper. */
+  background-color: #16123a;
+  background-image:
+    radial-gradient(70% 120% at 82% 10%, #3a2d7a 0%, transparent 62%),
+    linear-gradient(148deg, #16123a 0%, #1d1a4d 54%, #121033 100%);
+  color: var(--sw-ink);
+}
+
+/* It runs the full width of the window, not the text column. */
+.sw-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* A drafting grid, finer than the content, so it reads as paper. */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 46px 46px, 46px 46px;
+  mask-image: radial-gradient(76% 86% at 36% 34%, #000 0%, transparent 78%);
+}
+
+.sw-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: var(--s-5);
+  align-items: center;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sw-hero h1 {
+  margin: var(--s-3) 0 var(--s-2);
+  font-size: calc(var(--t-xl) * 1.2);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  color: var(--sw-ink);
+  text-wrap: balance;
+}
+.sw-hero p:not(.pill) {
+  margin: 0;
+  max-width: 46ch;
+  color: #c3bddf;
+  font-size: var(--t-body);
+}
+.sw-hero .pill {
+  background: rgba(255, 255, 255, 0.11);
+  color: #cfc8f5;
+}
+.sw-hero-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.8);
+}
+
+/* ---------- The project grid ----------
+   Six columns, so cards can take a half, a third or two thirds and the
+   page stops being a stack of equal boxes. The narrow cell is for the
+   project with the least to say. */
 .sw-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-  margin: 10px 0 20px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin: 0 0 var(--s-7);
 }
 
 .sw-project {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: 26px 26px 28px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  grid-column: span 3;
+  padding: var(--s-4) var(--s-4) var(--s-4);
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform var(--d-mid) var(--ease),
+              box-shadow var(--d-mid) var(--ease),
+              border-color var(--d-mid) var(--ease);
+}
+
+.sw-feature { grid-column: span 6; }
+.sw-wide    { grid-column: span 4; }
+.sw-narrow  { grid-column: span 2; }
+
+/* The featured project puts its decoration beside the words. */
+.sw-feature {
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--s-5);
+  padding: 0;
+}
+.sw-feature .sw-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 1 58%;
+  padding: var(--s-5);
+}
+.sw-feature h2 { font-size: var(--t-md); }
+
+@media (hover: hover) and (pointer: fine) {
+  .sw-project:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
+    box-shadow: 0 18px 38px -26px rgb(0 0 0 / 0.5);
+  }
 }
 
 .sw-kind {
   font-family: var(--font-mono);
   font-size: var(--t-micro);
-  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .sw-project h2 { margin: 0; font-size: var(--t-sm); letter-spacing: -0.015em; }
 .sw-project p { margin: 0; color: var(--ink-soft); font-size: var(--t-base); }
-.sw-project p.empty { color: var(--accent); font-style: italic; }
+.sw-project p.empty { color: var(--ink-soft); font-style: italic; }
 
 .sw-tags { display: flex; flex-wrap: wrap; gap: 7px; list-style: none; margin: 4px 0 0; padding: 0; }
 
 .sw-tags li {
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  padding: 3px 9px;
+  background: var(--accent-tint);
+  border: 1px solid color-mix(in oklab, var(--accent) 22%, transparent);
+  border-radius: var(--radius-pill);
+  padding: 3px 11px;
   font-family: var(--font-mono);
   font-size: var(--t-micro);
-  color: var(--ink-soft);
+  color: var(--accent);
 }
 
-/* Outlined buttons, as on the reference. */
 /* Pushed to the foot of the cell so the buttons line up across a row. */
-.sw-project .sw-links { display: flex; flex-wrap: wrap; gap: 9px; margin: auto 0 0; padding-top: 10px; }
+.sw-project .sw-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: auto 0 0;
+  padding-top: var(--s-3);
+}
 
 .sw-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   border: 1px solid var(--rule);
-  border-radius: 5px;
-  padding: 8px 15px;
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
   color: var(--ink);
   font-family: var(--font-mono);
   font-size: var(--t-micro);
   font-weight: 700;
   text-decoration: none;
+  transition: background-color var(--d-fast) var(--ease),
+              color var(--d-fast) var(--ease),
+              border-color var(--d-fast) var(--ease);
+}
+
+/* Something you can open outranks something you can read. */
+.sw-links a.sw-demo {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+.sw-links a.sw-demo::after {
+  content: "\2197";
+  transition: transform var(--d-fast) var(--ease);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .sw-links a:hover { background: var(--ink); color: var(--paper); }
+  .sw-links a:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .sw-links a.sw-demo:hover { background: var(--ink); border-color: var(--ink); }
+  .sw-links a.sw-demo:hover::after { transform: translate(2px, -2px); }
+}
+
+/* ---------- What each project looks like ----------
+   A small amount of decoration per project, drawn in CSS from what the
+   project actually is: a crawl, a graph, a row of letter tiles. */
+.sw-art {
+  flex: 1 1 42%;
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--line);
+  background: linear-gradient(160deg, #10112c, #241f52);
+}
+
+/* SW-Crawl: a starfield with text receding into it. */
+.sw-art-crawl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 22% 18%, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 68% 28%, #fff, transparent),
+    radial-gradient(1.6px 1.6px at 41% 62%, #fff, transparent),
+    radial-gradient(1.1px 1.1px at 84% 72%, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 12% 82%, #fff, transparent),
+    radial-gradient(1px 1px at 56% 44%, #fff, transparent);
+  opacity: 0.85;
+}
+.sw-crawl-text {
+  position: absolute;
+  left: 50%;
+  bottom: -6%;
+  width: 78%;
+  height: 86%;
+  translate: -50% 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffd34d 0 6px, transparent 6px 15px);
+  mask-image: linear-gradient(to top, #000 4%, transparent 72%);
+  transform: perspective(170px) rotateX(46deg);
+  transform-origin: bottom center;
+}
+
+/* MathCanvas: a coordinate grid with a curve across it. */
+[data-sw="math"]::before {
+  content: "";
+  position: absolute;
+  inset: auto -10% -14% 42%;
+  height: 170px;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--accent) 24%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--accent) 24%, transparent) 1px, transparent 1px);
+  background-size: 26px 26px, 26px 26px;
+  mask-image: radial-gradient(70% 80% at 60% 80%, #000, transparent 72%);
+}
+
+/* Hangman: the word, as the tiles you would guess it on. */
+.sw-tiles {
+  display: flex;
+  gap: 5px;
+  margin: var(--s-2) 0 0;
+}
+.sw-tiles span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 30px;
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, var(--line));
+  border-radius: 4px;
+  background: var(--accent-tint);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 700;
+}
+/* Two of the seven are still blank, the way the game starts. */
+.sw-tiles span:nth-child(3),
+.sw-tiles span:nth-child(6) {
+  color: transparent;
+  background: var(--paper-alt);
+  border-style: dashed;
+}
+
+/* ---------- Narrower screens ----------
+   Six columns stop being readable long before they stop fitting. */
+@media (max-width: 900px) {
+  .sw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sw-project, .sw-feature, .sw-wide, .sw-narrow { grid-column: span 1; }
+  .sw-feature { flex-direction: column; padding: 0; }
+  .sw-feature .sw-body { padding: var(--s-4); }
+  .sw-art { flex: 0 0 180px; border-left: 0; border-top: 1px solid var(--line); }
+  .sw-hero-inner { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
+  .sw-hero { padding: var(--s-6) 0 var(--s-5); }
 }
 
 @media (max-width: 620px) {
+  .sw-grid { grid-template-columns: minmax(0, 1fr); }
   .sw-project { padding: 22px 20px 24px; }
-
 }
 
-/* ---------- Listings ---------- */
 .piece-list, .book-list { list-style: none; margin: 30px 0 76px; padding: 0; }
 /* ---------- Listings ----------
    An archive reads better as an index than as a stack of identical
@@ -1104,7 +1613,7 @@ article.prose {
   padding: 46px 52px 52px;
 }
 
-article.prose h1 { font-size: calc(var(--t-xl) * 1.04); line-height: 1.08; margin: 18px 0 14px; font-weight: 800; letter-spacing: -0.03em; }
+article.prose h1 { font-size: calc(var(--t-xl) * 1.04); line-height: 1.08; margin: 18px 0 14px; font-weight: 700; letter-spacing: -0.03em; }
 article.prose h2 { font-size: var(--t-sm); margin: 34px 0 14px; }
 
 /* The writing itself reads better in the serif, whatever section the
@@ -1352,12 +1861,117 @@ article.prose ol.sources li { margin-bottom: 12px; }
 .about-split .prose-col strong { color: var(--ink); font-weight: 600; }
 .about-split .prose-col .hl { color: var(--accent); font-weight: 600; }
 
-.highlights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.highlight { padding: 20px 18px; text-align: center; }
-.highlight svg { width: 30px; height: 30px; color: var(--accent); margin-bottom: 12px; }
-.highlight .h-title { display: block; font-weight: 700; font-size: var(--t-body); margin-bottom: 3px; }
+/* ---------- About: the introduction ----------
+   Words on one side, a face on the other. The portrait is squared off and
+   tilted a degree, so it sits on the page like a print rather than an
+   avatar. */
+.about-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--s-6);
+  align-items: center;
+  margin: var(--s-5) 0 var(--s-6);
+}
+
+.about-words p {
+  margin: 0 0 var(--s-3);
+  color: var(--ink-soft);
+  font-size: var(--t-body);
+  text-wrap: pretty;
+}
+.about-words p:last-child { margin-bottom: 0; }
+
+.about-portrait {
+  position: relative;
+  margin: 0;
+  justify-self: end;
+  width: min(100%, 300px);
+  padding: var(--s-2);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  box-shadow: 0 22px 44px -26px rgb(0 0 0 / 0.5);
+  rotate: -1.1deg;
+  transition: rotate var(--d-slow) var(--ease);
+}
+/* The source photograph is tall; left at its own height it opened a
+   column of empty page beside the two short paragraphs. Cropped to a
+   print proportion instead, holding the face rather than the centre. */
+.about-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 28%;
+  border-radius: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-portrait:hover { rotate: 0deg; }
+}
+
+/* ---------- About: the four facts ----------
+   Each one wears a different section colour, which is how the page shows
+   the whole site at a glance. */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-3);
+  margin-bottom: var(--s-6);
+}
+
+.highlight {
+  position: relative;
+  padding: var(--s-4) var(--s-3) var(--s-3);
+  text-align: left;
+  background: var(--card-accent-tint, var(--card));
+  border: 1px solid color-mix(in oklab, var(--card-accent, var(--accent)) 20%, transparent);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* A bar of the card's own colour along the top edge. */
+.highlight::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--card-accent, var(--accent));
+}
+
+.h-ic {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: var(--s-2);
+  border-radius: 9px;
+  background: var(--paper);
+  color: var(--card-accent, var(--accent));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.07);
+}
+.h-ic svg { width: 19px; height: 19px; }
+
+.highlight svg { color: var(--card-accent, var(--accent)); }
+.highlight .h-title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-body);
+  margin-bottom: 3px;
+}
 .highlight .h-sub { display: block; color: var(--ink-soft); font-size: var(--t-meta); }
 .highlight .empty { font-weight: 500; }
+
+@media (max-width: 900px) {
+  .about-intro { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
+  .about-portrait { justify-self: start; max-width: 240px; }
+  .highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .highlights { grid-template-columns: minmax(0, 1fr); }
+}
 
 /* A dated list: school years, competitions, build sessions. */
 .timeline { list-style: none; margin: 0 0 20px; padding: 0; }
@@ -1382,6 +1996,97 @@ article.prose ol.sources li { margin-bottom: 12px; }
 /* Question and answer. */
 .qa-list { max-width: 68ch; margin: 0 0 20px; }
 .qa { margin-bottom: 14px; overflow: hidden; }
+
+/* ---------- What went wrong ----------
+   A rail with a node for each setback. The rail is what turns three
+   collapsed boxes into a sequence you read downwards, and each step wears
+   a different section colour because each one went wrong somewhere else. */
+.timeline-qa {
+  list-style: none;
+  margin: var(--s-4) 0 var(--s-6);
+  padding: 0 0 0 var(--s-5);
+  counter-reset: step;
+}
+
+.qa-step {
+  position: relative;
+  padding-bottom: var(--s-3);
+}
+
+/* The rail itself, drawn behind the nodes and stopped at the last one. */
+.qa-step::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--s-5) * -1 + 13px);
+  top: 26px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--line);
+}
+.qa-step:last-child::before { display: none; }
+
+/* The node, numbered in the card's own colour. */
+.qa-step::after {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: calc(var(--s-5) * -1 + 1px);
+  top: 12px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--card-accent-tint, var(--accent-tint));
+  border: 2px solid var(--card-accent, var(--accent));
+  color: var(--card-accent, var(--accent));
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 700;
+}
+
+.qa-step .qa {
+  margin-bottom: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--card-accent, var(--accent));
+  border-radius: var(--radius-sm);
+  transition: border-color var(--d-mid) var(--ease),
+              background-color var(--d-mid) var(--ease);
+}
+
+.qa-step .qa[open] {
+  background: var(--card-accent-tint, var(--accent-tint));
+}
+
+.qa-step .qa summary::after {
+  border-right-color: var(--card-accent, var(--accent));
+  border-bottom-color: var(--card-accent, var(--accent));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .qa-step .qa:hover { border-color: color-mix(in oklab, var(--card-accent, var(--accent)) 40%, var(--line)); }
+  .qa-step .qa:hover { border-left-color: var(--card-accent, var(--accent)); }
+}
+
+/* The answer slides open rather than appearing, where the browser can do
+   it and the reader has not asked for less movement. */
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    .qa-step .qa::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition: block-size var(--d-mid) var(--ease), content-visibility var(--d-mid) allow-discrete;
+    }
+    .qa-step .qa[open]::details-content { block-size: auto; }
+  }
+}
+
+@media (max-width: 620px) {
+  .timeline-qa { padding-left: var(--s-4); }
+  .qa-step::before { left: calc(var(--s-4) * -1 + 10px); }
+  .qa-step::after { left: calc(var(--s-4) * -1 - 2px); width: 24px; height: 24px; }
+}
 
 .qa summary {
   display: flex;
@@ -1475,8 +2180,27 @@ article.prose ol.sources li { margin-bottom: 12px; }
   box-shadow: 0 0 0 3px var(--accent-tint);
 }
 
-.contact-form .invalid, .form-note.error { border-color: #dc2626; color: #dc2626; }
+/* The label stays visible once the field has something in it, which a
+   placeholder cannot do. The placeholder is kept as a format hint. */
+.contact-form .field { display: grid; gap: 6px; }
+.contact-form label {
+  font-size: var(--t-meta);
+  font-weight: 600;
+  color: var(--ink);
+}
+.contact-form .opt { font-weight: 400; color: var(--ink-soft); }
+
+.contact-form .invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--danger) 16%, transparent);
+}
+.form-note.error { color: var(--danger); }
+.form-note.ok { color: var(--accent); }
 .form-note { margin: 2px 0 0; color: var(--ink-soft); font-size: var(--t-meta); min-height: 1.2em; }
+
+/* The button gives way slightly under the press. */
+.send-btn { transition: transform var(--d-fast) var(--ease), background-color var(--d-fast) var(--ease); }
+.send-btn:active { transform: translateY(1px) scale(0.99); }
 
 /* ---------- Elsewhere, publications ---------- */
 .elsewhere { padding: 32px 34px 36px; margin: 8px 0 76px; }
@@ -1579,6 +2303,140 @@ article.prose ol.sources li { margin-bottom: 12px; }
 }
 
 .search-empty { color: var(--ink-soft); padding: 20px 14px; margin: 0; font-size: var(--t-base); }
+
+/* ---------- The nav as a panel ----------
+   Below this width six links and three buttons stop fitting on one line.
+   Rather than wrapping to a second row, the links become a panel that
+   drops out of the header. */
+@media (max-width: 760px) {
+  .icon-btn.nav-toggle {
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  .site-header .wrap { flex-wrap: nowrap; }
+
+  nav.main-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 29;
+    padding: var(--s-2) 16px var(--s-4);
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 20px 36px -28px rgb(0 0 0 / 0.55);
+
+    /* Closed: folded away and out of the tab order. */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity var(--d-mid) var(--ease),
+                transform var(--d-mid) var(--ease),
+                visibility 0s linear var(--d-mid);
+  }
+
+  .site-header.nav-open nav.main-nav {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  nav.main-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+
+  nav.main-nav a {
+    display: block;
+    padding: 13px 14px;
+    font-size: var(--t-base);
+    border-radius: var(--radius-sm);
+  }
+
+  /* The sliding pill is a pointer affordance; a stacked panel shows the
+     current page with the plain tint instead. */
+  nav.main-nav.has-glide a.active { background: var(--accent-tint); }
+  .nav-glide { display: none; }
+}
+
+/* ---------- Engineering: the workshop ----------
+   A drafting grid behind the masthead, and the small technical labels
+   that go on a drawing. Kept faint: the builds have to stay readable
+   through it. No markup changes; this is all scoped to the body class. */
+body.s-engineering .masthead {
+  position: relative;
+  isolation: isolate;
+}
+
+body.s-engineering .masthead::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: calc(var(--s-5) * -1) -40px;
+  pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--accent) 13%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--accent) 13%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in oklab, var(--accent) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--accent) 7%, transparent) 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+  /* Fades out before it reaches the text, so nothing is read through it. */
+  mask-image: radial-gradient(78% 92% at 22% 34%, #000 0%, transparent 76%);
+}
+
+/* The corner ticks of a drawing frame, on the build cards. */
+/* designs.html and electrical.html both carry s-engineering, so one
+   selector covers all three pages. */
+body.s-engineering .achievement,
+body.s-engineering .design {
+  position: relative;
+}
+body.s-engineering .achievement::after,
+body.s-engineering .design::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 13px;
+  height: 13px;
+  border-top: 1.5px solid color-mix(in oklab, var(--accent) 55%, transparent);
+  border-right: 1.5px solid color-mix(in oklab, var(--accent) 55%, transparent);
+  pointer-events: none;
+}
+
+/* ---------- Literary: the publishing house ----------
+   Warm, quiet, and set to be read. The serif already carries the
+   headings; what it was missing was the furniture of a printed page. */
+body.s-literary .big-head > h2::after,
+body.s-articles .big-head > h2::after,
+body.s-poems .big-head > h2::after,
+body.s-stories .big-head > h2::after,
+body.s-essays .big-head > h2::after,
+body.s-research .big-head > h2::after,
+body.s-books .big-head > h2::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 2px;
+  margin: var(--s-3) auto 0;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+/* A drop-cap-sized opening line on the section introductions, the way a
+   magazine opens a piece. */
+body.s-literary .section-intro > p:first-child::first-line,
+body.s-articles .section-intro > p:first-child::first-line,
+body.s-poems .section-intro > p:first-child::first-line,
+body.s-stories .section-intro > p:first-child::first-line {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.015em;
+  color: var(--ink);
+}
 
 /* ---------- Reading progress ----------
    Only on a piece, where it answers a real question: how much is left.
@@ -1686,7 +2544,7 @@ article.prose ol.sources li { margin-bottom: 12px; }
   .lightbox .lb-close:hover, .lightbox .lb-nav:hover { background: rgb(255 255 255 / 26%); }
   .copy-btn:hover { filter: brightness(0.95); }
   .to-top:hover { background: var(--accent); color: var(--paper); }
-  .gallery .art-piece:has(img), figure.design:has(img),
+  .art-gallery .art-piece:has(img), figure.design:has(img),
   .achievement:has(.shot) { cursor: zoom-in; }
 }
 
@@ -1937,7 +2795,7 @@ main:focus { outline: none; }
     scroll-behavior: auto !important;
   }
 
-  html, .gallery { scroll-behavior: auto; }
+  html { scroll-behavior: auto; }
   .card:hover .card-media { transform: none; }
 }
 

@@ -2,8 +2,8 @@
      role="img" aria-label="A column of text with one line picked out">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#3f756e"/>
-      <stop offset="100%" stop-color="#2d5450"/>
+      <stop offset="0%" stop-color="#0f9c7b"/>
+      <stop offset="100%" stop-color="#00604a"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -22,7 +22,7 @@
     <path d="M250 112 H 550" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
     <path d="M250 135 H 500" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
     <path d="M250 158 H 532" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
-    <path d="M250 181 H 446" stroke="#dfebe9" stroke-width="7"/>
+    <path d="M250 181 H 446" stroke="#e1fffb" stroke-width="7"/>
     <path d="M250 204 H 518" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
     <path d="M250 227 H 482" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
     <path d="M250 250 H 410" stroke="rgba(255,255,255,.45)" stroke-width="5"/>

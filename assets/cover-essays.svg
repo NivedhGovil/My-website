@@ -2,8 +2,8 @@
      role="img" aria-label="A heading, body text and a quoted line">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#55619a"/>
-      <stop offset="100%" stop-color="#3b4570"/>
+      <stop offset="0%" stop-color="#7684e0"/>
+      <stop offset="100%" stop-color="#3f4aa8"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -21,7 +21,7 @@
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M250 116 H 430" stroke="rgba(255,255,255,.95)" stroke-width="8"/>
     <path d="M250 152 H 544 M250 178 H 520 M250 204 H 548" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
-    <path d="M286 232 H 548" stroke="#e4e6f1" stroke-width="5"/>
-    <path d="M268 222 V 250" stroke="#e4e6f1" stroke-width="6"/>
+    <path d="M286 232 H 548" stroke="#f2faff" stroke-width="5"/>
+    <path d="M268 222 V 250" stroke="#f2faff" stroke-width="6"/>
   </g>
 </svg>

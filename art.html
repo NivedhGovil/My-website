@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="style2.css">
 </head>
 <body class="s-art">
@@ -62,28 +62,40 @@
   <div class="big-head">
     <p class="pill">Gallery</p>
     <h2>Selected <span>Work</span></h2>
-
   </div>
 
-  <div class="gallery">
-    <figure class="art-piece">
-      <img src="assets/art1.jpg" alt="">
+  <!-- An editorial hang rather than a row of equal tiles: the first piece
+       takes the larger wall, the second is smaller and dropped down the
+       page so the two do not read as a pair of matching thumbnails. -->
+  <div class="art-gallery">
+
+    <figure class="art-piece art-feature">
+      <span class="art-frame">
+        <img src="assets/art1.jpg" width="1195" height="1600"
+             alt="A charcoal drawing of a house at night beneath a bare tree and a full moon"
+             loading="lazy" decoding="async">
+      </span>
       <figcaption>
-        <span class="art-title empty">A house at night</span>
+        <span class="art-no">01</span>
+        <span class="art-title">A house at night</span>
+        <span class="art-open">View larger &rarr;</span>
       </figcaption>
     </figure>
 
     <figure class="art-piece">
-      <img src="assets/art2.jpg" alt="">
+      <span class="art-frame">
+        <img src="assets/art2.jpg" width="1282" height="1600"
+             alt="A charcoal drawing of a banana taped to a wall"
+             loading="lazy" decoding="async">
+      </span>
       <figcaption>
-        <span class="art-title empty">Taped banana</span>
-       
+        <span class="art-no">02</span>
+        <span class="art-title">Taped banana</span>
+        <span class="art-open">View larger &rarr;</span>
       </figcaption>
     </figure>
 
-
-  
-
+  </div>
 
 </main>
 

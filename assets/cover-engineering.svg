@@ -2,8 +2,8 @@
      role="img" aria-label="A circuit trace running between components">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#515f87"/>
-      <stop offset="100%" stop-color="#3a4663"/>
+      <stop offset="0%" stop-color="#2a8ddb"/>
+      <stop offset="100%" stop-color="#02559a"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -20,13 +20,13 @@
 
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M196 180 H 268" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
-    <rect x="268" y="162" width="76" height="36" rx="6" stroke="#e3e8f0" stroke-width="5"/>
+    <rect x="268" y="162" width="76" height="36" rx="6" stroke="#e6fdff" stroke-width="5"/>
     <path d="M344 180 H 400 V 126 H 470" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
-    <path d="M470 112 V 140 M494 112 V 140" stroke="#e3e8f0" stroke-width="5"/>
+    <path d="M470 112 V 140 M494 112 V 140" stroke="#e6fdff" stroke-width="5"/>
     <path d="M494 126 H 560" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
     <path d="M400 180 V 238 H 470" stroke="rgba(255,255,255,.45)" stroke-width="5"/>
-    <circle cx="500" cy="238" r="26" stroke="#e3e8f0" stroke-width="5"/>
-    <path d="M488 238 h24 M500 226 v24" stroke="#e3e8f0" stroke-width="4"/>
+    <circle cx="500" cy="238" r="26" stroke="#e6fdff" stroke-width="5"/>
+    <path d="M488 238 h24 M500 226 v24" stroke="#e6fdff" stroke-width="4"/>
     <circle cx="196" cy="180" r="7" fill="rgba(255,255,255,.95)" stroke="none"/>
     <circle cx="560" cy="126" r="7" fill="rgba(255,255,255,.95)" stroke="none"/>
   </g>

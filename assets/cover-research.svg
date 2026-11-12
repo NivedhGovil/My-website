@@ -2,8 +2,8 @@
      role="img" aria-label="A bar chart with a line of readings across it">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
-      <stop offset="0%" stop-color="#8d6a33"/>
-      <stop offset="100%" stop-color="#64491f"/>
+      <stop offset="0%" stop-color="#0f98a3"/>
+      <stop offset="100%" stop-color="#005d66"/>
     </linearGradient>
     <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
       <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
@@ -23,7 +23,7 @@
     <path d="M258 252 V 112" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
     <path d="M292 252 V 206 M346 252 V 172 M400 252 V 220 M454 252 V 148 M508 252 V 186"
           stroke="rgba(255,255,255,.45)" stroke-width="14"/>
-    <path d="M292 206 L 346 172 L 400 220 L 454 148 L 508 186" stroke="#f1e8d7" stroke-width="5"/>
-    <circle cx="454" cy="148" r="9" fill="#f1e8d7" stroke="none"/>
+    <path d="M292 206 L 346 172 L 400 220 L 454 148 L 508 186" stroke="#deffff" stroke-width="5"/>
+    <circle cx="454" cy="148" r="9" fill="#deffff" stroke="none"/>
   </g>
 </svg>
