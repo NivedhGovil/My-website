@@ -473,6 +473,251 @@
     toReveal.forEach(function (el) { watcher.observe(el); });
   }
 
+  /* ---------------- Terminal ----------------
+     The site described as a filesystem, so it can be walked with cd and
+     ls. Every node maps to a real page; nothing here is invented. */
+  var TREE = {
+    name: '~', type: 'dir', kids: [
+      { name: 'home',        type: 'page', url: 'index.html',  desc: 'The front page.' },
+      { name: 'literary',    type: 'dir',  url: 'literary.html',
+        desc: 'Everything written: articles, poems, essays, short stories and books.',
+        kids: [
+          { name: 'articles.txt',      type: 'page', url: 'articles.html',      desc: 'Pieces thought all the way through.' },
+          { name: 'essays.txt',        type: 'page', url: 'essays.html',        desc: 'Longer arguments, researched and cited.' },
+          { name: 'research.txt',      type: 'page', url: 'research.html',      desc: 'Papers and the questions behind them.' },
+          { name: 'poems.txt',         type: 'page', url: 'poems.html',         desc: 'Verse, written for sound as much as meaning.' },
+          { name: 'short-stories.txt', type: 'page', url: 'short-stories.html', desc: 'Stories with somebody living in them.' },
+          { name: 'books.txt',         type: 'page', url: 'books.html',         desc: 'Books worth handing to someone else.' }
+        ] },
+      { name: 'engineering', type: 'dir',  url: 'engineering.html',
+        desc: 'Things built: Arduino, electronics and CAD.',
+        kids: [
+          { name: 'builds.txt',     type: 'page', url: 'engineering.html', desc: 'Arduino builds, with the video from each bench.' },
+          { name: 'designs.txt',    type: 'page', url: 'designs.html',     desc: 'CAD models drawn before anything is built.' },
+          { name: 'electrical.txt', type: 'page', url: 'electrical.html',  desc: 'Schematics, PCB layouts and circuit diagrams.' }
+        ] },
+      { name: 'art',      type: 'page', url: 'art.html',      desc: 'Drawings and paintings.' },
+      { name: 'software', type: 'page', url: 'software.html', desc: 'Web pages, Python tools and small games, with code and demos.' },
+      { name: 'about',    type: 'page', url: 'about.html',    desc: 'School, interests, and how to get in touch.' }
+    ]
+  };
+
+  var tEl, tBody, tInput, tWhere, cwd = [], hist = [], histAt = -1;
+
+  function node(path) {
+    var n = TREE;
+    for (var i = 0; i < path.length; i++) {
+      if (!n.kids) return null;
+      n = n.kids.filter(function (k) { return k.name === path[i]; })[0];
+      if (!n) return null;
+    }
+    return n;
+  }
+  function prompt() { return cwd.length ? '~/' + cwd.join('/') : '~'; }
+
+  function say(text, cls) {
+    var line = document.createElement('p');
+    if (cls) line.className = cls;
+    line.textContent = text;
+    tBody.appendChild(line);
+    tBody.scrollTop = tBody.scrollHeight;
+    return line;
+  }
+  function sayHTML(html) {
+    var line = document.createElement('p');
+    line.innerHTML = html;
+    tBody.appendChild(line);
+    tBody.scrollTop = tBody.scrollHeight;
+  }
+
+  function here() { return node(cwd) || TREE; }
+  function kidsHere() { return here().kids || []; }
+
+  function go(url) {
+    say('opening ' + url + ' ...', 'ok');
+    setTimeout(function () { location.href = base + url; }, 220);
+  }
+
+  var HELP = [
+    ['help',        'show this message'],
+    ['ls',          'list what is here'],
+    ['cd <name>',   'go into a section ( .. to go up, ~ for the top )'],
+    ['cat <name>',  'read what a section holds'],
+    ['open <name>', 'open that page'],
+    ['pwd',         'print the current path'],
+    ['tree',        'show the whole site at once'],
+    ['whoami',      'who this is'],
+    ['clear',       'clear the screen'],
+    ['exit',        'close the terminal  ( Esc )']
+  ];
+
+  function exec(raw) {
+    var bits = raw.trim().split(/\s+/);
+    var cmd = (bits.shift() || '').toLowerCase();
+    var arg = bits.join(' ');
+    if (!cmd) return;
+
+    if (cmd === 'help') {
+      say('Available commands:', 'head');
+      HELP.forEach(function (h) { say('  ' + h[0] + '  '.repeat(Math.max(1, 14 - h[0].length)) + h[1], 'dim'); });
+      say('Tab completes a name. Up and down walk your history.', 'dim');
+
+    } else if (cmd === 'ls') {
+      var ks = kidsHere();
+      if (!ks.length) return say('nothing here', 'dim');
+      ks.forEach(function (k) {
+        sayHTML(k.type === 'dir'
+          ? '<span class="dir">' + k.name + '/</span>'
+          : '<span class="file">' + k.name + '</span>');
+      });
+
+    } else if (cmd === 'cd') {
+      if (!arg || arg === '~' || arg === '/') { cwd = []; return paint(); }
+      if (arg === '..') { cwd.pop(); return paint(); }
+      var k = kidsHere().filter(function (x) { return x.name === arg || x.name === arg.replace(/\/$/, ''); })[0];
+      if (!k) return say('cd: ' + arg + ': no such section', 'err');
+      if (k.type === 'dir') { cwd = cwd.concat(k.name); paint(); }
+      else go(k.url);
+
+    } else if (cmd === 'cat') {
+      var f = kidsHere().filter(function (x) { return x.name === arg; })[0];
+      if (!f) return say('cat: ' + arg + ': no such file', 'err');
+      say(f.name.replace(/\.txt$/, ''), 'head');
+      say(f.desc, 'dim');
+      say('open ' + f.name + '  to go there', 'dim');
+
+    } else if (cmd === 'open') {
+      var o = kidsHere().filter(function (x) { return x.name === arg; })[0];
+      if (!o) return say('open: ' + arg + ': not here. try ls', 'err');
+      go(o.url);
+
+    } else if (cmd === 'pwd') {
+      say(prompt());
+
+    } else if (cmd === 'tree') {
+      (function walk(n, pad) {
+        (n.kids || []).forEach(function (k, i, all) {
+          var edge = (i === all.length - 1 ? '└─ ' : '├─ ');
+          sayHTML('<span class="dim">' + pad + edge + '</span>' +
+            (k.type === 'dir' ? '<span class="dir">' + k.name + '/</span>'
+                              : '<span class="file">' + k.name + '</span>'));
+          if (k.kids) walk(k, pad + (i === all.length - 1 ? '   ' : '│  '));
+        });
+      })(TREE, '');
+
+    } else if (cmd === 'whoami') {
+      say('Nivedh Govil', 'head');
+      say('Words on one side, circuits on the other.', 'dim');
+
+    } else if (cmd === 'clear') {
+      tBody.innerHTML = '';
+
+    } else if (cmd === 'exit' || cmd === 'q') {
+      closeTerm();
+
+    } else {
+      say('command not found: ' + cmd + '   (try help)', 'err');
+    }
+  }
+
+  function paint() { tWhere.textContent = prompt(); }
+
+  function complete() {
+    var val = tInput.value;
+    var bits = val.split(/\s+/);
+    var part = bits[bits.length - 1] || '';
+    var hits = kidsHere().filter(function (k) { return k.name.indexOf(part) === 0; });
+    if (hits.length === 1) {
+      bits[bits.length - 1] = hits[0].name;
+      tInput.value = bits.join(' ');
+    } else if (hits.length > 1) {
+      say(prompt() + ' $ ' + val, 'cmd');
+      hits.forEach(function (k) { say('  ' + k.name + (k.type === 'dir' ? '/' : ''), 'dim'); });
+    }
+  }
+
+  function buildTerm() {
+    tEl = document.createElement('div');
+    tEl.className = 'term';
+    tEl.hidden = true;
+    tEl.innerHTML =
+      '<div class="term-box" role="dialog" aria-modal="true" aria-label="Site terminal">' +
+        '<div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>' +
+          '<span class="where">~</span>' +
+          '<button type="button" class="term-close" aria-label="Close terminal">esc</button></div>' +
+        '<div class="term-body" aria-live="polite"></div>' +
+        '<form class="term-line"><span class="ps1"><b class="where">~</b> $</span>' +
+          '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" ' +
+            'aria-label="Type a command"></form>' +
+      '</div>';
+    document.body.appendChild(tEl);
+    tBody = tEl.querySelector('.term-body');
+    tInput = tEl.querySelector('input');
+    tWhere = tEl.querySelector('.term-line .where');
+
+    say('Nivedh Govil', 'head');
+    say('Words on one side, circuits on the other.', 'dim');
+    say('');
+    say('This site, as a filesystem. Type help, or ls to look around.', 'dim');
+
+    tEl.addEventListener('click', function (e) {
+      if (e.target === tEl || e.target.closest('.term-close')) return closeTerm();
+      tInput.focus();
+    });
+    tEl.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var val = tInput.value;
+      say(prompt() + ' $ ' + val, 'cmd');
+      if (val.trim()) { hist.push(val); histAt = hist.length; }
+      tInput.value = '';
+      exec(val);
+    });
+    tInput.addEventListener('keydown', function (e) {
+      /* Handled here because this listener stops the event going further,
+         so the document-level Escape would otherwise never see it. */
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); return closeTerm(); }
+      if (e.key === 'Tab') { e.preventDefault(); complete(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); if (histAt > 0) tInput.value = hist[--histAt]; }
+      else if (e.key === 'ArrowDown') { e.preventDefault();
+        if (histAt < hist.length - 1) tInput.value = hist[++histAt];
+        else { histAt = hist.length; tInput.value = ''; } }
+      e.stopPropagation();
+    });
+  }
+
+  function openTerm() {
+    if (!tEl) buildTerm();
+    tEl.hidden = false;
+    document.body.style.overflow = 'hidden';
+    paint();
+    tInput.focus();
+  }
+  function closeTerm() {
+    if (!tEl || tEl.hidden) return;
+    tEl.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  /* A button beside search and the theme toggle, and a key from anywhere. */
+  document.querySelectorAll('.header-tools').forEach(function (tools) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'icon-btn term-open';
+    btn.setAttribute('aria-label', 'Open the terminal');
+    btn.title = 'Terminal  (press ` )';
+    btn.textContent = '>_';
+    tools.insertBefore(btn, tools.firstChild);
+    btn.addEventListener('click', openTerm);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (tEl && !tEl.hidden && e.key === 'Escape') { e.preventDefault(); return closeTerm(); }
+    if (e.key !== '`' || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    e.preventDefault();
+    openTerm();
+  });
+
   /* ---------------- Analytics ---------------- */
   if (ANALYTICS) {
     var a = document.createElement('script');
