@@ -1108,6 +1108,8 @@ article.prose ol.sources li { margin-bottom: 12px; }
 }
 
 /* ---------- About: prose beside highlight cards ---------- */
+.page-head + .about-split { margin-top: 30px; }
+
 .about-split {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
