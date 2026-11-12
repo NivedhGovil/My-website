@@ -345,7 +345,15 @@
 
   /* ---------------- Artwork lightbox ----------------
      A gallery you cannot look at closely is not much of a gallery. */
-  var art = document.querySelectorAll('.gallery .art-piece');
+  /* Anything with a picture worth looking at closely: artwork, CAD models,
+     schematics and photographs all behave the same way here. */
+  var art = document.querySelectorAll(
+    '.gallery .art-piece:has(img), figure.design:has(img), .achievement:has(.shot)');
+  /* A placeholder tile is not worth opening. */
+  art = [].filter.call(art, function (f) {
+    var img = f.querySelector('img');
+    return img && img.getAttribute('src') && !/placeholder/.test(img.getAttribute('src'));
+  });
   if (art.length) {
     var box = null, at = 0;
 
@@ -355,8 +363,8 @@
       box.hidden = true;
       box.innerHTML =
         '<button type="button" class="lb-close" aria-label="Close">&times;</button>' +
-        '<button type="button" class="lb-nav lb-prev" aria-label="Previous artwork">' + CHEV + '</button>' +
-        '<button type="button" class="lb-nav lb-next" aria-label="Next artwork">' + CHEV + '</button>' +
+        '<button type="button" class="lb-nav lb-prev" aria-label="Previous image">' + CHEV + '</button>' +
+        '<button type="button" class="lb-nav lb-next" aria-label="Next image">' + CHEV + '</button>' +
         '<figure><img alt=""><figcaption><span class="lb-title"></span>' +
         '<span class="lb-count"></span></figcaption></figure>';
       document.body.appendChild(box);
@@ -370,7 +378,7 @@
     function show(i) {
       at = (i + art.length) % art.length;
       var fig = art[at], img = fig.querySelector('img');
-      var t = fig.querySelector('.art-title');
+      var t = fig.querySelector('.art-title, .design-title, h3');
       var shot = box.querySelector('img');
       shot.src = img.currentSrc || img.src;
       shot.alt = img.alt || '';
@@ -400,8 +408,11 @@
     art.forEach(function (fig, i) {
       fig.tabIndex = 0;
       fig.setAttribute('role', 'button');
-      fig.setAttribute('aria-label', 'Open artwork ' + (i + 1) + ' of ' + art.length);
-      fig.addEventListener('click', function () { openBox(i); });
+      fig.setAttribute('aria-label', 'Open image ' + (i + 1) + ' of ' + art.length);
+      fig.addEventListener('click', function (e) {
+        if (e.target.closest('a, button')) return;   /* follow the link instead */
+        openBox(i);
+      });
       fig.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBox(i); }
       });

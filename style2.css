@@ -1454,7 +1454,8 @@ article.prose ol.sources li { margin-bottom: 12px; }
   .lightbox .lb-close:hover, .lightbox .lb-nav:hover { background: rgb(255 255 255 / 26%); }
   .copy-btn:hover { filter: brightness(0.95); }
   .to-top:hover { background: var(--accent); color: var(--paper); }
-  .gallery .art-piece { cursor: zoom-in; }
+  .gallery .art-piece:has(img), figure.design:has(img),
+  .achievement:has(.shot) { cursor: zoom-in; }
 }
 
 /* ---------- Back to top ---------- */
