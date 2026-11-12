@@ -214,6 +214,74 @@
     form.addEventListener('input', function (e) { e.target.classList.remove('invalid'); });
   }
 
+  /* ---------------- Art carousel ----------------
+     The gallery strip scrolls one picture at a time. The arrows are built
+     here rather than in the markup, so art.html stays a plain list of
+     figures and still reads fine with JavaScript switched off. */
+  var strip = document.querySelector('.gallery');
+  if (strip && strip.children.length > 1) {
+    var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M15 5l-7 7 7 7"/></svg>';
+
+    var frame = document.createElement('div');
+    frame.className = 'carousel';
+    strip.parentNode.insertBefore(frame, strip);
+    frame.appendChild(strip);
+
+    strip.setAttribute('role', 'region');
+    strip.setAttribute('aria-label', 'Artwork, use the left and right arrow keys');
+    strip.tabIndex = 0;
+
+    function arrow(dir) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'carousel-btn ' + dir;
+      b.setAttribute('aria-label', dir === 'prev' ? 'Previous artwork' : 'Next artwork');
+      b.innerHTML = CHEVRON;
+      if (dir === 'next') b.style.transform = 'scaleX(-1)';
+      b.addEventListener('click', function () { step(dir === 'prev' ? -1 : 1); });
+      frame.appendChild(b);
+      return b;
+    }
+    var prevBtn = arrow('prev'), nextBtn = arrow('next');
+
+    function step(n) {
+      var first = strip.children[0];
+      if (!first) return;
+      var gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+      strip.scrollBy({ left: n * (first.getBoundingClientRect().width + gap), behavior: 'smooth' });
+    }
+
+    function sync() {
+      var max = strip.scrollWidth - strip.clientWidth;
+      prevBtn.disabled = strip.scrollLeft < 8;
+      nextBtn.disabled = max < 8 || strip.scrollLeft > max - 8;
+      hint.hidden = max < 8;
+    }
+    /* Tell people the keys exist, but only once there is somewhere to go. */
+    var hint = document.createElement('p');
+    hint.className = 'carousel-hint';
+    hint.textContent = 'Use the arrow keys, or the buttons, to move through the gallery.';
+    hint.hidden = true;
+    frame.parentNode.insertBefore(hint, frame.nextSibling);
+
+    strip.addEventListener('scroll', sync);
+    window.addEventListener('resize', sync);
+    sync();
+
+    /* Arrow keys drive the strip, but never while someone is typing or
+       has the search overlay open. */
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      if (overlay && !overlay.hidden) return;
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      e.preventDefault();
+      step(e.key === 'ArrowLeft' ? -1 : 1);
+    });
+  }
+
   /* ---------------- Analytics ---------------- */
   if (ANALYTICS) {
     var a = document.createElement('script');
