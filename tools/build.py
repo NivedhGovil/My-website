@@ -70,7 +70,6 @@ for page, title, kind, text in [
     ('designs.html', 'Designs', 'Section', 'CAD models — parts and assemblies drawn before they were built.'),
     ('essays.html', 'Essays', 'Section', 'Longer arguments, researched and cited.'),
     ('research.html', 'Research', 'Section', 'Papers, investigations and the questions behind them.'),
-    ('robotic-arm.html', 'Robotic Arm', 'Project', 'A jointed robotic arm — photographs, build log and code.'),
     ('electrical.html', 'Electrical', 'Section', 'Schematics, PCB layouts and circuit diagrams.'),
     ('software.html', 'Software', 'Section', 'Web pages, Python tools and small games, with code and demos.'),
     ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),

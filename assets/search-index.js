@@ -233,6 +233,14 @@ window.SEARCH_INDEX = [
 "text": "A submarine modelled from scratch: a cylindrical pressure hull with a domed bow, a conning tower, a three-bladed propeller on the stern, and a flag flying from a short mast. My initials are embossed into the side of the hull."
 },
 {
+"title": "Demon Slayer inspired fidget spinner",
+"url": "designs.html",
+"section": "Engineering",
+"kind": "Design",
+"meta": "CAD model \u00b7 printed \u00b7 MakerWorld",
+"text": "A tri-lobed spinner I designed and printed, taking the pattern on one lobe from Demon Slayer. Three white ceramic bearings sit in the arms, a fourth press-fits into the centre behind a round cap, and a ring of square cut-outs runs around the top lobe. Printed in red, and published on MakerWorld for anyone else who wants to make one."
+},
+{
 "title": "SW-Crawl",
 "url": "software.html",
 "section": "Software",
@@ -303,14 +311,6 @@ window.SEARCH_INDEX = [
 "kind": "Section",
 "meta": "",
 "text": "Papers, investigations and the questions behind them."
-},
-{
-"title": "Robotic Arm",
-"url": "robotic-arm.html",
-"section": "Robotic Arm",
-"kind": "Project",
-"meta": "",
-"text": "A jointed robotic arm \u2014 photographs, build log and code."
 },
 {
 "title": "Electrical",

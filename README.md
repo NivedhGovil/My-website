@@ -18,7 +18,6 @@ I have used AI, only for help on CSS and Javascript.
 | `essays.html` | Essays I have written |
 | `poems.html` | Poems I have written |
 | `engineering.html` | Engineering projects |
-| `robotic-arm.html` | Robot I am building |
 | `art.html` | My drawings |
 | `about.html` | About Me |
 

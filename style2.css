@@ -27,6 +27,13 @@
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
+  /* "Words on one side, circuits on the other." The literary half of the
+     site is set in the serif; everything built is set in the grotesk.
+     Interface chrome — nav, buttons, labels — stays in the grotesk
+     throughout, so only the writing changes voice. */
+  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-head: var(--font-sans);
+
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
                "Liberation Mono", monospace;
 
@@ -160,7 +167,27 @@ body {
   background-attachment: fixed;
 }
 
-h1, h2, h3, .brand { font-family: var(--font-sans); font-weight: 800; letter-spacing: -0.03em; }
+h1, h2, h3 { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.03em; }
+.brand { font-family: var(--font-sans); font-weight: 800; letter-spacing: -0.03em; }
+
+/* The writing side. */
+body.s-literary, body.s-articles, body.s-poems, body.s-stories,
+body.s-books, body.s-essays, body.s-research {
+  --font-head: var(--font-serif);
+}
+
+body.s-literary h1, body.s-articles h1, body.s-poems h1, body.s-stories h1,
+body.s-books h1, body.s-essays h1, body.s-research h1,
+body.s-literary h2, body.s-articles h2, body.s-poems h2, body.s-stories h2,
+body.s-books h2, body.s-essays h2, body.s-research h2 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* A piece always reads in the serif, whatever section it sits under. */
+article.prose p, article.prose li, article.prose blockquote {
+  font-family: var(--font-serif);
+}
 a { color: var(--accent); }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
