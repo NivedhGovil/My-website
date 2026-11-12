@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Software &middot; Nivedh Govil</title>
+<meta name="description" content="Software projects by Nivedh Govil — web pages, Python tools and small games, with code and demos.">
+<link rel="canonical" href="https://nivedhgovil.github.io/My-website/software.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivedh Govil">
+<meta property="og:title" content="Software &middot; Nivedh Govil">
+<meta property="og:description" content="Software projects by Nivedh Govil — web pages, Python tools and small games, with code and demos.">
+<meta property="og:url" content="https://nivedhgovil.github.io/My-website/software.html">
+<meta property="og:image" content="https://nivedhgovil.github.io/My-website/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fffaf6">
+<link rel="stylesheet" href="style2.css">
+</head>
+<body class="s-engineering">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Nivedh <span>Govil</span></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="literary.html">Literary</a></li>
+        <li><a class="active" aria-current="page" href="engineering.html">Engineering</a></li>
+        <li><a href="art.html">Art</a></li>
+    <!--    <li><a href="music.html">Music</a></li> --> 
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn search-open" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+      <button type="button" class="icon-btn theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<nav class="sub-nav">
+  <div class="wrap">
+    <ul>
+      <li><a href="engineering.html">Builds</a></li>
+      <li><a href="designs.html">Designs</a></li>
+      <li><a href="electrical.html">Electrical</a></li>
+      <li><a class="active" aria-current="page" href="software.html">Software</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="main" tabindex="-1">
+
+  <div class="page-head">
+    <p class="pill">Code</p>
+    <h1>Software Projects</h1>
+    <p>Web pages, Python tools and small games &mdash; with the repository and, where there is one, something you can open and try.</p>
+  </div>
+
+  <div class="sw-grid">
+    <article class="sw-project">
+      <span class="sw-kind">Web</span>
+      <h2>SW-Crawl</h2>
+      <p>A one-page tribute to the opening crawl from Star Wars, built to see how far plain CSS animation could be pushed. The text climbs away into a starfield over a space backdrop, and the story scrolling past is one I wrote myself. There is no framework and no JavaScript in it &mdash; only HTML and a stylesheet &mdash; and I kept a journal in the repository of what broke along the way and how I fixed it.</p>
+      <ul class="sw-tags">
+        <li>HTML</li>
+        <li>CSS</li>
+      </ul>
+      <p class="sw-links"><a href="https://github.com/NivedhGovil/SW-Crawl" target="_blank" rel="noopener">GitHub</a><a href="https://sw-crawl.vercel.app/" target="_blank" rel="noopener">Demo</a></p>
+    </article>
+
+    <article class="sw-project">
+      <span class="sw-kind">Python</span>
+      <h2>MathCanvas</h2>
+      <p>An interactive maths and physics explorer. It plots constant, linear, quadratic, sine, cosine and tangent curves; takes a small set of observations and returns the mean, median, standard deviation, variance and range with a bar chart beside them; and simulates projectile motion from a launch angle, speed and mass. Pick a mode, change an input, and the graph redraws. The whole interface is Streamlit, NumPy and Matplotlib &mdash; there is not a single HTML tag in it.</p>
+      <ul class="sw-tags">
+        <li>Python</li>
+        <li>Streamlit</li>
+        <li>NumPy</li>
+        <li>Matplotlib</li>
+      </ul>
+      <p class="sw-links"><a href="https://github.com/NivedhGovil/MathCanvas" target="_blank" rel="noopener">GitHub</a><a href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Demo</a></p>
+    </article>
+
+    <article class="sw-project">
+      <span class="sw-kind">Web</span>
+      <h2>Culinary Guide</h2>
+      <p>A small recipe site with a page for each dish: garlic butter pasta, a caprese salad, a stir-fry with tofu and a veggie quesadilla. Each page carries a progress bar showing how hard the recipe is to cook, and a dialog box at the end holding a bonus link. It is almost entirely HTML, with just enough JavaScript to make the dialog work and no stylesheet at all.</p>
+      <ul class="sw-tags">
+        <li>HTML</li>
+        <li>JavaScript</li>
+      </ul>
+      <p class="sw-links"><a href="https://github.com/NivedhGovil/Culinary-Guide" target="_blank" rel="noopener">GitHub</a><a href="https://culinaryguide-nivedh.vercel.app/" target="_blank" rel="noopener">Demo</a></p>
+    </article>
+
+    <article class="sw-project">
+      <span class="sw-kind">Python</span>
+      <h2>Hangman</h2>
+      <p>The word-guessing game, written in Python and played in the terminal. The computer picks a word at random, you guess one letter at a time, and every letter that is not in the word costs you an attempt. It is a single file that needs nothing beyond Python itself, and I packaged it with PyInstaller so it can be run on Windows without installing anything first.</p>
+      <ul class="sw-tags">
+        <li>Python</li>
+      </ul>
+      <p class="sw-links"><a href="https://github.com/NivedhGovil/Hangman" target="_blank" rel="noopener">GitHub</a></p>
+    </article>
+
+    <article class="sw-project">
+      <span class="sw-kind">Web</span>
+      <h2>Culina AI</h2>
+      <p class="empty">Write a paragraph here: what Culina AI does, what you used to build it, and what was hard about it. I have left this blank rather than guess &mdash; there is no repository for it, so nothing of it could be checked.</p>
+      <p class="sw-links"><a href="https://culina-ai1.lovable.app/" target="_blank" rel="noopener">Demo</a></p>
+    </article>
+  </div>
+
+</main>
+
+<footer class="site-footer wrap">
+  <span>&copy; 2026 Nivedh Govil</span>
+  <span class="site-status"><span class="live-dot" aria-hidden="true"></span>Updated <time class="updated" datetime="2026-11-12">12 November 2026</time> September 2026</time></span>
+  <span><a href="engineering.html">Back to Builds</a></span>
+</footer>
+
+<script src="assets/search-index.js"></script>
+<script src="assets/site.js" data-base=""></script>
+</body>
+</html>

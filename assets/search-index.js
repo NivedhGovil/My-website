@@ -222,7 +222,7 @@ window.SEARCH_INDEX = [
 "section": "Engineering",
 "kind": "Design",
 "meta": "CAD model \u00b7 Backyard Challenge",
-"text": "A whole backyard modelled end to end for a Backyard Challenge: a two-storey house with a covered veranda, a garden shed, a tiered fountain beside a raised circular pond, a lamp post, a picnic table, a planting bed under a lattice, and a covered seating area against a rock feature. About seventy thousand triangles in the finished mesh."
+"text": "A whole backyard modelled end to end for a Backyard Challenge: a two-storey house with a covered veranda, a garden shed, a tiered fountain beside a raised circular pond, a lamp post, a picnic table, a planting bed under a lattice, and a covered seating area against a rock feature."
 },
 {
 "title": "Submarine",
@@ -231,6 +231,38 @@ window.SEARCH_INDEX = [
 "kind": "Design",
 "meta": "CAD model",
 "text": "A submarine modelled from scratch: a cylindrical pressure hull with a domed bow, a conning tower, a three-bladed propeller on the stern, and a flag flying from a short mast. My initials are embossed into the side of the hull."
+},
+{
+"title": "SW-Crawl",
+"url": "software.html",
+"section": "Engineering",
+"kind": "Software",
+"meta": "HTML, CSS",
+"text": "A one-page tribute to the opening crawl from Star Wars, built to see how far plain CSS animation could be pushed. The text climbs away into a starfield over a space backdrop, and the story scrolling past is one I wrote myself. There is no framework and no JavaScript in it \u2014 only HTML and a stylesheet \u2014 and I kept a journal in the repository of what broke along the way and how I fixed it."
+},
+{
+"title": "MathCanvas",
+"url": "software.html",
+"section": "Engineering",
+"kind": "Software",
+"meta": "Python, Streamlit, NumPy, Matplotlib",
+"text": "An interactive maths and physics explorer. It plots constant, linear, quadratic, sine, cosine and tangent curves; takes a small set of observations and returns the mean, median, standard deviation, variance and range with a bar chart beside them; and simulates projectile motion from a launch angle, speed and mass. Pick a mode, change an input, and the graph redraws. The whole interface is Streamlit, NumPy and Matplotlib \u2014 there is not a single HTML tag in it."
+},
+{
+"title": "Culinary Guide",
+"url": "software.html",
+"section": "Engineering",
+"kind": "Software",
+"meta": "HTML, JavaScript",
+"text": "A small recipe site with a page for each dish: garlic butter pasta, a caprese salad, a stir-fry with tofu and a veggie quesadilla. Each page carries a progress bar showing how hard the recipe is to cook, and a dialog box at the end holding a bonus link. It is almost entirely HTML, with just enough JavaScript to make the dialog work and no stylesheet at all."
+},
+{
+"title": "Hangman",
+"url": "software.html",
+"section": "Engineering",
+"kind": "Software",
+"meta": "Python",
+"text": "The word-guessing game, written in Python and played in the terminal. The computer picks a word at random, you guess one letter at a time, and every letter that is not in the word costs you an attempt. It is a single file that needs nothing beyond Python itself, and I packaged it with PyInstaller so it can be run on Windows without installing anything first."
 },
 {
 "title": "Literary",
@@ -287,6 +319,14 @@ window.SEARCH_INDEX = [
 "kind": "Section",
 "meta": "",
 "text": "Schematics, PCB layouts and circuit diagrams."
+},
+{
+"title": "Software",
+"url": "software.html",
+"section": "Software",
+"kind": "Section",
+"meta": "",
+"text": "Web pages, Python tools and small games, with code and demos."
 },
 {
 "title": "Art",

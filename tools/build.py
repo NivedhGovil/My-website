@@ -51,6 +51,18 @@ for m in re.finditer(r'<figure class="design">.*?<span class="design-title([^"]*
     records.append(dict(title=strip(m.group(2)), url='designs.html', section='Engineering',
                         kind='Design', meta=strip(m.group(3)), text=strip(m.group(4))))
 
+# --- software projects, from the Software grid (skips unfilled placeholders) ---
+s = open('software.html').read()
+for m in re.finditer(r'<article class="sw-project">\s*'
+                     r'<span class="sw-kind">(.*?)</span>\s*'
+                     r'<h2>(.*?)</h2>\s*'
+                     r'<p([^>]*)>(.*?)</p>(.*?)</article>', s, re.S):
+    if 'empty' in m.group(3):
+        continue
+    tags = ', '.join(strip(t) for t in re.findall(r'<li>(.*?)</li>', m.group(5), re.S))
+    records.append(dict(title=strip(m.group(2)), url='software.html', section='Engineering',
+                        kind='Software', meta=tags or strip(m.group(1)), text=strip(m.group(4))))
+
 # --- the sections themselves, so a search for "art" finds the Art page ---
 for page, title, kind, text in [
     ('literary.html', 'Literary', 'Section', 'Articles, poems, short stories and books to recommend.'),
@@ -60,6 +72,7 @@ for page, title, kind, text in [
     ('research.html', 'Research', 'Section', 'Papers, investigations and the questions behind them.'),
     ('robotic-arm.html', 'Robotic Arm', 'Project', 'A jointed robotic arm — photographs, build log and code.'),
     ('electrical.html', 'Electrical', 'Section', 'Schematics, PCB layouts and circuit diagrams.'),
+    ('software.html', 'Software', 'Section', 'Web pages, Python tools and small games, with code and demos.'),
     ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),
     ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
     ('about.html', 'About', 'Section', 'School, interests, achievements and how to get in touch.')]:

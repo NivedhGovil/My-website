@@ -558,6 +558,71 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   transform: rotate(45deg) translate(-2px, -2px) scale(0.8);
 }
 
+/* ---------- Software projects ----------
+   A bordered grid rather than separate cards: the cells share their rules,
+   so the whole block reads as one table of work. */
+.sw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 10px 0 20px;
+}
+
+.sw-project {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 26px 26px 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.sw-kind {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.sw-project h2 { margin: 0; font-size: 1.22rem; letter-spacing: -0.02em; }
+.sw-project p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+.sw-project p.empty { color: var(--accent); font-style: italic; }
+
+.sw-tags { display: flex; flex-wrap: wrap; gap: 7px; list-style: none; margin: 4px 0 0; padding: 0; }
+
+.sw-tags li {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 3px 9px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+/* Outlined buttons, as on the reference. */
+/* Pushed to the foot of the cell so the buttons line up across a row. */
+.sw-project .sw-links { display: flex; flex-wrap: wrap; gap: 9px; margin: auto 0 0; padding-top: 10px; }
+
+.sw-links a {
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 8px 15px;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sw-links a:hover { background: var(--ink); color: var(--paper); }
+}
+
+@media (max-width: 620px) {
+  .sw-project { padding: 22px 20px 24px; }
+}
+
 /* ---------- Listings ---------- */
 .piece-list, .book-list { list-style: none; margin: 30px 0 76px; padding: 0; }
 .piece, .book { padding: 26px 28px; margin-bottom: 18px; }
