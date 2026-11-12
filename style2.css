@@ -394,13 +394,21 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
 .icon-btn svg { width: 17px; height: 17px; }
 
 /* One theme glyph at a time. */
-.icon-btn .moon { display: none; }
-:root[data-theme="dark"] .icon-btn .moon { display: block; }
-:root[data-theme="dark"] .icon-btn .sun { display: none; }
+/* Both glyphs are always present, stacked; one fades out as the other
+   fades in. An instant swap reads as a glitch at this size. */
+.theme-toggle { display: grid; place-items: center; }
+.theme-toggle svg { grid-area: 1 / 1; }
+
+.theme-toggle .moon { opacity: 0; transform: scale(0.6) rotate(-30deg); }
+.theme-toggle .sun  { opacity: 1; transform: none; }
+.theme-toggle svg { transition: opacity 220ms var(--ease), transform 220ms var(--ease); }
+
+:root[data-theme="dark"] .theme-toggle .moon { opacity: 1; transform: none; }
+:root[data-theme="dark"] .theme-toggle .sun  { opacity: 0; transform: scale(0.6) rotate(30deg); }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .icon-btn .moon { display: block; }
-  :root:not([data-theme="light"]) .icon-btn .sun { display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .moon { opacity: 1; transform: none; }
+  :root:not([data-theme="light"]) .theme-toggle .sun  { opacity: 0; transform: scale(0.6) rotate(30deg); }
 }
 
 /* ---------- Hero ---------- */
@@ -1221,6 +1229,140 @@ article.prose ol.sources li { margin-bottom: 12px; }
 }
 
 .search-empty { color: var(--ink-soft); padding: 20px 14px; margin: 0; font-size: var(--t-base); }
+
+/* ---------- Reading progress ----------
+   Only on a piece, where it answers a real question: how much is left.
+   scaleX rather than width, so it never triggers layout. */
+.read-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* ---------- Copy to clipboard ----------
+   The icon swap is the whole feedback, so it has to be legible: the tick
+   arrives as the clipboard leaves. */
+.copy-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 8px;
+  vertical-align: -8px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+}
+
+.copy-btn svg { grid-area: 1 / 1; width: 15px; height: 15px; transition: opacity 180ms var(--ease), transform 180ms var(--ease); }
+.copy-btn .tick { opacity: 0; transform: scale(0.5); }
+.copy-btn.done .clip { opacity: 0; transform: scale(0.5); }
+.copy-btn.done .tick { opacity: 1; transform: none; }
+
+/* ---------- Artwork lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 5vh 5vw;
+  background: rgb(12 10 8 / 72%);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox[hidden] { display: none; }
+
+.lightbox figure { margin: 0; display: grid; justify-items: center; gap: 14px; max-height: 90vh; }
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 78vh;
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  animation: lift 260ms var(--ease) backwards;
+}
+
+@keyframes lift {
+  from { opacity: 0; transform: scale(0.96); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+
+.lightbox figcaption { color: #f2f2ee; font-size: var(--t-meta); text-align: center; }
+.lightbox .lb-count { display: block; color: #b9b9b2; font-family: var(--font-mono); font-size: var(--t-micro); margin-top: 4px; }
+
+.lightbox .lb-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 14%);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.lightbox .lb-nav {
+  position: absolute;
+  top: calc(50% - 24px);
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 14%);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox .lb-prev { left: 16px; }
+.lightbox .lb-next { right: 16px; }
+.lightbox .lb-nav svg { width: 20px; height: 20px; }
+.lightbox .lb-next svg { transform: scaleX(-1); }
+
+@media (hover: hover) and (pointer: fine) {
+  .lightbox .lb-close:hover, .lightbox .lb-nav:hover { background: rgb(255 255 255 / 26%); }
+  .copy-btn:hover { filter: brightness(0.95); }
+  .to-top:hover { background: var(--accent); color: var(--paper); }
+  .gallery .art-piece { cursor: zoom-in; }
+}
+
+/* ---------- Back to top ---------- */
+.to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 35;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 220ms var(--ease), transform 220ms var(--ease),
+              background-color 180ms var(--ease), color 180ms var(--ease);
+}
+
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top svg { width: 17px; height: 17px; }
 
 /* ---------- Footer ---------- */
 .site-footer {

@@ -54,6 +54,9 @@
     apply(next);
   });
 
+  var CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+
   /* ---------------- Search ---------------- */
   var overlay, input, results, index = null, active = -1;
 
@@ -220,10 +223,6 @@
      figures and still reads fine with JavaScript switched off. */
   var strip = document.querySelector('.gallery');
   if (strip && strip.children.length > 1) {
-    var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-      'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="M15 5l-7 7 7 7"/></svg>';
-
     var frame = document.createElement('div');
     frame.className = 'carousel';
     strip.parentNode.insertBefore(frame, strip);
@@ -238,7 +237,7 @@
       b.type = 'button';
       b.className = 'carousel-btn ' + dir;
       b.setAttribute('aria-label', dir === 'prev' ? 'Previous artwork' : 'Next artwork');
-      b.innerHTML = CHEVRON;
+      b.innerHTML = CHEV;
       if (dir === 'next') b.style.transform = 'scaleX(-1)';
       b.addEventListener('click', function () { step(dir === 'prev' ? -1 : 1); });
       frame.appendChild(b);
@@ -279,12 +278,166 @@
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       if (overlay && !overlay.hidden) return;
+      var lb = document.querySelector('.lightbox');
+      if (lb && !lb.hidden) return;          /* the lightbox has the keys */
       if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       e.preventDefault();
       step(e.key === 'ArrowLeft' ? -1 : 1);
     });
   }
+
+  /* ---------------- Reading progress ----------------
+     Only on a piece. It answers "how much is left", which is a real
+     question in a long story and no question at all on a listing page. */
+  var piece = document.querySelector('article.prose');
+  /* Nothing to track on a piece that already fits the window. */
+  if (piece && piece.offsetHeight > window.innerHeight * 1.6) {
+    var bar = document.createElement('div');
+    bar.className = 'read-progress';
+    document.body.appendChild(bar);
+    var tick = false;
+    function drawBar() {
+      /* How much of the piece has passed the bottom of the window, so it
+         reads 100% exactly when the last line clears — not at the page
+         foot, which is below the footer. */
+      var seen = window.scrollY + window.innerHeight - piece.offsetTop;
+      var done = piece.offsetHeight > 0 ? seen / piece.offsetHeight : 1;
+      bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, done)) + ')';
+      tick = false;
+    }
+    addEventListener('scroll', function () {
+      if (!tick) { tick = true; requestAnimationFrame(drawBar); }
+    }, { passive: true });
+    addEventListener('resize', drawBar);
+    drawBar();
+  }
+
+  /* ---------------- Copy the email ----------------
+     Saves selecting a long address by hand. The tick is the only
+     confirmation, so it holds long enough to be read. */
+  var mail = document.querySelector('.detail a[href^="mailto:"], .d-value a[href^="mailto:"]');
+  if (mail && navigator.clipboard) {
+    var copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-btn';
+    copy.setAttribute('aria-label', 'Copy the email address');
+    copy.innerHTML =
+      '<svg class="clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<rect x="9" y="9" width="11" height="11" rx="2"/>' +
+        '<path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>' +
+      '<svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="M4 12.5 9 17.5 20 6.5"/></svg>';
+    mail.after(copy);
+    copy.addEventListener('click', function () {
+      navigator.clipboard.writeText(mail.textContent.trim()).then(function () {
+        copy.classList.add('done');
+        copy.setAttribute('aria-label', 'Email address copied');
+        setTimeout(function () {
+          copy.classList.remove('done');
+          copy.setAttribute('aria-label', 'Copy the email address');
+        }, 1800);
+      }).catch(function () {});
+    });
+  }
+
+  /* ---------------- Artwork lightbox ----------------
+     A gallery you cannot look at closely is not much of a gallery. */
+  var art = document.querySelectorAll('.gallery .art-piece');
+  if (art.length) {
+    var box = null, at = 0;
+
+    function buildBox() {
+      box = document.createElement('div');
+      box.className = 'lightbox';
+      box.hidden = true;
+      box.innerHTML =
+        '<button type="button" class="lb-close" aria-label="Close">&times;</button>' +
+        '<button type="button" class="lb-nav lb-prev" aria-label="Previous artwork">' + CHEV + '</button>' +
+        '<button type="button" class="lb-nav lb-next" aria-label="Next artwork">' + CHEV + '</button>' +
+        '<figure><img alt=""><figcaption><span class="lb-title"></span>' +
+        '<span class="lb-count"></span></figcaption></figure>';
+      document.body.appendChild(box);
+      box.addEventListener('click', function (e) {
+        if (e.target === box || e.target.closest('.lb-close')) closeBox();
+        else if (e.target.closest('.lb-prev')) show(at - 1);
+        else if (e.target.closest('.lb-next')) show(at + 1);
+      });
+    }
+
+    function show(i) {
+      at = (i + art.length) % art.length;
+      var fig = art[at], img = fig.querySelector('img');
+      var t = fig.querySelector('.art-title');
+      var shot = box.querySelector('img');
+      shot.src = img.currentSrc || img.src;
+      shot.alt = img.alt || '';
+      /* restart the enter animation on each change */
+      shot.style.animation = 'none'; void shot.offsetWidth; shot.style.animation = '';
+      box.querySelector('.lb-title').textContent = t ? t.textContent.trim() : '';
+      box.querySelector('.lb-count').textContent = (at + 1) + ' of ' + art.length;
+      box.querySelectorAll('.lb-nav').forEach(function (b) { b.hidden = art.length < 2; });
+    }
+
+    var lastFocus = null;
+    function openBox(i) {
+      if (!box) buildBox();
+      lastFocus = document.activeElement;
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
+      show(i);
+      box.querySelector('.lb-close').focus();
+    }
+    function closeBox() {
+      if (!box || box.hidden) return;
+      box.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    art.forEach(function (fig, i) {
+      fig.tabIndex = 0;
+      fig.setAttribute('role', 'button');
+      fig.setAttribute('aria-label', 'Open artwork ' + (i + 1) + ' of ' + art.length);
+      fig.addEventListener('click', function () { openBox(i); });
+      fig.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBox(i); }
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!box || box.hidden) return;
+      if (e.key === 'Escape') { e.preventDefault(); closeBox(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+    }, true);
+  }
+
+  /* ---------------- Back to top ----------------
+     Appears only once there is a page worth climbing back up. */
+  var top = document.createElement('button');
+  top.type = 'button';
+  top.className = 'to-top';
+  top.setAttribute('aria-label', 'Back to top');
+  top.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  document.body.appendChild(top);
+  top.addEventListener('click', function () {
+    var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' });
+  });
+  var topTick = false;
+  addEventListener('scroll', function () {
+    if (topTick) return;
+    topTick = true;
+    requestAnimationFrame(function () {
+      top.classList.toggle('show', window.scrollY > window.innerHeight);
+      topTick = false;
+    });
+  }, { passive: true });
 
   /* ---------------- Analytics ---------------- */
   if (ANALYTICS) {
