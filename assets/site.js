@@ -439,6 +439,40 @@
     });
   }, { passive: true });
 
+  /* ---------------- Drawn lines, and arrival ----------------
+     The two hero paths are measured rather than guessed, so the dash
+     length matches whatever width the SVG ends up at. */
+  var dual = document.querySelector('.duality');
+  if (dual) {
+    var setLen = function () {
+      dual.querySelectorAll('path').forEach(function (path) {
+        path.style.setProperty('--len', Math.ceil(path.getTotalLength()));
+      });
+    };
+    setLen();
+    addEventListener('resize', setLen);
+  }
+
+  /* Cards and listings arrive as they come into view. The observer only
+     adds a class; the animation itself runs on a fixed duration, so a
+     slow scroll does not drag it out. Each item fires once. */
+  var toReveal = document.querySelectorAll(
+    'main.wrap > .cards > .card, main.wrap > .section .card, .featured-list > .piece');
+  if (toReveal.length && 'IntersectionObserver' in window) {
+    toReveal.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.style.setProperty('--i', i % 4);
+    });
+    var watcher = new IntersectionObserver(function (rows) {
+      rows.forEach(function (row) {
+        if (!row.isIntersecting) return;
+        row.target.classList.add('seen');
+        watcher.unobserve(row.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    toReveal.forEach(function (el) { watcher.observe(el); });
+  }
+
   /* ---------------- Analytics ---------------- */
   if (ANALYTICS) {
     var a = document.createElement('script');
