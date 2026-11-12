@@ -462,6 +462,19 @@
     };
     setLen();
     addEventListener('resize', setLen);
+
+    /* The signal runs once the two lines have finished drawing, and again
+       whenever the reader points at the band. Restarting means taking the
+       class off and letting the browser notice before putting it back. */
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var fire = function () {
+        dual.classList.remove('pulse');
+        void dual.offsetWidth;
+        dual.classList.add('pulse');
+      };
+      setTimeout(fire, 1700);
+      dual.addEventListener('pointerenter', fire);
+    }
   }
 
   /* Cards and listings arrive as they come into view. The observer only
@@ -728,6 +741,136 @@
     e.preventDefault();
     openTerm();
   });
+
+  /* ---------------- Pointer light on the section cards ----------------
+     The cover art carries a soft highlight that follows the cursor. It is
+     two custom properties and a CSS gradient; the work per frame is a
+     style write, and it is skipped entirely on touch, where :hover sticks
+     after a tap, and when the reader has asked for less motion. */
+  (function () {
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var cards = document.querySelectorAll('.card');
+    if (!cards.length) return;
+
+    cards.forEach(function (card) {
+      var queued = false, mx = 50, my = 50;
+
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width) * 100;
+        my = ((e.clientY - r.top) / r.height) * 100;
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () {
+          queued = false;
+          card.style.setProperty('--mx', mx.toFixed(1) + '%');
+          card.style.setProperty('--my', my.toFixed(1) + '%');
+        });
+      });
+
+      card.addEventListener('pointerleave', function () {
+        card.style.removeProperty('--mx');
+        card.style.removeProperty('--my');
+      });
+    });
+  })();
+
+  /* ---------------- Carrying the cover between pages ----------------
+     A section page names its masthead art "cover" in the stylesheet, so
+     the browser morphs it across a navigation. The home page cannot do
+     that in CSS, because a view-transition name may appear only once per
+     document and there are several cards. So the name is handed to
+     whichever card is being opened, a moment before the page leaves, and
+     taken back if the reader comes back to this page from history. */
+  (function () {
+    if (!document.startViewTransition) return;
+
+    document.addEventListener('click', function (e) {
+      var card = e.target.closest ? e.target.closest('.card') : null;
+      if (!card) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+      var img = card.querySelector('.card-media');
+      if (img) img.style.viewTransitionName = 'cover';
+    });
+
+    // Restored from the back/forward cache with the name still applied.
+    window.addEventListener('pageshow', function () {
+      document.querySelectorAll('.card-media').forEach(function (img) {
+        img.style.removeProperty('view-transition-name');
+      });
+    });
+  })();
+
+  /* ---------------- The nav indicator ----------------
+     A pill that rests behind the current section and follows the pointer
+     across the other links. Built only where there is a real pointer: on
+     a touch screen there is nothing to follow, and the plain .active
+     background in the stylesheet already says where you are. */
+  (function () {
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    var nav = document.querySelector('nav.main-nav');
+    var list = nav && nav.querySelector('ul');
+    if (!list) return;
+
+    var links = [].slice.call(list.querySelectorAll('a'));
+    var here = list.querySelector('a.active');
+    if (links.length < 2) return;
+
+    var glide = document.createElement('span');
+    glide.className = 'nav-glide';
+    list.appendChild(glide);
+    nav.classList.add('has-glide');
+
+    function moveTo(a, animate) {
+      if (!a) { glide.classList.remove('on'); return; }
+      if (!animate) {
+        var keep = glide.style.transition;
+        glide.style.transition = 'none';
+        place(a);
+        glide.offsetHeight;          // settle before transitions resume
+        glide.style.transition = keep;
+        return;
+      }
+      place(a);
+    }
+
+    function place(a) {
+      glide.style.width = a.offsetWidth + 'px';
+      glide.style.height = a.offsetHeight + 'px';
+      glide.style.transform = 'translate(' + a.offsetLeft + 'px,' + a.offsetTop + 'px)';
+      glide.classList.add('on');
+    }
+
+    // Rest on the current section, without animating in from the corner.
+    moveTo(here, false);
+
+    links.forEach(function (a) {
+      a.addEventListener('pointerenter', function () { moveTo(a, true); });
+      a.addEventListener('focus', function () { moveTo(a, true); });
+    });
+
+    nav.addEventListener('pointerleave', function () { moveTo(here, true); });
+    nav.addEventListener('focusout', function (e) {
+      if (!nav.contains(e.relatedTarget)) moveTo(here, true);
+    });
+
+    // The nav wraps to a second line on narrow screens, so the resting
+    // place moves with the layout.
+    var t;
+    addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () { moveTo(here, false); }, 120);
+    });
+
+    // Web fonts land after first paint and change every link's width.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { moveTo(here, false); });
+    }
+  })();
 
   /* ---------------- Analytics ---------------- */
   if (ANALYTICS) {

@@ -142,17 +142,22 @@ body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-
 html { scroll-behavior: smooth; }
 body { overflow-x: clip; }
 
-/* A soft band of the section's own colour behind the top of every page.
-   Fixed, so it stays put while the content scrolls over it. */
+/* The section's own colour, held across the whole viewport rather than in
+   a band at the top. One wash falls from the masthead, a second blooms low
+   and off to one side, so a long page keeps its hue instead of fading to
+   white halfway down. Fixed, so it stays put while the content scrolls. */
 body::before {
   content: "";
   position: fixed;
-  inset: 0 0 auto;
-  height: 460px;
-  background: linear-gradient(var(--accent-tint), transparent);
-  opacity: 0.9;
+  inset: 0;
   pointer-events: none;
   z-index: -1;
+  background:
+    linear-gradient(var(--accent-tint), transparent 420px),
+    radial-gradient(60% 45% at 88% 78%,
+      color-mix(in oklab, var(--accent) 7%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 6% 46%,
+      color-mix(in oklab, var(--accent) 5%, transparent), transparent 70%);
 }
 
 body {
@@ -234,13 +239,22 @@ a { color: var(--accent); }
   .recording:hover, .highlight:hover,
   .piece-nav a:hover { background: var(--paper-alt); }
 
-  .piece:has(h2 a):hover, .book:has(h2 a):hover { background: var(--accent-tint); }
+  .piece:has(h2 a):hover, .book:has(h2 a):hover {
+    background-color: var(--accent-tint);
+    background-size: 2px 100%;
+  }
   .piece:has(h2 a):hover::after, .book:has(h2 a):hover::after {
     transform: translateX(4px);
     color: var(--accent);
   }
-  .card:hover { filter: brightness(0.975); }
-  .card:hover .card-media { transform: scale(1.03); }
+  /* The index number is the row's label, so it takes the section colour
+     with everything else. */
+  .piece:has(h2 a):hover::before, .book:has(h2 a):hover::before {
+    color: var(--accent);
+  }
+  .card:hover { filter: none; }
+  .card:hover::before { opacity: 1; }
+  .card:hover .card-media { transform: scale(1.04); }
   .card .go { transition: transform 240ms var(--ease); }
   .card:hover .go { transform: translateX(4px); }
 
@@ -249,6 +263,7 @@ a { color: var(--accent); }
   .site-footer a:hover { text-decoration: underline; }
 
   nav.main-nav a:hover { color: var(--ink); background: var(--paper-alt); }
+  nav.main-nav.has-glide a:hover { background: transparent; color: var(--accent); }
   .sub-nav a:hover, .tabs label:hover, .tab-labels label:hover { color: var(--ink); }
   .qa summary:hover { color: var(--ink); }
   .search-results a:hover { background: var(--paper-alt); }
@@ -395,6 +410,38 @@ nav.main-nav a { font-size: var(--t-meta); padding: 7px 14px; }
 
 nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var(--accent-tint); }
 
+/* ---------- The nav indicator ----------
+   One tinted pill sits behind the current section and slides to whatever
+   the pointer is over, so the nav reads as a single control rather than
+   six separate links. It is only built when there is a real pointer; the
+   static .active background above is what everyone else sees, and the
+   .has-glide class is what hands the job over. */
+nav.main-nav ul { position: relative; }
+
+nav.main-nav.has-glide a.active { background: transparent; }
+
+.nav-glide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 320ms var(--ease),
+    width 320ms var(--ease),
+    height 320ms var(--ease),
+    opacity 200ms var(--ease);
+}
+.nav-glide.on { opacity: 1; }
+
+/* It travels by sliding; with motion turned down it simply appears. */
+@media (prefers-reduced-motion: reduce) {
+  .nav-glide { transition: opacity 200ms var(--ease); }
+}
+
 .header-tools { display: flex; align-items: center; gap: 6px; }
 
 .icon-btn {
@@ -519,6 +566,39 @@ nav.main-nav a.active, .sub-nav a.active { color: var(--accent); background: var
 .duality .d-node { transform-origin: 450px 30px; animation: pop 420ms var(--ease) 1500ms backwards; }
 .duality .d-dot  { opacity: 0; animation: fade-in 320ms var(--ease) 1650ms forwards; }
 
+/* A signal that runs the length of the band: along the handwritten curve,
+   then along the circuit trace. It is the tagline as a picture. It fires
+   once, when the lines have finished drawing, and again when the reader
+   points at the band — never on a loop, because a landing page that moves
+   forever is a landing page nobody can read. */
+.duality .d-pulse { fill: var(--accent); opacity: 0; }
+
+@supports (offset-path: path("M0 0 H1")) {
+  .duality .d-pulse {
+    offset-rotate: 0deg;
+    offset-distance: 0%;
+  }
+  .duality .d-p1 {
+    offset-path: path("M8 34 C 70 10, 120 52, 182 30 S 296 8, 358 32 Q 400 46, 438 30");
+  }
+  .duality .d-p2 {
+    offset-path: path("M462 30 H 520 V 14 H 580 V 30 H 638 V 46 H 700 V 30 H 760 V 18 H 820 V 30 H 892");
+  }
+  .duality.pulse .d-p1 { animation: signal 900ms var(--ease) 60ms; }
+  .duality.pulse .d-p2 { animation: signal 900ms linear 900ms; }
+}
+
+@keyframes signal {
+  from { offset-distance: 0%;   opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  to   { offset-distance: 100%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .duality .d-pulse { animation: none !important; opacity: 0; }
+}
+
 @keyframes pop     { from { transform: scale(0.2); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes fade-in { to { opacity: 1; } }
 
@@ -569,6 +649,36 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 .big-head h2 span { color: inherit; }
 .big-head > p:not(.pill) { color: var(--ink-soft); margin: 0 auto; max-width: 52ch; }
 
+
+/* ---------- Page transitions ----------
+   Moving between pages is a cross-fade rather than a white flash, and the
+   bar at the top is held still through it, so the site reads as one
+   surface. Browsers without view transitions simply navigate as before. */
+@view-transition { navigation: auto; }
+
+.site-header { view-transition-name: siteheader; }
+
+/* The section cover is the one thing that exists on both sides of a jump
+   from a card to its section, so it morphs across instead of fading.
+   On a listing page the masthead art carries the name outright; on the
+   home page site.js puts it on whichever card was clicked, because a name
+   may only be used once per page. */
+.section-banner { view-transition-name: cover; }
+
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 260ms; }
+
+::view-transition-group(cover) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease);
+}
+
+/* A transition is motion like any other, so it goes when motion does. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
 
 /* ---------- Section masthead ----------
    The title and the section's cover art share one band, so the art reads as
@@ -732,12 +842,30 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   background: var(--card);
+}
+
+/* A light that follows the pointer across the cover art. It is laid over
+   the art alone, never the body text, so nothing it does can touch the
+   reading contrast underneath. site.js supplies --mx and --my; with no
+   script the layer simply stays at zero opacity. */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  aspect-ratio: 800 / 300;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 260ms var(--ease);
+  background: radial-gradient(42% 70% at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.22), transparent 68%);
 }
 /* The cover is the lid of the card: full-bleed across the top, no inset. */
 .card-media {
@@ -924,6 +1052,19 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   font-size: var(--t-micro);
   color: var(--ink-soft);
 }
+
+/* A rule down the left edge of a row, drawn as a background so it needs
+   neither an extra element nor the two pseudo-elements already spoken for
+   by the index number and the arrow. It grows from nothing on hover. */
+.piece:has(h2 a), .book:has(h2 a) {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 2px 0%;
+  transition: background-size 280ms var(--ease), background-color 200ms var(--ease);
+}
+
+.piece::before, .book::before { transition: color 200ms var(--ease); }
 
 .piece > *, .book > * { grid-column: 2; }
 /* Chips are grid items now, so they must be told not to stretch. */
