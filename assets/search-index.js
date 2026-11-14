@@ -350,7 +350,7 @@ window.SEARCH_INDEX = [
 "section": "Achievements",
 "kind": "Section",
 "meta": "",
-"text": "The record \u2014 what has been published, placed, and invited."
+"text": "Checkpoint marks, olympiad ranks, a merit certificate and a Taekwondo belt."
 },
 {
 "title": "About",

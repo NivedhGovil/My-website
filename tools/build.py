@@ -75,7 +75,7 @@ for page, title, kind, text in [
     ('software.html', 'Software', 'Section', 'Web pages, Python tools and small games, with code and demos.'),
     ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),
     ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
-    ('achievements.html', 'Achievements', 'Section', 'The record \u2014 what has been published, placed, and invited.'),
+    ('achievements.html', 'Achievements', 'Section', 'Checkpoint marks, olympiad ranks, a merit certificate and a Taekwondo belt.'),
     ('about.html', 'About', 'Section', 'School, interests, achievements and how to get in touch.')]:
     records.append(dict(title=title, url=page, section=title, kind=kind, meta='', text=text))
 

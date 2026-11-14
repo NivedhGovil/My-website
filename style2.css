@@ -2588,146 +2588,355 @@ main:focus { outline: none; }
   }
 }
 
-/* ---------- Achievements: the board of record ----------
-   The one room that is not a grid of cards. A mounted board with a
-   double rule and an engraved plate across the top, and inside it one
-   ruled row per honour: a medal, the category it belongs to, and the
-   thing itself. The medal ring draws itself as the row arrives. */
-.honours-board {
-  position: relative;
+/* ---------- Achievements: the record, each one drawn ----------
+   Built on the same bones as the software grid: six columns, cards of
+   two widths, and a panel of decoration per card drawn in CSS from what
+   the thing actually is. The bars fill and the figures count up as a
+   card arrives; every number on the page is the real one. */
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-4);
   margin: 0 0 var(--s-7);
-  padding: var(--s-6) var(--s-5) var(--s-4);
-  background:
-    radial-gradient(76% 56% at 50% 0%, var(--accent-tint), transparent 72%),
-    var(--card);
-  border: 1px solid var(--rule);
 }
 
-/* The inner rule of a mounted board. Decorative, so it never takes the
-   pointer away from the rows underneath it. */
-.honours-board::before {
+.ach-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  grid-column: span 3;
+  padding: var(--s-4);
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform var(--d-mid) var(--ease),
+              box-shadow var(--d-mid) var(--ease),
+              border-color var(--d-mid) var(--ease);
+}
+
+/* A full-width card puts its decoration beside the words instead. */
+.ach-feature {
+  grid-column: span 6;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+}
+.ach-feature .ach-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 1 58%;
+  padding: var(--s-5);
+}
+.ach-feature h2 { font-size: var(--t-md); }
+
+/* The light that follows the pointer on the section cards, here over the
+   card itself. site.js supplies --mx and --my; with no script the layer
+   stays at zero opacity and nothing is lost. */
+.ach-item::after {
   content: "";
   position: absolute;
-  inset: 9px;
-  border: 1.5px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--d-mid) var(--ease);
+  background: radial-gradient(38% 60% at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--card-accent, var(--accent)) 12%, transparent), transparent 70%);
+}
+.ach-item > * { position: relative; z-index: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ach-item:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--card-accent, var(--accent)) 45%, var(--line));
+    box-shadow: 0 18px 38px -26px rgb(0 0 0 / 0.5);
+  }
+  .ach-item:hover::after { opacity: 1; }
+}
+
+.ach-kind {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--card-accent, var(--accent));
+}
+.ach-item h2 { margin: 0; font-size: var(--t-sm); letter-spacing: -0.015em; text-wrap: balance; }
+.ach-item p { margin: 0; color: var(--ink-soft); font-size: var(--t-base); text-wrap: pretty; }
+
+/* ---------- The three Checkpoint marks ----------
+   Three bars beside three figures. The bars are only the three numbers
+   drawn next to each other: the longest is the highest mark, and there
+   is no scale behind them to read anything else off. */
+.scores { list-style: none; width: 100%; margin: var(--s-2) 0 0; padding: 0; display: grid; gap: 10px; }
+.scores li {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 12px;
+}
+.s-name {
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.s-bar {
+  position: relative;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--paper-alt);
+  overflow: hidden;
+}
+.s-bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--v, 100%);
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--card-accent, var(--accent)) 55%, var(--paper)),
+    var(--card-accent, var(--accent)));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--d-slow) var(--ease);
+}
+.ach-item.seen .s-bar i { transform: none; }
+.s-val {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-sm);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--card-accent, var(--accent));
+}
+
+/* One figure, big, because the rank is the whole point of that card. */
+.ach-stat { display: grid; gap: 1px; margin: var(--s-2) 0 0; }
+.stat-pre {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-xl);
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  color: var(--card-accent, var(--accent));
+}
+
+/* The belts behind the one I hold. Three steps, the last one lit. */
+.belts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: var(--s-2) 0 0;
+  padding: 0;
+}
+.belts li {
+  padding: 3px 11px;
+  border: 1px solid color-mix(in oklab, var(--card-accent, var(--accent)) 22%, var(--line));
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  color: var(--ink-soft);
+}
+.belts li.here {
+  background: var(--card-accent, var(--accent));
+  border-color: var(--card-accent, var(--accent));
+  color: var(--paper);
+  font-weight: 700;
+}
+
+/* ---------- What each one looks like ----------
+   A panel per full-width card, and a corner mark on the narrow ones.
+   All of it decoration: the markup that carries it is aria-hidden. */
+.ach-art {
+  flex: 1 1 42%;
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--line);
+  background: linear-gradient(160deg, #14240c, #2f4f1d);
+}
+
+/* Checkpoint: squared paper, and a tick on it. */
+[data-ach="checkpoint"] .ach-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 22px 22px, 22px 22px;
+  mask-image: radial-gradient(78% 86% at 52% 46%, #000, transparent 74%);
+}
+[data-ach="checkpoint"] .tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 72px;
+  height: 36px;
+  translate: -50% -60%;
+  border-left: 7px solid rgba(255, 255, 255, 0.92);
+  border-bottom: 7px solid rgba(255, 255, 255, 0.92);
+  border-radius: 3px;
+  transform: rotate(-45deg) scale(0.6);
+  opacity: 0;
+  transition: transform var(--d-slow) var(--ease), opacity var(--d-mid) var(--ease);
+}
+.ach-item.seen .tick { transform: rotate(-45deg) scale(1); opacity: 1; }
+
+/* Taekwondo: the belt, tied. */
+[data-ach="belt"] .ach-art { background: linear-gradient(160deg, #16280d, #35591f); }
+[data-ach="belt"] .ach-art::before {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  top: 50%;
+  height: 26px;
+  translate: 0 -50%;
+  rotate: -4deg;
+  background: linear-gradient(180deg, #7fb45c, #4e8033);
+  box-shadow: 0 10px 26px -14px rgb(0 0 0 / 0.8);
+}
+[data-ach="belt"] .belt {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 54px;
+  height: 46px;
+  translate: -50% -50%;
+  rotate: -4deg;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #90c76c, #51862f);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25),
+              0 12px 24px -14px rgb(0 0 0 / 0.9);
+}
+[data-ach="belt"] .belt::before,
+[data-ach="belt"] .belt::after {
+  content: "";
+  position: absolute;
+  top: 78%;
+  width: 17px;
+  height: 58px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #7fb45c, #3f6b27);
+}
+[data-ach="belt"] .belt::before { left: 6px; rotate: 9deg; }
+[data-ach="belt"] .belt::after { right: 6px; rotate: -11deg; }
+
+/* The narrow cards carry a corner mark rather than a panel, so a short
+   card is not mostly decoration. */
+.ach-item:not(.ach-feature) .ach-art {
+  position: absolute;
+  right: -14%;
+  bottom: -18%;
+  width: 62%;
+  height: 150px;
+  flex: none;
+  border-left: 0;
+  background: none;
+  opacity: 0.85;
   pointer-events: none;
 }
 
-/* The engraved plate, straddling the top rule the way one is screwed on. */
-.board-plate {
-  position: absolute;
-  top: -13px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  margin: 0;
-  padding: 6px 20px;
-  background: var(--accent);
-  color: var(--paper);
-  font-family: var(--font-display);
-  font-size: var(--t-micro);
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.honours { counter-reset: hon; list-style: none; margin: 0; padding: 0; }
-
-.hon {
-  position: relative;
-  counter-increment: hon;
-  display: grid;
-  grid-template-columns: 74px minmax(0, 1fr);
-  gap: var(--s-3);
-  align-items: start;
-  padding: var(--s-4) 0;
-  border-top: 1px solid var(--line);
-}
-.hon:first-child { border-top: 0; padding-top: var(--s-2); }
-.hon:last-child { padding-bottom: var(--s-3); }
-
-/* A rule that grows down the margin under the pointer, so a row answers
-   without anything moving. Pointer devices only; touch gets the static
-   board, which is the same board. */
-.hon::before {
+/* The Olympiad rank: rings closing on a point. */
+[data-ach="finance"] .ach-art::before {
   content: "";
   position: absolute;
-  left: -18px;
-  top: var(--s-4);
-  bottom: var(--s-4);
-  width: 3px;
+  inset: 0;
+  background: repeating-radial-gradient(circle at 42% 42%,
+    color-mix(in oklab, var(--card-accent, var(--accent)) 55%, transparent) 0 1.8px,
+    transparent 1.8px 17px);
+  mask-image: radial-gradient(60% 60% at 42% 42%, #000, transparent 72%);
+}
+
+/* Homi Bhabha: a nucleus with an electron going round it. */
+[data-ach="bhabha"] .ach-art::before {
+  content: "";
+  position: absolute;
+  left: 38%;
+  top: 40%;
+  width: 11px;
+  height: 11px;
+  translate: -50% -50%;
+  border-radius: 50%;
   background: var(--card-accent, var(--accent));
-  transform: scaleY(0);
-  transform-origin: 50% 0;
-  transition: transform var(--d-mid) var(--ease);
 }
-@media (hover: hover) and (pointer: fine) {
-  .hon:hover::before { transform: scaleY(1); }
+[data-ach="bhabha"] .orbit {
+  position: absolute;
+  left: 38%;
+  top: 40%;
+  width: 108px;
+  height: 108px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in oklab, var(--card-accent, var(--accent)) 46%, transparent);
+  animation: ach-orbit 7s linear infinite;
+}
+[data-ach="bhabha"] .orbit::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in oklab, var(--card-accent, var(--accent)) 28%, transparent);
+  rotate: 58deg;
+  scale: 1 0.52;
+}
+[data-ach="bhabha"] .orbit i {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: var(--card-accent, var(--accent));
+}
+@keyframes ach-orbit { to { rotate: 360deg; } }
+
+@media (max-width: 900px) {
+  .ach-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ach-item, .ach-feature { grid-column: span 1; }
+  .ach-feature { flex-direction: column; padding: 0; }
+  .ach-feature .ach-body { padding: var(--s-4); }
+  .ach-feature .ach-art { flex: 0 0 150px; border-left: 0; border-top: 1px solid var(--line); }
 }
 
-.hon-medal {
-  display: grid;
-  justify-items: center;
-  gap: 6px;
-  color: var(--card-accent, var(--accent));
-}
-.hon-medal svg { display: block; width: 50px; height: 50px; }
-/* The board's own numbering, in the figures a board is engraved with. */
-.hon-medal::after {
-  content: counter(hon, upper-roman);
-  font-family: var(--font-display);
-  font-size: var(--t-micro);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--ink-soft);
+@media (max-width: 620px) {
+  .ach-grid { grid-template-columns: minmax(0, 1fr); }
+  .ach-item { padding: 22px 20px 24px; }
+  .scores li { grid-template-columns: 62px minmax(0, 1fr) 32px; gap: 9px; }
 }
 
-.hon .ring { stroke-dasharray: 82; stroke-dashoffset: 82; }
-.hon.seen .ring { animation: hon-ring var(--d-slow) var(--ease) forwards; }
-@keyframes hon-ring { to { stroke-dashoffset: 0; } }
-
-.hon-cat {
-  margin: 0 0 5px;
-  font-family: var(--font-display);
-  font-size: var(--t-micro);
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--card-accent, var(--accent));
-}
-.hon h3 { margin: 0 0 8px; font-size: var(--t-md); text-wrap: balance; }
-.hon p { margin: 0; color: var(--ink-soft); font-size: var(--t-base); text-wrap: pretty; }
-.hon p + p { margin-top: 10px; }
-.hon .pub-list { margin-top: var(--s-2); }
-
-.hon-shot {
+/* A photograph set inside a card, bounded rather than cropped to the
+   card's own shape: a page scan has to stay readable. */
+.inset-shot {
   margin: var(--s-3) 0 0;
   max-width: 280px;
 }
-.hon-shot img {
+.inset-shot img {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: contain;
   background: var(--paper-alt);
   border: 1px solid var(--line);
-}
-
-@media (max-width: 560px) {
-  .honours-board { padding: var(--s-6) var(--s-3) var(--s-3); }
-  .hon { grid-template-columns: minmax(0, 1fr); gap: var(--s-2); }
-  /* The medal and its numeral sit side by side above the row, hard left,
-     rather than stretching across the full width of the phone. */
-  .hon-medal {
-    grid-auto-flow: column;
-    grid-auto-columns: max-content;
-    justify-content: start;
-    align-items: center;
-    gap: 10px;
-  }
-  .hon-medal svg { width: 42px; height: 42px; }
-  .hon::before { left: -10px; }
 }
 
 /* ---------- Narrow screens ---------- */

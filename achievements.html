@@ -55,123 +55,72 @@
     <div class="page-head">
       <p class="pill">The record</p>
       <h1>Achievements</h1>
-      <p>What has been published, what has been placed, and what I have been asked to come and do.</p>
+      <p>Marks, ranks and a belt &mdash; the things that are not written up anywhere else on this site.</p>
     </div>
     <img class="section-banner" src="assets/cover-achievements.svg" alt="A medal on a ribbon between two laurel sprigs">
   </div>
 
   <div class="section-intro">
-    <p>Everything on this board happened, and everything on it is linked back to
-    the thing itself wherever there is something to link to. The writing lives in the
-    <a href="literary.html">Literary section</a>; the builds live in
-    <a href="engineering.html">Engineering</a>. This page is only the record.</p>
+    <p>What I have published, and what the writing has won, is on the
+    <a href="literary.html">Literary page</a>; the school olympiads are on the
+    <a href="about.html">About page</a>. This page does not repeat either of them.</p>
   </div>
 
-  <!-- One <li class="hon"> per honour. Copy a row to add one; the roman
-       numeral and the ruled divider come from the stylesheet, so nothing
-       has to be renumbered by hand. The k- class picks the medal's colour. -->
-  <div class="honours-board">
-    <p class="board-plate">Honours</p>
+  <!-- One <article class="ach-item"> per achievement. The data-ach value
+       picks the decoration, the k- class picks the colour, and
+       ach-feature makes a card span the full six columns with its art
+       beside the words. The figures in data-count are counted up to by
+       site.js; they are the real numbers and nothing scales them. -->
+  <div class="ach-grid">
 
-    <ol class="honours">
+    <article class="ach-item ach-feature k-research" data-ach="checkpoint">
+      <div class="ach-body">
+        <span class="ach-kind">Cambridge</span>
+        <h2>Lower Secondary Checkpoint</h2>
+        <p>My Checkpoint results: 50 in Maths, 50 in Science and 41 in English.</p>
+        <ul class="scores">
+          <li style="--v: 100%"><span class="s-name">Maths</span><span class="s-bar"><i></i></span><span class="s-val" data-count="50">50</span></li>
+          <li style="--v: 100%"><span class="s-name">Science</span><span class="s-bar"><i></i></span><span class="s-val" data-count="50">50</span></li>
+          <li style="--v: 82%"><span class="s-name">English</span><span class="s-bar"><i></i></span><span class="s-val" data-count="41">41</span></li>
+        </ul>
+      </div>
+      <div class="ach-art" aria-hidden="true"><span class="tick"></span></div>
+    </article>
 
-      <li class="hon k-literary">
-        <span class="hon-medal" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle class="ring" cx="24" cy="18" r="13"/><circle cx="24" cy="18" r="6.2" opacity=".55"/><path d="M16.5 29.5 13 44l11-5.6L35 44l-3.5-14.5"/></svg>
-        </span>
-        <div class="hon-body">
-          <p class="hon-cat">Writing</p>
-          <h3>Three pieces published in Beyond the Box</h3>
-          <p>Beyond the Box is an organisation for young writers. Three of my pieces have
-          been showcased there so far, two articles and a poem:</p>
-          <ul class="pub-list">
-            <li><a href="https://beyondthebox.in/2025/10/01/the-rise-of-ai-a-threat-or-a-tool-for-creativity/" target="_blank" rel="noopener">The rise of AI: A threat or a tool for creativity</a>
-              <span class="pub-date">Article &middot; October 2025</span></li>
-            <li><a href="https://beyondthebox.in/2026/03/20/a-healthy-mind-is-the-foundation-of-a-meaningful-life/" target="_blank" rel="noopener">A healthy mind is the foundation of a meaningful life</a>
-              <span class="pub-date">Article &middot; March 2026</span></li>
-            <li><a href="https://beyondthebox.in/2025/02/14/mother-earth/" target="_blank" rel="noopener">Mother Earth</a>
-              <span class="pub-date">Poem &middot; February 2025</span></li>
-          </ul>
-        </div>
-      </li>
+    <article class="ach-item k-engineering" data-ach="finance">
+      <span class="ach-kind">Olympiad</span>
+      <h2>National Finance Olympiad</h2>
+      <p class="ach-stat"><span class="stat-pre">All-India Rank</span><span class="stat-num" data-count="112">112</span></p>
+      <div class="ach-art" aria-hidden="true"></div>
+    </article>
 
-      <li class="hon k-stories">
-        <span class="hon-medal" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle class="ring" cx="24" cy="18" r="13"/><circle cx="24" cy="18" r="6.2" opacity=".55"/><path d="M16.5 29.5 13 44l11-5.6L35 44l-3.5-14.5"/></svg>
-        </span>
-        <div class="hon-body">
-          <p class="hon-cat">In print</p>
-          <h3>A story in BTB Quests Volume&nbsp;2</h3>
-          <p>My story, <em>A cracked watch and a broken man</em>, is the first story inside
-          the anthology.</p>
-          <ul class="pub-list">
-            <li><a href="https://www.amazon.in/BTB-Quests-Beyond-Box-Anthology-ebook/dp/B0H2YLWL27/ref=sr_1_1?crid=3KS5MU38VMUKU&amp;dib=eyJ2IjoiMSJ9.gi-98-e6UDKxqW0Y0itJVw.G4q3hqYi03l0nVXAdKkodXMH2_m6zrDF05l1iws3zuM&amp;dib_tag=se&amp;keywords=btb+quests+volume+2&amp;qid=1790161220&amp;sprefix=btb+quests+volume+%2Caps%2C625&amp;sr=8-1" target="_blank" rel="noopener">BTB Quests Volume 2</a>
-              <span class="pub-date">Anthology</span></li>
-          </ul>
-          <figure class="hon-shot">
-            <img src="assets/btb-quests.jpg" alt="The first page of my story in BTB Quests Volume 2" loading="lazy" decoding="async">
-          </figure>
-        </div>
-      </li>
+    <article class="ach-item k-essays" data-ach="bhabha">
+      <span class="ach-kind">Certificate</span>
+      <h2>Homi Bhabha merit certificate</h2>
+      <p>Awarded in 2023.</p>
+      <div class="ach-art" aria-hidden="true"><span class="orbit"><i></i></span></div>
+    </article>
 
-      <li class="hon k-articles">
-        <span class="hon-medal" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle class="ring" cx="24" cy="18" r="13"/><circle cx="24" cy="18" r="6.2" opacity=".55"/><path d="M16.5 29.5 13 44l11-5.6L35 44l-3.5-14.5"/></svg>
-        </span>
-        <div class="hon-body">
-          <p class="hon-cat">Invited</p>
-          <h3>Guest speaker at Greader&rsquo;s Club</h3>
-          <p>I was a guest speaker at Greader&rsquo;s Club, where I conducted a session
-          on blogging.</p>
-        </div>
-      </li>
+    <article class="ach-item ach-feature k-achievements" data-ach="belt">
+      <div class="ach-body">
+        <span class="ach-kind">Away from the desk</span>
+        <h2>Green belt in Taekwondo</h2>
+        <p>I am a green belt holder in Taekwondo.</p>
+        <ol class="belts" aria-label="Belt order">
+          <li>White</li><li>Yellow</li><li class="here">Green</li>
+        </ol>
+      </div>
+      <div class="ach-art" aria-hidden="true"><span class="belt"></span></div>
+    </article>
 
-      <li class="hon k-poems">
-        <span class="hon-medal" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle class="ring" cx="24" cy="18" r="13"/><circle cx="24" cy="18" r="6.2" opacity=".55"/><path d="M16.5 29.5 13 44l11-5.6L35 44l-3.5-14.5"/></svg>
-        </span>
-        <div class="hon-body">
-          <p class="hon-cat">School</p>
-          <h3>Part of my school editorial team</h3>
-          <p>Collect information and then make a newspaper about it. Features: School news,
-          workshops, PTMs, Interhouse competitions and more.</p>
-        </div>
-      </li>
-
-      <li class="hon k-research">
-        <span class="hon-medal" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle class="ring" cx="24" cy="18" r="13"/><circle cx="24" cy="18" r="6.2" opacity=".55"/><path d="M16.5 29.5 13 44l11-5.6L35 44l-3.5-14.5"/></svg>
-        </span>
-        <div class="hon-body">
-          <p class="hon-cat">Olympiads</p>
-          <h3>Top 10, International Social Studies Olympiad (SOF)</h3>
-          <p>Also top 50 in the IMO the same year.</p>
-          <figure class="hon-shot">
-            <img src="assets/ISSO medal.png" alt="My ISSO medal" loading="lazy" decoding="async">
-          </figure>
-        </div>
-      </li>
-
-      <li class="hon k-achievements">
-        <span class="hon-medal" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle class="ring" cx="24" cy="18" r="13"/><circle cx="24" cy="18" r="6.2" opacity=".55"/><path d="M16.5 29.5 13 44l11-5.6L35 44l-3.5-14.5"/></svg>
-        </span>
-        <div class="hon-body">
-          <p class="hon-cat">Away from the desk</p>
-          <h3>Green belt in Taekwondo</h3>
-          <p>I am a green belt holder in Taekwondo.</p>
-        </div>
-      </li>
-
-    </ol>
   </div>
 
   <section class="elsewhere">
-    <h2>Where the work itself is</h2>
-    <p>The board is only the record. The pieces, the builds and the drawings are in
-    their own sections.</p>
-    <p class="channel-link"><a href="literary.html">Read the writing &rarr;</a></p>
-    <p class="channel-link"><a href="engineering.html">See the builds &rarr;</a></p>
+    <h2>The rest of the record</h2>
+    <p>What has been published, and where it was published, sits with the writing
+    itself. The school olympiads sit with the rest of school.</p>
+    <p class="channel-link"><a href="literary.html">Writing highlights &rarr;</a></p>
+    <p class="channel-link"><a href="about.html">Academics &amp; olympiads &rarr;</a></p>
   </section>
 
 </main>

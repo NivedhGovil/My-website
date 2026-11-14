@@ -498,16 +498,40 @@
     'main.wrap > .cards > .card, main.wrap > .section .card, ' +
     '.featured-list > .piece, .art-gallery > .art-piece, ' +
     '.sw-grid > .sw-project, .achievements > .achievement, .qa-list > .qa, ' +
-    '.honours > .hon');
+    '.ach-grid > .ach-item');
   if (toReveal.length && 'IntersectionObserver' in window) {
     toReveal.forEach(function (el, i) {
       el.classList.add('reveal');
       el.style.setProperty('--i', i % 4);
     });
+    /* A figure that counts up to itself as its card arrives. The number
+       in the markup is the real one and is what is left on screen; this
+       only animates the way it gets there, and not at all for somebody
+       who asked for less motion. */
+    var calmCount = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function countUp(root) {
+      if (calmCount) return;
+      root.querySelectorAll('[data-count]').forEach(function (el) {
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        if (!isFinite(target)) return;
+        var started = null, span = 760;
+        el.textContent = '0';
+        (function step(now) {
+          if (started === null) started = now;
+          var t = Math.min(1, (now - started) / span);
+          /* Decelerating, so the last few numbers are readable. */
+          el.textContent = String(Math.round(target * (1 - Math.pow(1 - t, 3))));
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = String(target);
+        })(performance.now());
+      });
+    }
+
     var watcher = new IntersectionObserver(function (rows) {
       rows.forEach(function (row) {
         if (!row.isIntersecting) return;
         row.target.classList.add('seen');
+        countUp(row.target);
         watcher.unobserve(row.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
@@ -768,7 +792,7 @@
     if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    var cards = document.querySelectorAll('.card');
+    var cards = document.querySelectorAll('.card, .ach-item');
     if (!cards.length) return;
 
     cards.forEach(function (card) {
