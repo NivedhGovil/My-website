@@ -552,7 +552,9 @@
           { name: 'research.txt',      type: 'page', url: 'research.html',      desc: 'Papers and the questions behind them.' },
           { name: 'poems.txt',         type: 'page', url: 'poems.html',         desc: 'Verse, written for sound as much as meaning.' },
           { name: 'short-stories.txt', type: 'page', url: 'short-stories.html', desc: 'Stories with somebody living in them.' },
-          { name: 'books.txt',         type: 'page', url: 'books.html',         desc: 'Books worth handing to someone else.' }
+          { name: 'books.txt',         type: 'page', url: 'books.html',         desc: 'Books worth handing to someone else.' },
+          { name: 'highlights.txt',    type: 'page', url: 'literary.html#highlights',
+            desc: 'Where the writing has been published, and the Greader\u2019s Club session on blogging.' }
         ] },
       { name: 'engineering', type: 'dir',  url: 'engineering.html',
         desc: 'Things built: Arduino, electronics and CAD.',
@@ -563,6 +565,20 @@
         ] },
       { name: 'art',      type: 'page', url: 'art.html',      desc: 'Drawings and paintings.' },
       { name: 'software', type: 'page', url: 'software.html', desc: 'Web pages, Python tools and small games, with code and demos.' },
+      /* Each file opens the card it names, so `open checkpoint.txt`
+         lands on that card rather than the top of the page. */
+      { name: 'achievements', type: 'dir', url: 'achievements.html',
+        desc: 'Marks, a rank, a certificate and a belt.',
+        kids: [
+          { name: 'checkpoint.txt', type: 'page', url: 'achievements.html#checkpoint',
+            desc: 'Cambridge Lower Secondary Checkpoint: 50 in Maths, 50 in Science, 41 in English.' },
+          { name: 'finance-olympiad.txt', type: 'page', url: 'achievements.html#finance',
+            desc: 'National Finance Olympiad: All-India Rank 112.' },
+          { name: 'homi-bhabha.txt', type: 'page', url: 'achievements.html#bhabha',
+            desc: 'Homi Bhabha merit certificate, 2023.' },
+          { name: 'taekwondo.txt', type: 'page', url: 'achievements.html#belt',
+            desc: 'Green belt in Taekwondo.' }
+        ] },
       { name: 'about',    type: 'page', url: 'about.html',    desc: 'School, interests, and how to get in touch.' }
     ]
   };
