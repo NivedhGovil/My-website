@@ -25,6 +25,7 @@ HUES = {
     'software':    ('#5d44a0', '#9a7ede', '#fdf6ff'),
     'art':         ('#833a75', '#c2669f', '#fff3ff'),
     'music':       ('#005886', '#2492c7', '#e0ffff'),
+    'achievements':('#3a5713', '#688e3b', '#f0fbe6'),
 }
 
 def motif(kind, A):
@@ -139,6 +140,24 @@ def motif(kind, A):
     <rect x="384" y="124" width="84" height="84" rx="8" stroke="{L}" stroke-width="5"/>
     <path d="M492 208 L 540 124 L 588 208 Z" stroke="{W}" stroke-width="5"/>
     <path d="M250 250 C 350 226, 450 274, 560 246" stroke="{W}" stroke-width="8"/>'''
+    if kind == 'achievements':
+        # a medal on its ribbon, held between two laurel sprigs. The right
+        # sprig is the left one mirrored about the centre line.
+        sprig = (f'<path d="M304 104 C 258 150, 262 214, 316 252" stroke="{L}" stroke-width="4"/>'
+                 f'<path d="M283 133 C 272 118, 260 113, 252 116 C 256 128, 269 136, 283 133 Z"'
+                 f' stroke="{L}" stroke-width="3.5"/>'
+                 f'<path d="M268 174 C 256 162, 243 159, 236 163 C 242 175, 255 180, 268 174 Z"'
+                 f' stroke="{L}" stroke-width="3.5"/>'
+                 f'<path d="M272 212 C 259 205, 246 207, 240 213 C 249 223, 262 223, 272 212 Z"'
+                 f' stroke="{L}" stroke-width="3.5"/>'
+                 f'<path d="M300 243 C 288 246, 277 253, 275 262 C 286 263, 296 255, 300 243 Z"'
+                 f' stroke="{L}" stroke-width="3.5"/>')
+        return f'''
+    <circle cx="400" cy="150" r="46" stroke="{W}" stroke-width="5"/>
+    <circle cx="400" cy="150" r="24" stroke="{A}" stroke-width="4.5"/>
+    <path d="M374 192 L 348 270 L 400 244 L 452 270 L 426 192" stroke="{W}" stroke-width="5"/>
+    <g>{sprig}</g>
+    <g transform="translate(800,0) scale(-1,1)">{sprig}</g>'''
     if kind == 'music':
         return f'''
     <path d="M330 248 V 128 L 486 104 V 224" stroke="{W}" stroke-width="5"/>
@@ -161,6 +180,7 @@ ALT = {
     'software': 'A terminal window with a prompt and a cursor',
     'art': 'A circle, a square and a triangle above a brush stroke',
     'music': 'Two notes joined by a beam',
+    'achievements': 'A medal on a ribbon between two laurel sprigs',
 }
 
 TPL = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340"

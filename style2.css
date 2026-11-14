@@ -21,6 +21,8 @@
   --c-essays:      #545fc3;  --c-essays-tt:      #f2faff;
   --c-research:    #007480;  --c-research-tt:    #deffff;
   --c-software:    #7555bc;  --c-software-tt:    #fdf6ff;
+  /* Laurel green, the one hue the site did not have, for the record. */
+  --c-achievements: #467500;  --c-achievements-tt: #eefee1;
 
   --accent: var(--c-literary);
   --accent-tint: var(--c-literary-tt);
@@ -101,6 +103,7 @@
   --c-essays:      #8795e3;  --c-essays-tt:      #8795e326;
   --c-research:    #00abb2;  --c-research-tt:    #00abb226;
   --c-software:    #a28edd;  --c-software-tt:    #a28edd26;
+  --c-achievements: #80a657;  --c-achievements-tt: #80a65726;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -125,6 +128,7 @@
     --c-essays:      #8795e3;  --c-essays-tt:      #8795e326;
     --c-research:    #00abb2;  --c-research-tt:    #00abb226;
     --c-software:    #a28edd;  --c-software-tt:    #a28edd26;
+    --c-achievements: #80a657;  --c-achievements-tt: #80a65726;
   }
 }
 
@@ -140,6 +144,7 @@ body.s-music { --accent: var(--c-music); --accent-tint: var(--c-music-tt); }
 body.s-essays { --accent: var(--c-essays); --accent-tint: var(--c-essays-tt); }
 body.s-research { --accent: var(--c-research); --accent-tint: var(--c-research-tt); }
 body.s-software { --accent: var(--c-software); --accent-tint: var(--c-software-tt); }
+body.s-achievements { --accent: var(--c-achievements); --accent-tint: var(--c-achievements-tt); }
 body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-research-tt); }
 
 /* Cards borrow the hue of wherever they lead. */
@@ -154,6 +159,7 @@ body.s-home, body.s-about { --accent: var(--c-research); --accent-tint: var(--c-
 .k-essays { --card-accent: var(--c-essays); --card-accent-tint: var(--c-essays-tt); }
 .k-research { --card-accent: var(--c-research); --card-accent-tint: var(--c-research-tt); }
 .k-software { --card-accent: var(--c-software); --card-accent-tint: var(--c-software-tt); }
+.k-achievements { --card-accent: var(--c-achievements); --card-accent-tint: var(--c-achievements-tt); }
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
@@ -784,167 +790,6 @@ main.wrap > .big-head:first-of-type { margin-top: 48px; }
 }
 
 
-/* ---------- The art gallery ----------
-   Two drawings, hung rather than tiled. The first takes the larger wall;
-   the second is smaller and sits lower, which is what stops a pair of
-   pictures reading as a row of thumbnails. Each one is matted inside a
-   frame, so the paper around the drawing is part of the presentation. */
-.art-gallery {
-  display: grid;
-  grid-template-columns: 1.24fr 1fr;
-  gap: var(--s-6);
-  align-items: start;
-  margin: var(--s-5) 0 var(--s-7);
-}
-
-/* The drop is what makes the hang asymmetric. */
-.art-gallery > .art-piece:nth-child(2) { margin-top: var(--s-7); }
-
-.art-piece {
-  position: relative;
-  margin: 0;
-  background: none;
-  border: 0;
-  cursor: zoom-in;
-}
-
-/* The mat and the frame. The inner shadow is the lip of the mount. */
-.art-frame {
-  display: block;
-  overflow: hidden;
-  padding: var(--s-3);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 18px 40px -22px rgb(0 0 0 / 0.42);
-}
-
-.art-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-  /* Never cropped: a drawing decides its own proportions. */
-  object-fit: contain;
-  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.07) inset;
-  transition: transform var(--d-slow) var(--ease);
-}
-
-.art-piece figcaption {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: baseline;
-  gap: 0 var(--s-2);
-  margin-top: var(--s-3);
-}
-
-.art-no {
-  font-family: var(--font-mono);
-  font-size: var(--t-micro);
-  color: var(--accent);
-  letter-spacing: 0.08em;
-}
-
-.art-title {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: var(--t-md);
-  color: var(--ink);
-}
-
-.art-open {
-  grid-column: 2;
-  margin-top: 2px;
-  font-size: var(--t-micro);
-  font-weight: 600;
-  color: var(--accent);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity var(--d-mid) var(--ease), transform var(--d-mid) var(--ease);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .art-piece:hover .art-frame img { transform: scale(1.035); }
-  .art-piece:hover .art-open { opacity: 1; transform: none; }
-}
-
-/* The invitation has to be visible to a keyboard too, not only a pointer. */
-.art-piece:focus-within .art-open { opacity: 1; transform: none; }
-
-/* One column below the point where two drawings stop having room to
-   differ in size; the drop goes with it. */
-@media (max-width: 760px) {
-  .art-gallery {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--s-5);
-    margin-bottom: var(--s-6);
-  }
-  .art-gallery > .art-piece:nth-child(2) { margin-top: 0; }
-}
-
-
-/* ---------- Buttons and links ---------- */
-/* Consecutive calls to action read as one row of choices, not a stack of
-   three equal demands. Inline-flex lets a run of them sit on one line and
-   wrap on their own when the column gets narrow. */
-.channel-link {
-  display: inline-flex;
-  vertical-align: top;
-  margin: 26px 10px 0 0;
-}
-
-/* Only the first of a run is the primary action; the rest step back to an
-   outline so the eye is given somewhere to land. */
-.channel-link + .channel-link a {
-  background: transparent;
-  color: var(--accent);
-  border-color: var(--rule);
-}
-
-.channel-link a, .send-btn {
-  color: var(--paper);
-  background: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-pill);
-  font-weight: 700;
-}
-
-.channel-link a { display: inline-block; text-decoration: none; padding: 14px 28px; font-size: var(--t-base); }
-
-.send-btn {
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 0;
-  cursor: pointer;
-  padding: 14px 26px;
-  font: inherit;
-  font-weight: 600;
-}
-
-.send-btn svg { width: 17px; height: 17px; }
-
-.back-link {
-  display: inline-block;
-  margin-top: 32px;
-  padding: 9px 17px;
-  border-radius: var(--radius-pill);
-  background: var(--card);
-  color: var(--ink);
-  font-size: var(--t-meta);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* ---------- Card grids ---------- */
-.cards, .achievements, .design-grid, .recordings {
-  display: grid;
-  gap: 24px;
-}
-
-.cards { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-.achievements { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 76px; }
-.design-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 20px; }
 /* ---------- The art gallery ----------
    Two drawings, hung rather than tiled. The first takes the larger wall;
    the second is smaller and sits lower, which is what stops a pair of
@@ -2305,10 +2150,11 @@ article.prose ol.sources li { margin-bottom: 12px; }
 .search-empty { color: var(--ink-soft); padding: 20px 14px; margin: 0; font-size: var(--t-base); }
 
 /* ---------- The nav as a panel ----------
-   Below this width six links and three buttons stop fitting on one line.
-   Rather than wrapping to a second row, the links become a panel that
-   drops out of the header. */
-@media (max-width: 760px) {
+   Below this width seven links and three buttons stop fitting on one
+   line. Rather than wrapping the header into three stacked rows, the
+   links become a panel that drops out of it. Adding Achievements moved
+   this point up from 760px: at 800px the row had started to wrap. */
+@media (max-width: 860px) {
   .icon-btn.nav-toggle {
     display: grid;
     place-items: center;
@@ -2740,6 +2586,148 @@ main:focus { outline: none; }
   :root:not([data-theme="light"]) img[src$="portrait-placeholder.svg"] {
     filter: brightness(0.26) saturate(0.7);
   }
+}
+
+/* ---------- Achievements: the board of record ----------
+   The one room that is not a grid of cards. A mounted board with a
+   double rule and an engraved plate across the top, and inside it one
+   ruled row per honour: a medal, the category it belongs to, and the
+   thing itself. The medal ring draws itself as the row arrives. */
+.honours-board {
+  position: relative;
+  margin: 0 0 var(--s-7);
+  padding: var(--s-6) var(--s-5) var(--s-4);
+  background:
+    radial-gradient(76% 56% at 50% 0%, var(--accent-tint), transparent 72%),
+    var(--card);
+  border: 1px solid var(--rule);
+}
+
+/* The inner rule of a mounted board. Decorative, so it never takes the
+   pointer away from the rows underneath it. */
+.honours-board::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1.5px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  pointer-events: none;
+}
+
+/* The engraved plate, straddling the top rule the way one is screwed on. */
+.board-plate {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  margin: 0;
+  padding: 6px 20px;
+  background: var(--accent);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.honours { counter-reset: hon; list-style: none; margin: 0; padding: 0; }
+
+.hon {
+  position: relative;
+  counter-increment: hon;
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: start;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--line);
+}
+.hon:first-child { border-top: 0; padding-top: var(--s-2); }
+.hon:last-child { padding-bottom: var(--s-3); }
+
+/* A rule that grows down the margin under the pointer, so a row answers
+   without anything moving. Pointer devices only; touch gets the static
+   board, which is the same board. */
+.hon::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: var(--s-4);
+  bottom: var(--s-4);
+  width: 3px;
+  background: var(--card-accent, var(--accent));
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  transition: transform var(--d-mid) var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .hon:hover::before { transform: scaleY(1); }
+}
+
+.hon-medal {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  color: var(--card-accent, var(--accent));
+}
+.hon-medal svg { display: block; width: 50px; height: 50px; }
+/* The board's own numbering, in the figures a board is engraved with. */
+.hon-medal::after {
+  content: counter(hon, upper-roman);
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.hon .ring { stroke-dasharray: 82; stroke-dashoffset: 82; }
+.hon.seen .ring { animation: hon-ring var(--d-slow) var(--ease) forwards; }
+@keyframes hon-ring { to { stroke-dashoffset: 0; } }
+
+.hon-cat {
+  margin: 0 0 5px;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--card-accent, var(--accent));
+}
+.hon h3 { margin: 0 0 8px; font-size: var(--t-md); text-wrap: balance; }
+.hon p { margin: 0; color: var(--ink-soft); font-size: var(--t-base); text-wrap: pretty; }
+.hon p + p { margin-top: 10px; }
+.hon .pub-list { margin-top: var(--s-2); }
+
+.hon-shot {
+  margin: var(--s-3) 0 0;
+  max-width: 280px;
+}
+.hon-shot img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 560px) {
+  .honours-board { padding: var(--s-6) var(--s-3) var(--s-3); }
+  .hon { grid-template-columns: minmax(0, 1fr); gap: var(--s-2); }
+  /* The medal and its numeral sit side by side above the row, hard left,
+     rather than stretching across the full width of the phone. */
+  .hon-medal {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+  }
+  .hon-medal svg { width: 42px; height: 42px; }
+  .hon::before { left: -10px; }
 }
 
 /* ---------- Narrow screens ---------- */

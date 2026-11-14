@@ -274,7 +274,7 @@
     btn.innerHTML = '<span class="nav-bars" aria-hidden="true"></span>';
     tools.appendChild(btn);
 
-    var wide = window.matchMedia('(min-width: 761px)');
+    var wide = window.matchMedia('(min-width: 861px)');
 
     function setOpen(on) {
       header.classList.toggle('nav-open', on);
@@ -497,7 +497,8 @@
   var toReveal = document.querySelectorAll(
     'main.wrap > .cards > .card, main.wrap > .section .card, ' +
     '.featured-list > .piece, .art-gallery > .art-piece, ' +
-    '.sw-grid > .sw-project, .achievements > .achievement, .qa-list > .qa');
+    '.sw-grid > .sw-project, .achievements > .achievement, .qa-list > .qa, ' +
+    '.honours > .hon');
   if (toReveal.length && 'IntersectionObserver' in window) {
     toReveal.forEach(function (el, i) {
       el.classList.add('reveal');

@@ -345,6 +345,14 @@ window.SEARCH_INDEX = [
 "text": "What I play, what I am learning, and recordings."
 },
 {
+"title": "Achievements",
+"url": "achievements.html",
+"section": "Achievements",
+"kind": "Section",
+"meta": "",
+"text": "The record \u2014 what has been published, placed, and invited."
+},
+{
 "title": "About",
 "url": "about.html",
 "section": "About",

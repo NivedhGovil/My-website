@@ -53,7 +53,8 @@ for m in re.finditer(r'<figure class="design">.*?<span class="design-title([^"]*
 
 # --- software projects, from the Software grid (skips unfilled placeholders) ---
 s = open('software.html').read()
-for m in re.finditer(r'<article class="sw-project">\s*'
+for m in re.finditer(r'<article class="sw-project[^"]*"[^>]*>\s*'
+                     r'(?:<div class="sw-body">\s*)?'
                      r'<span class="sw-kind">(.*?)</span>\s*'
                      r'<h2>(.*?)</h2>\s*'
                      r'<p([^>]*)>(.*?)</p>(.*?)</article>', s, re.S):
@@ -74,6 +75,7 @@ for page, title, kind, text in [
     ('software.html', 'Software', 'Section', 'Web pages, Python tools and small games, with code and demos.'),
     ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),
     ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
+    ('achievements.html', 'Achievements', 'Section', 'The record \u2014 what has been published, placed, and invited.'),
     ('about.html', 'About', 'Section', 'School, interests, achievements and how to get in touch.')]:
     records.append(dict(title=title, url=page, section=title, kind=kind, meta='', text=text))
 

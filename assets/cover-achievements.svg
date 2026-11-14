@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340"
+     role="img" aria-label="A medal on a ribbon between two laurel sprigs">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#688e3b"/>
+      <stop offset="100%" stop-color="#3a5713"/>
+    </linearGradient>
+    <pattern id="rule" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)">
+      <path d="M0 0 H9" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    </pattern>
+    <radialGradient id="vig" cx="0.32" cy="0.3" r="0.95">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="340" fill="url(#g)"/>
+  <rect width="800" height="340" fill="url(#rule)"/>
+  <rect width="800" height="340" fill="url(#vig)"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="400" cy="150" r="46" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
+    <circle cx="400" cy="150" r="24" stroke="#f0fbe6" stroke-width="4.5"/>
+    <path d="M374 192 L 348 270 L 400 244 L 452 270 L 426 192" stroke="rgba(255,255,255,.95)" stroke-width="5"/>
+    <g><path d="M304 104 C 258 150, 262 214, 316 252" stroke="rgba(255,255,255,.45)" stroke-width="4"/><path d="M283 133 C 272 118, 260 113, 252 116 C 256 128, 269 136, 283 133 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/><path d="M268 174 C 256 162, 243 159, 236 163 C 242 175, 255 180, 268 174 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/><path d="M272 212 C 259 205, 246 207, 240 213 C 249 223, 262 223, 272 212 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/><path d="M300 243 C 288 246, 277 253, 275 262 C 286 263, 296 255, 300 243 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/></g>
+    <g transform="translate(800,0) scale(-1,1)"><path d="M304 104 C 258 150, 262 214, 316 252" stroke="rgba(255,255,255,.45)" stroke-width="4"/><path d="M283 133 C 272 118, 260 113, 252 116 C 256 128, 269 136, 283 133 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/><path d="M268 174 C 256 162, 243 159, 236 163 C 242 175, 255 180, 268 174 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/><path d="M272 212 C 259 205, 246 207, 240 213 C 249 223, 262 223, 272 212 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/><path d="M300 243 C 288 246, 277 253, 275 262 C 286 263, 296 255, 300 243 Z" stroke="rgba(255,255,255,.45)" stroke-width="3.5"/></g>
+  </g>
+</svg>
