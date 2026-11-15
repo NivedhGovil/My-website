@@ -154,6 +154,55 @@
 
   </div>
 
+
+  <div class="big-head" id="github">
+    <p class="pill">Day by day</p>
+    <h2>On <span>GitHub</span></h2>
+    <p>Every public commit, issue and pull request of the last year, as GitHub
+    counts them. The chart is refreshed once a day.</p>
+  </div>
+
+  <!-- The calendar is read from assets/contributions.json, which a
+       scheduled workflow in this repository rewrites once a day from
+       GitHub's GraphQL API. Nothing is drawn until that file is there, and
+       nothing here invents a number: the squares, the total and the date
+       underneath all come out of the same file. -->
+  <section class="gh" data-gh aria-labelledby="github">
+    <div class="gh-head">
+      <p class="gh-total" data-gh-total hidden>
+        <b></b> <span>contributions in the last year</span>
+      </p>
+      <p class="gh-as-of" data-gh-asof hidden></p>
+    </div>
+
+    <div class="gh-cal" data-gh-cal hidden>
+      <div class="gh-months" data-gh-months aria-hidden="true"></div>
+      <div class="gh-body">
+        <div class="gh-days" aria-hidden="true">
+          <span>Mon</span><span>Wed</span><span>Fri</span>
+        </div>
+        <div class="gh-grid" data-gh-grid role="img" data-gh-label></div>
+      </div>
+      <p class="gh-legend" aria-hidden="true">
+        <span>Less</span>
+        <i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i>
+        <span>More</span>
+      </p>
+    </div>
+
+    <!-- What stands here until the first run of the workflow, and if the
+         file ever fails to load. It says so rather than drawing an empty
+         year and letting it look like a quiet one. -->
+    <p class="gh-none" data-gh-none>
+      The calendar has not been fetched yet. It is written by a scheduled
+      job in this site's repository and will appear after its first run.
+    </p>
+
+    <p class="gh-link">
+      <a href="https://github.com/NivedhGovil" target="_blank" rel="noopener">See the profile on GitHub &rarr;</a>
+    </p>
+  </section>
+
 </main>
 
 <footer class="site-footer wrap">

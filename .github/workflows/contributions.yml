@@ -1,0 +1,57 @@
+name: Contribution calendar
+
+# The green squares on a GitHub profile come from the GraphQL API, which
+# needs a token. The site is static and cannot hold one, so the fetching
+# happens here instead: once a day, and on demand. When the calendar has
+# changed, the new JSON is committed, which is what makes Vercel rebuild
+# and puts the change on the site.
+
+on:
+  schedule:
+    # 04:23 UTC, which is a little before 10am in Vadodara. Not on the
+    # hour, because that is when every other scheduled job in the world
+    # runs and GitHub queues them.
+    - cron: '23 4 * * *'
+  # So the calendar appears the moment this lands rather than tomorrow.
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/contributions.yml'
+      - 'tools/contributions.py'
+  # And so it can be run by hand from the Actions tab.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contribution-calendar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the calendar
+        env:
+          # The repository's own token is enough for public contribution
+          # data. If it ever is not, add a personal access token with the
+          # read:user scope as a secret named CONTRIBUTIONS_TOKEN and this
+          # will prefer it without any other change.
+          GH_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_LOGIN: NivedhGovil
+        run: python3 -I tools/contributions.py
+
+      - name: Commit it, if it changed
+        run: |
+          if [ -z "$(git status --porcelain assets/contributions.json)" ]; then
+            echo "The calendar has not changed since the last run."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/contributions.json
+          git commit -m "Update the contribution calendar"
+          git push

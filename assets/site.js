@@ -388,6 +388,134 @@
     });
   })();
 
+  /* ---------------- The contribution calendar ----------------
+     Drawn from assets/contributions.json, which a scheduled workflow in
+     this repository rewrites once a day from GitHub's GraphQL API. The
+     calendar is not available without a token and a static site cannot
+     hold one, so the fetching happens there and this only draws what it
+     finds. If the file is missing or malformed nothing is drawn and the
+     panel says so, rather than showing an empty year that would read as
+     a quiet one. */
+  (function () {
+    var panel = document.querySelector('[data-gh]');
+    if (!panel) return;
+
+    var cal = panel.querySelector('[data-gh-cal]');
+    var grid = panel.querySelector('[data-gh-grid]');
+    var months = panel.querySelector('[data-gh-months]');
+    var totalEl = panel.querySelector('[data-gh-total]');
+    var asOf = panel.querySelector('[data-gh-asof]');
+    var none = panel.querySelector('[data-gh-none]');
+    /* `base` is the one the rest of the file already works out from the
+       script tag, so a page in pieces/ asks for the right path. */
+
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                  'August', 'September', 'October', 'November', 'December'];
+
+    function fail(message) {
+      none.textContent = message;
+      none.hidden = false;
+      cal.hidden = true;
+    }
+
+    fetch(base + 'assets/contributions.json', { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var weeks = data && data.weeks;
+        /* The file ships empty so the first visit makes a request that
+           succeeds rather than a 404; the workflow fills it. */
+        if (!weeks || !weeks.length) {
+          fail('The calendar has not been fetched yet. A scheduled job in ' +
+               'this site\u2019s repository writes it once a day, and it will ' +
+               'appear here after its first run.');
+          return;
+        }
+
+        /* One column per week, one square per day, in the order GitHub
+           sends them: a week runs Sunday to Saturday and a short first or
+           last week leaves its missing days out. */
+        var frag = document.createDocumentFragment();
+        var seen = {}, mFrag = document.createDocumentFragment();
+
+        weeks.forEach(function (week, wi) {
+          var col = document.createElement('div');
+          col.className = 'gh-week';
+
+          /* A month gets its name over the column where it starts, but
+             not if that leaves it crowding the one before. */
+          var first = week[0] && week[0].d;
+          if (first) {
+            var m = Number(first.slice(5, 7)) - 1;
+            if (!seen[m] && wi > 0 && wi < weeks.length - 1) {
+              seen[m] = true;
+              var label = document.createElement('span');
+              label.style.gridColumn = (wi + 1) + ' / span 4';
+              label.textContent = MONTHS[m].slice(0, 3);
+              mFrag.appendChild(label);
+            }
+          }
+
+          week.forEach(function (day) {
+            var cell = document.createElement('i');
+            cell.className = 'l' + (day.l || 0);
+            /* The native tooltip is the one thing here that needs no
+               script of its own and works on a keyboard-less phone by
+               long press. */
+            cell.title = day.c + (day.c === 1 ? ' contribution' : ' contributions') +
+                         ' on ' + readable(day.d);
+            col.appendChild(cell);
+          });
+
+          /* A short week at either end would otherwise sit at the top of
+             its column instead of on the right weekday. */
+          if (week.length < 7 && wi === 0) col.style.alignContent = 'end';
+          frag.appendChild(col);
+        });
+
+        grid.appendChild(frag);
+        months.appendChild(mFrag);
+
+        if (typeof data.total === 'number') {
+          totalEl.querySelector('b').textContent = data.total.toLocaleString();
+          totalEl.hidden = false;
+        }
+
+        /* The grid is a picture to a screen reader, so it needs one
+           sentence that says what the picture says. */
+        var days = 0;
+        weeks.forEach(function (w) { days += w.length; });
+        grid.setAttribute('aria-label',
+          (data.total || 0) + ' contributions over the ' + days +
+          ' days ending ' + readable(lastDay(weeks)) +
+          ', one square per day, darker for more.');
+
+        if (data.generated) {
+          asOf.textContent = 'Last checked ' + readable(data.generated.slice(0, 10)) + '.';
+          asOf.hidden = false;
+        }
+
+        none.hidden = true;
+        cal.hidden = false;
+      })
+      .catch(function () {
+        fail('The calendar could not be loaded just now. The profile link below still works.');
+      });
+
+    function lastDay(weeks) {
+      var w = weeks[weeks.length - 1];
+      return w[w.length - 1].d;
+    }
+
+    function readable(iso) {
+      var p = String(iso).split('-');
+      if (p.length < 3) return iso;
+      return Number(p[2]) + ' ' + MONTHS[Number(p[1]) - 1] + ' ' + p[0];
+    }
+  })();
+
   /* ---------------- Artwork lightbox ----------------
      A gallery you cannot look at closely is not much of a gallery. */
   /* Anything with a picture worth looking at closely: artwork, CAD models,

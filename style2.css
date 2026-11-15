@@ -1950,6 +1950,132 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 }
 
 .piece-list, .book-list { list-style: none; margin: 30px 0 76px; padding: 0; }
+/* ---------- The contribution calendar ----------
+   A year of squares, one per day, five shades. The shades are mixed from
+   the section's own accent rather than borrowed from GitHub's green, so
+   the panel belongs to the page it sits on and changes with the theme. */
+.gh {
+  margin: 0 0 var(--s-7);
+  padding: var(--s-5);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.gh-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+
+.gh-total { margin: 0; color: var(--ink-soft); font-size: var(--t-base); }
+.gh-total b {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.gh-as-of { margin: 0; color: var(--ink-soft); font-family: var(--font-mono); font-size: var(--t-micro); }
+
+/* The year scrolls sideways rather than squashing its squares: a day is
+   a day, and a calendar with unreadable cells is not a calendar. */
+.gh-cal { overflow-x: auto; padding-bottom: 6px; }
+.gh-cal[hidden] { display: none; }
+
+.gh-months {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--cell, 13px);
+  gap: 0 3px;
+  margin: 0 0 5px 30px;
+  min-width: max-content;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+}
+.gh-months span { grid-row: 1; }
+
+.gh-body { display: flex; gap: 6px; min-width: max-content; }
+
+/* Three weekday labels, on the rows GitHub labels: Monday, Wednesday,
+   Friday. They sit on the second, fourth and sixth square of a column. */
+.gh-days {
+  display: grid;
+  grid-template-rows: repeat(7, var(--cell, 13px));
+  gap: 3px;
+  width: 24px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  line-height: var(--cell, 13px);
+}
+.gh-days span:nth-child(1) { grid-row: 2; }
+.gh-days span:nth-child(2) { grid-row: 4; }
+.gh-days span:nth-child(3) { grid-row: 6; }
+
+.gh-grid { display: flex; gap: 3px; }
+
+.gh-week {
+  display: grid;
+  grid-template-rows: repeat(7, var(--cell, 13px));
+  gap: 3px;
+}
+
+.gh-grid i, .gh-legend i {
+  display: block;
+  width: var(--cell, 13px);
+  height: var(--cell, 13px);
+  border-radius: 3px;
+}
+
+/* Five steps from the paper to the accent. The lightest still carries a
+   faint outline, so an empty day reads as a day and not as a gap. */
+.l0 { background: var(--paper-alt); box-shadow: inset 0 0 0 1px var(--line); }
+.l1 { background: color-mix(in oklab, var(--accent) 26%, var(--paper-alt)); }
+.l2 { background: color-mix(in oklab, var(--accent) 50%, var(--paper-alt)); }
+.l3 { background: color-mix(in oklab, var(--accent) 74%, var(--paper-alt)); }
+.l4 { background: var(--accent); }
+
+.gh-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin: var(--s-3) 0 0;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+}
+.gh-legend span:first-child { margin-right: 5px; }
+.gh-legend span:last-child { margin-left: 5px; }
+
+.gh-none {
+  margin: 0;
+  padding: var(--s-4);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  font-size: var(--t-meta);
+  text-wrap: pretty;
+}
+.gh-none[hidden] { display: none; }
+
+.gh-link { margin: var(--s-4) 0 0; }
+.gh-link a { color: var(--accent); font-size: var(--t-meta); font-weight: 600; }
+
+/* A smaller square on a phone, so a little less of the year is off the
+   edge before anyone scrolls. */
+@media (max-width: 620px) {
+  .gh { --cell: 11px; padding: var(--s-4); }
+  .gh-head { margin-bottom: var(--s-3); }
+}
+
+
 /* ---------- Listings ----------
    An archive reads better as an index than as a stack of identical
    boxes: a quiet number, a rule between entries, and the whole row
