@@ -3389,6 +3389,26 @@ body.s-stories .section-intro > p:first-child::first-line {
 .term-body .dim { color: #7d8a83; }
 .term-body .head { color: #35d07f; font-weight: 700; }
 
+/* The command list, lined up by the grid rather than by counting
+   spaces. The first column is as wide as the longest command and no
+   wider, so the descriptions start on one line whatever is in it. */
+.term-help {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 2px 22px;
+  margin: 2px 0 8px;
+  padding-left: 14px;
+}
+.term-help dt { color: #e8efe9; white-space: nowrap; }
+.term-help dd { margin: 0; color: #7d8a83; }
+
+/* In a narrow terminal two columns leave the descriptions a few
+   characters wide, so they move under their command instead. */
+@media (max-width: 560px) {
+  .term-help { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .term-help dd { margin: 0 0 7px 14px; }
+}
+
 .term-line { display: flex; align-items: baseline; gap: 8px; padding: 2px 16px 16px; font-family: var(--font-mono); font-size: 0.84rem; }
 .term-line .ps1 { color: #ffd166; white-space: nowrap; }
 .term-line .ps1 b { color: #58b6ff; font-weight: 700; }

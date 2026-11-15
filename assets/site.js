@@ -940,15 +940,34 @@
   var HELP = [
     ['help',        'show this message'],
     ['ls',          'list what is here'],
-    ['cd <name>',   'go into a section ( .. to go up, ~ for the top )'],
+    ['cd <name>',   'go into a section (.. to go up, ~ for the top)'],
     ['cat <name>',  'read what a section holds'],
     ['open <name>', 'open that page'],
     ['pwd',         'print the current path'],
     ['tree',        'show the whole site at once'],
     ['whoami',      'who this is'],
     ['clear',       'clear the screen'],
-    ['exit',        'close the terminal  ( Esc )']
+    ['exit',        'close the terminal (Esc)']
   ];
+
+  /* The help used to be padded with spaces to a fixed column, which was
+     doubling the gap it meant to leave and left the descriptions in a
+     ragged stack. A two-column grid lines them up by measurement
+     instead, and folds to one column when the terminal is narrow. */
+  function sayHelp() {
+    var dl = document.createElement('dl');
+    dl.className = 'term-help';
+    HELP.forEach(function (h) {
+      var dt = document.createElement('dt');
+      dt.textContent = h[0];
+      var dd = document.createElement('dd');
+      dd.textContent = h[1];
+      dl.appendChild(dt);
+      dl.appendChild(dd);
+    });
+    tBody.appendChild(dl);
+    tBody.scrollTop = tBody.scrollHeight;
+  }
 
   function exec(raw) {
     var bits = raw.trim().split(/\s+/);
@@ -958,7 +977,7 @@
 
     if (cmd === 'help') {
       say('Available commands:', 'head');
-      HELP.forEach(function (h) { say('  ' + h[0] + '  '.repeat(Math.max(1, 14 - h[0].length)) + h[1], 'dim'); });
+      sayHelp();
       say('Tab completes a name. Up and down walk your history.', 'dim');
 
     } else if (cmd === 'ls') {
