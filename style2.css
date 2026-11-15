@@ -1339,6 +1339,191 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   transform: rotate(45deg) translate(-2px, -2px) scale(0.8);
 }
 
+/* ---------- Literary: five doors, five shapes ----------
+   The page says "pick a door below", and a row of five identical cards
+   is not five doors, it is one door drawn five times. Each category now
+   takes a shape that suits what is behind it: the big collections get
+   room and a cover, the single essay gets a band, the poems get air,
+   and the shelf gets the full width because a shelf is a long thing. */
+.cards.lit-doors {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.lit-doors .door { grid-column: span 3; }
+
+/* The count, in the category's own colour, reading as a masthead figure
+   rather than as a statistic. */
+.door-count {
+  margin: 0 0 6px;
+  color: var(--card-accent, var(--accent));
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.door-count b {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  vertical-align: -3px;
+  margin-right: 4px;
+}
+
+/* --- Articles: the widest of the prose collections, so the cover turns
+       on its side and the text reads beside it like a spread. --- */
+.d-articles { grid-column: span 4 !important; flex-direction: row; align-items: stretch; }
+.d-articles .card-media {
+  width: 38%;
+  height: auto;
+  aspect-ratio: auto;
+  border-bottom: 0;
+  border-right: 1px solid var(--line);
+}
+.d-articles::before { inset: 0 62% auto 0; aspect-ratio: auto; height: 100%; }
+
+/* --- Essays: one long argued piece, so it gets a column with a rule
+       down the side, the way a quotation is marked in print. --- */
+.d-essays { grid-column: span 2 !important; }
+.d-essays .card-body { border-left: 3px solid var(--card-accent, var(--accent)); }
+.door-title {
+  margin: 0 0 18px !important;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--t-base);
+  color: var(--ink) !important;
+}
+
+/* --- Poems: the shortest of the collections and the one that needs
+       space. Centred, serif, and the three titles set as an index. --- */
+.d-poems .card-body { align-items: center; text-align: center; padding: var(--s-5) var(--s-4); }
+.d-poems h3 { font-family: var(--font-serif); font-style: italic; font-weight: 500; }
+
+.door-list {
+  list-style: none;
+  margin: 0 0 var(--s-3);
+  padding: var(--s-3) 0 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-serif);
+  font-size: var(--t-meta);
+  line-height: 2;
+  color: var(--ink);
+}
+
+/* --- Stories: the biggest collection, with its cover as a lid. --- */
+.d-stories { grid-column: span 3; }
+
+/* --- Books: a shelf, so it runs the full width and the spines stand
+       along the bottom of it. --- */
+.d-books {
+  grid-column: span 6 !important;
+  flex-direction: row;
+  align-items: stretch;
+}
+.d-books .card-body { flex: 1 1 46%; }
+.d-books::before { display: none; }
+
+.shelf {
+  position: relative;
+  flex: 1 1 54%;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0;
+  padding: var(--s-4);
+  list-style: none;
+  border-left: 1px solid var(--line);
+  background: color-mix(in oklab, var(--card-accent, var(--accent)) 6%, transparent);
+}
+
+/* The books stand on a board rather than floating above the floor of the
+   card, so the row reads as a shelf and not as a bar chart. */
+.shelf::after {
+  content: "";
+  position: absolute;
+  left: var(--s-3);
+  right: var(--s-3);
+  bottom: calc(var(--s-4) - 5px);
+  height: 5px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--card-accent, var(--accent)) 46%, var(--paper));
+}
+.shelf li { z-index: 1; }
+
+/* Each spine is a book standing on the shelf: a different height and a
+   different depth, because a real shelf is never uniform. The title runs
+   up the spine, as it does on a book. */
+.shelf li {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 34px;
+  height: calc(132px + var(--h, 0px));
+  border-radius: 3px 3px 0 0;
+  /* Each spine stays mostly paper, so the title on it is readable in both
+     themes: paper and ink always contrast, whichever way round they are.
+     The accent only tints the spine, it never decides the text colour. */
+  background: color-mix(in oklab, var(--card-accent, var(--accent)) var(--d, 30%), var(--paper));
+  border: 1px solid color-mix(in oklab, var(--card-accent, var(--accent)) 42%, transparent);
+  border-bottom: 0;
+  box-shadow: inset -3px 0 0 color-mix(in oklab, var(--card-accent, var(--accent)) 22%, transparent);
+}
+.shelf li:nth-child(1) { --h: 20px; --d: 40%; }
+.shelf li:nth-child(2) { --h: 5px;  --d: 22%; }
+.shelf li:nth-child(3) { --h: 28px; --d: 34%; }
+.shelf li:nth-child(4) { --h: 0px;  --d: 16%; }
+.shelf li:nth-child(5) { --h: 14px; --d: 38%; }
+.shelf li:nth-child(6) { --h: 34px; --d: 27%; }
+
+.shelf span {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  margin-bottom: 10px;
+  max-height: calc(100% - 20px);
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Two columns at tablet width: the wide doors take a whole row each and
+   the narrow ones pair up. */
+@media (max-width: 900px) {
+  .cards.lit-doors { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lit-doors .door { grid-column: span 2; }
+  .d-articles { grid-column: span 4 !important; }
+  .d-essays   { grid-column: span 2 !important; }
+  .d-books    { grid-column: span 4 !important; }
+}
+
+/* One column, and the shelf moves below the text rather than beside it. */
+@media (max-width: 640px) {
+  .cards.lit-doors { grid-template-columns: minmax(0, 1fr); }
+  .lit-doors .door,
+  .d-articles, .d-essays, .d-books { grid-column: span 1 !important; }
+  .d-articles, .d-books { flex-direction: column; }
+  .d-articles .card-media {
+    width: 100%;
+    aspect-ratio: 800 / 300;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .d-articles::before { inset: 0 0 auto 0; aspect-ratio: 800 / 300; height: auto; }
+  .shelf {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: var(--s-4) var(--s-3) 0;
+  }
+}
+
+
 /* ---------- Software projects ----------
    A bordered grid rather than separate cards: the cells share their rules,
    so the whole block reads as one table of work. */

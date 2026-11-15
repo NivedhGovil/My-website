@@ -78,23 +78,31 @@
     <p>Pick a door below.</p>
   </div>
 
-  <div class="cards cards-quad">
-    <a class="card k-articles" href="articles.html">
+  <!-- "Pick a door below." Five doors, and no two the same shape: the
+       collection with the most in it gets the most room, the one essay
+       gets a band of its own, and the poems get air. Each is still a
+       .card, so the cover morph, the reveal and the pointer light all
+       keep working; what changes is the composition. -->
+  <div class="cards lit-doors">
+
+    <a class="card door d-articles k-articles" href="articles.html">
       <img class="card-media" src="assets/cover-articles.svg" alt="Columns of text" loading="lazy" decoding="async">
       <div class="card-body">
-      <h3>Articles</h3>
-      <p>Non-fiction: essays, a news report, and letters written to a favourite
-      author and to a departing year.</p>
-      <span class="go">Read the articles &rarr;</span>
-    </div>
+        <p class="door-count"><b>6</b> pieces</p>
+        <h3>Articles</h3>
+        <p>Non-fiction: essays, a news report, and letters written to a favourite
+        author and to a departing year.</p>
+        <span class="go">Read the articles &rarr;</span>
+      </div>
     </a>
 
-    <a class="card k-essays" href="essays.html">
-      <img class="card-media" src="assets/cover-essays.svg" alt="Lines of an argued page with an indented quotation" loading="lazy" decoding="async">
+    <a class="card door d-essays k-essays" href="essays.html">
       <div class="card-body">
-      <h3>Essays</h3>
-      <p>Longer arguments, researched and cited. On farming, on AI and more.</p>
-      <span class="go">Read the essays &rarr;</span>
+        <p class="door-count"><b>1</b> essay</p>
+        <h3>Essays</h3>
+        <p>Longer arguments, researched and cited. On farming, on AI and more.</p>
+        <p class="door-title">Planted, But Never Prosperous</p>
+        <span class="go">Read the essays &rarr;</span>
       </div>
     </a>
 
@@ -108,34 +116,51 @@
       </div>
     </a> --> 
 
-    <a class="card k-poems" href="poems.html">
-      <img class="card-media" src="assets/cover-poems.svg" alt="Lines of verse" loading="lazy" decoding="async">
+    <a class="card door d-poems k-poems" href="poems.html">
       <div class="card-body">
-      <h3>Poems</h3>
-      <p>Verse written for sound and image &mdash; on the Earth, on the number 108,
-      and on India&rsquo;s long history.</p>
-      <span class="go">Read the poems &rarr;</span>
-    </div>
+        <p class="door-count"><b>3</b> poems</p>
+        <h3>Poems</h3>
+        <p>Verse written for sound and image &mdash; on the Earth, on the number 108,
+        and on India&rsquo;s long history.</p>
+        <ul class="door-list">
+          <li>My mother, the Earth</li>
+          <li>India&rsquo;s history is truly glorious</li>
+          <li>108</li>
+        </ul>
+        <span class="go">Read the poems &rarr;</span>
+      </div>
     </a>
 
-    <a class="card k-stories" href="short-stories.html">
+    <a class="card door d-stories k-stories" href="short-stories.html">
       <img class="card-media" src="assets/cover-stories.svg" alt="A winding path" loading="lazy" decoding="async">
       <div class="card-body">
-      <h3>Short Stories</h3>
-      <p>Fiction: talking dogs, a world that forgot how to think, a squirrel with
-      a diary, and a smartphone with complaints.</p>
-      <span class="go">Read the stories &rarr;</span>
-    </div>
+        <p class="door-count"><b>8</b> stories</p>
+        <h3>Short Stories</h3>
+        <p>Fiction: talking dogs, a world that forgot how to think, a squirrel with
+        a diary, and a smartphone with complaints.</p>
+        <span class="go">Read the stories &rarr;</span>
+      </div>
     </a>
 
-    <a class="card k-books" href="books.html">
-      <img class="card-media" src="assets/cover-books.svg" alt="Books on a shelf" loading="lazy" decoding="async">
+    <a class="card door d-books k-books" href="books.html">
       <div class="card-body">
-      <h3>Books to Recommend</h3>
-      <p>What I have been reading, and the books I keep pressing on other
-      people &mdash; with the reason attached.</p>
-      <span class="go">See the books &rarr;</span>
-    </div>
+        <p class="door-count"><b>6</b> books</p>
+        <h3>Books to Recommend</h3>
+        <p>What I have been reading, and the books I keep pressing on other
+        people &mdash; with the reason attached.</p>
+        <span class="go">See the books &rarr;</span>
+      </div>
+      <!-- The six spines are the six books, in the order the shelf page
+           lists them. Decorative here: the titles are read out properly
+           on the page itself. -->
+      <ol class="shelf" aria-hidden="true">
+        <li><span>Percy Jackson</span></li>
+        <li><span>Ram Chandra</span></li>
+        <li><span>William Warwick</span></li>
+        <li><span>An Epic Career</span></li>
+        <li><span>Richest Man</span></li>
+        <li><span>World History</span></li>
+      </ol>
     </a>
   </div>
 
