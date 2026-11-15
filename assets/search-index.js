@@ -337,14 +337,6 @@ window.SEARCH_INDEX = [
 "text": "Drawings, paintings and things made away from a keyboard."
 },
 {
-"title": "Music",
-"url": "music.html",
-"section": "Music",
-"kind": "Section",
-"meta": "",
-"text": "What I play, what I am learning, and recordings."
-},
-{
 "title": "Achievements",
 "url": "achievements.html",
 "section": "Achievements",

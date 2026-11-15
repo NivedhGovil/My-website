@@ -74,7 +74,9 @@ for page, title, kind, text in [
     ('electrical.html', 'Electrical', 'Section', 'Schematics, PCB layouts and circuit diagrams.'),
     ('software.html', 'Software', 'Section', 'Web pages, Python tools and small games, with code and demos.'),
     ('art.html', 'Art', 'Section', 'Drawings, paintings and things made away from a keyboard.'),
-    ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
+    # Music is unlinked from the nav while the page is still placeholders,
+    # so it stays out of the search index too. Restore this line with the page.
+    # ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
     ('achievements.html', 'Achievements', 'Section', 'Checkpoint marks, olympiad ranks, a merit certificate and a Taekwondo belt.'),
     ('about.html', 'About', 'Section', 'School, interests, achievements and how to get in touch.')]:
     records.append(dict(title=title, url=page, section=title, kind=kind, meta='', text=text))

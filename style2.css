@@ -398,6 +398,13 @@ article.prose .byline { margin: 0 0 30px; }
   letter-spacing: 0.02em;
 }
 
+/* Beside a title rather than above it: the badge qualifies the heading,
+   so it sits on the same line and takes no vertical space of its own. */
+h3 .wip, h2 .wip {
+  margin: 0 0 0 10px;
+  vertical-align: 2px;
+}
+
 /* Unfilled placeholder text, wherever it appears. */
 .empty { font-style: italic; color: var(--ink-soft); }
 .project h3.empty { font-weight: 700; }
@@ -974,6 +981,13 @@ nav.main-nav.has-glide a.active { background: transparent; }
 .big-head { text-align: center; margin: 54px 0 44px; }
 main.wrap > .big-head:first-of-type { margin-top: 48px; }
 .big-head .pill { margin-bottom: 16px; }
+
+/* A group heading inside a page that already has one. Smaller, tighter
+   and without the big heading's air, so the page reads as one section
+   divided rather than as several sections stacked. */
+.big-head.sub-head { margin: 40px 0 24px; }
+.big-head.sub-head h2 { font-size: var(--t-lg); }
+.big-head.sub-head .pill { margin-bottom: 10px; }
 
 .big-head h2 span { color: inherit; }
 .big-head > p:not(.pill) { color: var(--ink-soft); margin: 0 auto; max-width: 52ch; }

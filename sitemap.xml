@@ -11,7 +11,8 @@
   <url><loc>https://nivedhgovil.vercel.app/essays.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
   <url><loc>https://nivedhgovil.vercel.app/</loc><lastmod>2026-11-12</lastmod><priority>1.0</priority></url>
   <url><loc>https://nivedhgovil.vercel.app/literary.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
-  <url><loc>https://nivedhgovil.vercel.app/music.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <!-- music.html is unlinked while it is still placeholders. Put this
+       back the moment the page has real content on it. -->
   <url><loc>https://nivedhgovil.vercel.app/software.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
   <url><loc>https://nivedhgovil.vercel.app/pieces/a-boon-in-disguise.html</loc><lastmod>2026-11-12</lastmod><priority>0.6</priority></url>
   <url><loc>https://nivedhgovil.vercel.app/pieces/a-funny-incident-in-the-park.html</loc><lastmod>2026-11-12</lastmod><priority>0.6</priority></url>
