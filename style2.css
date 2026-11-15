@@ -1672,6 +1672,42 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   background: #05060a;
 }
 
+/* The control sits over the frame rather than beside the caption, so
+   it is where the motion is and reachable without hunting. */
+.live-controls { margin: 0 0 10px !important; padding: 0 var(--s-5); text-align: right; }
+.live-controls[hidden] { display: none; }
+
+.live-ctl {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color var(--d-fast) var(--ease), color var(--d-fast) var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .live-ctl:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+/* Two bars while it is running, one triangle while it is not, drawn
+   rather than fetched. aria-pressed carries the same state in words. */
+.live-ctl-ic {
+  width: 9px;
+  height: 11px;
+  background: currentColor;
+  clip-path: polygon(0 0, 3px 0, 3px 11px, 0 11px, 0 0, 6px 0, 9px 0, 9px 11px, 6px 11px);
+}
+.live-ctl[aria-pressed="true"] .live-ctl-ic {
+  clip-path: polygon(0 0, 9px 50%, 0 100%);
+}
+
 /* Behind the frame: something to look at while it starts, and
    something to read instead of an empty box if it never arrives. */
 .live-frame::before {
@@ -1702,6 +1738,9 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 /* While the button is standing in for the crawl, the "starting" line
    behind it has nothing to announce, and showed through the button. */
 .live-frame:has([data-embed-play]:not([hidden]))::before { content: none; }
+
+/* Stopped on purpose reads differently from still loading. */
+.live-frame[data-state="stopped"]::before { content: "Stopped."; }
 
 /* What stands in for the crawl when the reader has asked for less
    movement: the whole frame as one button, so it is a large target and

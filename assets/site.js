@@ -357,37 +357,125 @@
     });
   }
 
-  /* ---------------- An embedded project, held for reduced motion ----
-     SW-Crawl runs its crawl on a 220s loop with no reduced-motion
-     handling of its own, and nothing on this page can reach inside
-     another origin to stop it. So when the reader has asked for less
-     movement, the frame's src is taken away before it loads and a
-     button put in its place. The src stays in the markup, so with no
-     script at all the project still runs: this only ever removes
-     motion, never the content. */
+  /* ---------------- The embedded project, and its controls ----------
+     SW-Crawl runs its crawl on a 220s loop and lives on its own origin,
+     which settles what this page can and cannot do to it. Measured, not
+     assumed: contentDocument is null, reading its styleSheets throws a
+     SecurityError, and postMessage is the one door left open -- and that
+     door only opens if the page on the other side is listening.
+
+     So the control asks first. On load it pings the frame; if SW-Crawl
+     answers, the button is a real Pause that freezes the crawl where it
+     is. If nothing answers -- which is the case today -- the button says
+     Stop instead and does what it says: unloads the frame, which ends
+     the motion and the work, and loads it again on the next press. The
+     label always matches the behaviour, and the day a listener is added
+     to SW-Crawl the same button becomes a pause with no change here.
+
+     Separately: the project has no reduced-motion handling of its own,
+     so where the reader has asked for less movement the frame's src is
+     taken away before it loads and the whole frame becomes a button. */
   (function () {
     var wrap = document.querySelector('[data-embed]');
     if (!wrap) return;
+
     var frame = wrap.querySelector('[data-embed-frame]');
     var play = wrap.querySelector('[data-embed-play]');
-    if (!frame || !play) return;
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var controls = wrap.querySelector('[data-crawl-controls]');
+    var toggle = wrap.querySelector('[data-crawl-toggle]');
+    var label = wrap.querySelector('[data-crawl-label]');
+    var shell = wrap.querySelector('.live-frame');
+    if (!frame) return;
 
-    /* The frame is lazy and below the fold, so this runs before it has
-       fetched anything. */
-    var src = frame.getAttribute('src');
-    frame.removeAttribute('src');
-    frame.hidden = true;
-    play.hidden = false;
+    var SRC = frame.getAttribute('src');
+    var ORIGIN = (function () {
+      try { return new URL(SRC, location.href).origin; } catch (e) { return null; }
+    })();
 
-    play.addEventListener('click', function () {
-      frame.setAttribute('src', src);
-      frame.hidden = false;
-      play.hidden = true;
-      frame.focus();
+    var canPause = false;   /* does the other side listen? */
+    var paused = false;
+    var stopped = false;
+
+    function calm() { return matchMedia('(prefers-reduced-motion: reduce)').matches; }
+
+    function setLabel() {
+      if (!label) return;
+      label.textContent = canPause
+        ? (paused ? 'Resume the crawl' : 'Pause the crawl')
+        : (stopped ? 'Run the crawl again' : 'Stop the crawl');
+      if (toggle) toggle.setAttribute('aria-pressed', (canPause ? paused : stopped) ? 'true' : 'false');
+    }
+
+    function showControls() {
+      if (controls) controls.hidden = false;
+      setLabel();
+    }
+
+    /* ---- the reduced-motion facade ---- */
+    if (play && calm()) {
+      frame.removeAttribute('src');
+      frame.hidden = true;
+      play.hidden = false;
+      play.addEventListener('click', function () {
+        frame.setAttribute('src', SRC);
+        frame.hidden = false;
+        play.hidden = true;
+        frame.focus();
+        showControls();
+        probe();
+      });
+    } else {
+      showControls();
+    }
+
+    /* ---- is anyone listening on the other side? ---- */
+    function probe() {
+      if (!ORIGIN || !frame.contentWindow) return;
+      try {
+        frame.contentWindow.postMessage({ app: 'sw-crawl', action: 'ping' }, ORIGIN);
+      } catch (e) { /* a frame that will not take a message cannot be paused */ }
+    }
+
+    window.addEventListener('message', function (e) {
+      if (e.origin !== ORIGIN) return;
+      var d = e.data;
+      if (!d || d.app !== 'sw-crawl') return;
+      if (d.action === 'pong' || d.ok === true) {
+        canPause = true;
+        setLabel();
+      }
     });
-  })();
 
+    frame.addEventListener('load', probe);
+    if (frame.getAttribute('src')) probe();
+
+    /* ---- the button ---- */
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        if (canPause) {
+          paused = !paused;
+          try {
+            frame.contentWindow.postMessage(
+              { app: 'sw-crawl', action: paused ? 'pause' : 'play' }, ORIGIN);
+          } catch (e) { /* ignore: the label is corrected below either way */ }
+          setLabel();
+          return;
+        }
+
+        /* No listener, so the honest thing is to stop it rather than to
+           claim a pause the page cannot perform. */
+        stopped = !stopped;
+        if (stopped) {
+          frame.removeAttribute('src');
+          if (shell) shell.setAttribute('data-state', 'stopped');
+        } else {
+          frame.setAttribute('src', SRC);
+          if (shell) shell.removeAttribute('data-state');
+        }
+        setLabel();
+      });
+    }
+  })();
   /* ---------------- The contribution calendar ----------------
      Drawn from assets/contributions.json, which a scheduled workflow in
      this repository rewrites once a day from GitHub's GraphQL API. The
