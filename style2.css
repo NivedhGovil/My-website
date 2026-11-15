@@ -1899,6 +1899,153 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 .featured-list .meta { border-color: var(--rule); color: var(--ink); }
 .featured-list .piece h2 a:hover { color: var(--card-accent, var(--accent)); }
 
+/* ---------- One index, six voices ----------
+   The archive is the same component on every category page — numbered,
+   ruled, whole-row clickable — but a list of poems should not be set the
+   way a list of research papers is. Each page's body class retunes the
+   same markup, so nothing has to be duplicated to look different. */
+
+/* --- Poems: three of them, so they get the room. Serif titles at
+       reading size, the number large and pale in the margin, and the
+       summary set as prose rather than as metadata. --- */
+.s-poems .piece { padding: var(--s-5) 10px; grid-template-columns: 4.5rem minmax(0, 1fr) 1.6rem; }
+.s-poems .piece h2 { font-family: var(--font-serif); font-size: var(--t-lg); font-weight: 500; }
+.s-poems .piece::before {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: color-mix(in oklab, var(--accent) 38%, transparent);
+  padding-top: 0;
+}
+.s-poems .piece .summary {
+  font-family: var(--font-serif);
+  font-size: var(--t-body);
+  line-height: 1.65;
+  max-width: 54ch;
+}
+
+/* --- Short stories: eight of them, and a path through them. The rail
+       joins one number to the next so the column reads as a route. --- */
+.s-stories .piece::before {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: var(--t-meta);
+}
+.s-stories .piece { padding-left: 10px; }
+.s-stories .piece > *, .s-stories .piece::before { position: relative; z-index: 1; }
+
+/* The rail itself: one line behind the whole column of numbers, stopped
+   short at the top and bottom entries so it does not run off the list. */
+.s-stories .piece-list { position: relative; }
+.s-stories .piece-list::before {
+  content: "";
+  position: absolute;
+  top: 48px;
+  bottom: 48px;
+  left: calc(10px + 1.5rem);
+  width: 1px;
+  background: color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+/* Each number is a bead on that rail rather than a label beside it, so
+   it is sized to the digits and centred on the line. */
+.s-stories .piece::before {
+  justify-self: center;
+  width: fit-content;
+  margin-top: 0.35em;
+  padding: 4px 7px;
+  border-radius: var(--radius-pill);
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  background: var(--paper);
+}
+
+/* --- Articles: non-fiction, so the kind of piece leads. The meta chip
+       moves up beside the title rather than sitting under it. --- */
+.s-articles .piece { grid-template-columns: 3rem minmax(0, 1fr) 1.6rem; }
+.s-articles .piece h2 { margin-bottom: 6px; }
+.s-articles .piece .meta { margin-bottom: 10px; }
+
+/* --- Essays: one long argued piece, so it is a feature and not a row
+       in a list. It takes the full width and sets its title large. --- */
+.s-essays .piece-list { border-top: 0; }
+.s-essays .piece {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding: var(--s-5) var(--s-5) var(--s-5) var(--s-5);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+}
+.s-essays .piece::before { display: none; }
+.s-essays .piece::after {
+  grid-column: 1;
+  grid-row: auto;
+  align-self: start;
+  justify-self: start;
+  margin-top: 16px;
+  color: var(--accent);
+}
+.s-essays .piece > * { grid-column: 1; }
+.s-essays .piece h2 { font-size: var(--t-xl); line-height: 1.12; text-wrap: balance; }
+.s-essays .piece .summary { font-size: var(--t-body); line-height: 1.6; }
+
+/* --- Research: a structured record rather than an index. The metadata
+       is a labelled column of its own, because a paper is found by its
+       field and year as often as by its title. --- */
+.s-research .piece {
+  grid-template-columns: 9rem minmax(0, 1fr) 1.6rem;
+  padding: var(--s-4) 10px;
+}
+.s-research .piece::before { display: none; }
+.s-research .piece .meta {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  margin: 6px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.s-research .piece h2, .s-research .piece .summary { grid-column: 2; }
+
+/* --- Books: each row carries the edge of its own spine, so the page
+       reads down a shelf. --- */
+.s-books .book {
+  padding-left: 26px;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 6px center;
+  background-size: 6px calc(100% - 26px);
+  border-radius: 3px;
+}
+.s-books .book::before { display: none; }
+.s-books .book h2 { font-family: var(--font-serif); font-weight: 600; }
+.s-books .book .author {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+}
+
+/* The hover rule on the left edge would fight the spine, so on this page
+   the row lightens instead. */
+.s-books .book:has(h2 a) { background-image: linear-gradient(var(--accent), var(--accent)); }
+
+@media (max-width: 620px) {
+  .s-poems .piece { grid-template-columns: 3rem minmax(0, 1fr) 1.2rem; padding: var(--s-4) 6px; }
+  .s-poems .piece::before { font-size: 1.5rem; }
+  .s-research .piece { grid-template-columns: minmax(0, 1fr) 1.2rem; }
+  .s-research .piece .meta { grid-column: 1; grid-row: auto; margin: 0 0 8px; }
+  .s-research .piece h2, .s-research .piece .summary { grid-column: 1; }
+  .s-essays .piece { padding: var(--s-4); }
+  .s-essays .piece h2 { font-size: var(--t-lg); }
+}
+
+
 /* ---------- Reading pages ---------- */
 article.prose {
   max-width: 43rem;          /* about 68 characters at this size */
