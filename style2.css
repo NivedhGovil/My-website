@@ -678,6 +678,259 @@ nav.main-nav.has-glide a.active { background: transparent; }
 @keyframes pop     { from { transform: scale(0.2); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes fade-in { to { opacity: 1; } }
 
+/* ---------- The two sides, introduced ----------
+   The tagline claims the site has a writing half and a building half;
+   this block is where each half gets to speak. It is a statement, not a
+   control: no links, no previews, nothing to press. The identity of each
+   side is carried by its typeface, its hue and its paper, so the two read
+   as different voices even with the text covered up. */
+.duo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--s-3);
+  margin: var(--s-4) 0 var(--s-4);
+}
+
+.duo-side {
+  --side: var(--accent);
+  position: relative;
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+}
+
+/* The rule across the top is the side's signature: the full width of the
+   panel in its own colour, the one piece of saturation it gets. */
+.duo-side::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--side);
+}
+
+/* And its paper. Ruled lines for the half that is written, a plotted grid
+   for the half that is drawn and measured. Both at a few percent, so the
+   copy sits on texture rather than on pattern. */
+.duo-lit::after,
+.duo-eng::after {
+  content: "";
+  position: absolute;
+  inset: 4px 0 0;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, #000, transparent 86%);
+}
+
+.duo-lit::after {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 25px,
+    color-mix(in oklab, var(--side) 16%, transparent) 25px 26px);
+}
+
+.duo-eng::after {
+  background:
+    repeating-linear-gradient(to bottom,
+      transparent 0 21px,
+      color-mix(in oklab, var(--side) 10%, transparent) 21px 22px),
+    repeating-linear-gradient(to right,
+      transparent 0 21px,
+      color-mix(in oklab, var(--side) 10%, transparent) 21px 22px);
+}
+
+.duo-side > * { position: relative; z-index: 1; }
+
+.duo-lit { --side: var(--c-literary); }
+.duo-eng { --side: var(--c-engineering); }
+
+/* The label above each side. The written half spells its name out in
+   small capitals of the serif; the built half stamps its name in
+   monospace, the way a part is labelled on a drawing. */
+.duo-kind {
+  display: block;
+  margin: 0 0 var(--s-2);
+  color: var(--side);
+  font-weight: 700;
+}
+
+.duo-lit .duo-kind {
+  font-family: var(--font-serif);
+  font-size: var(--t-meta);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.14em;
+}
+
+.duo-eng .duo-kind {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+/* The opening line of each side, at the same size on both so neither
+   outranks the other — only the voice changes. */
+.duo-side h3 {
+  margin: 0 0 var(--s-2);
+  font-size: var(--t-md);
+  line-height: 1.22;
+  text-wrap: balance;
+}
+
+.duo-lit h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.duo-eng h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.duo-side p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* A drop cap on the written side, because that is what writing looks
+   like on a page, and nothing like it on the built side. */
+.duo-lit p::first-letter {
+  float: left;
+  margin: 0.08em 0.12em 0 0;
+  color: var(--side);
+  font-family: var(--font-serif);
+  font-size: 3.1em;
+  font-weight: 600;
+  line-height: 0.82;
+}
+
+.duo-lit p { font-family: var(--font-serif); font-size: var(--t-body); }
+
+/* The forms each side takes. Serif italic, separated by thin rules, for
+   the written half; monospace chips, numbered like pins on a header, for
+   the built half. */
+.duo-forms {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: var(--s-3) 0 0;
+  padding: var(--s-3) 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.duo-lit .duo-forms {
+  gap: 0 14px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--t-meta);
+  color: var(--ink);
+}
+
+.duo-lit .duo-forms li + li {
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+
+.duo-eng .duo-forms {
+  gap: 8px;
+  counter-reset: pin;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  color: var(--ink);
+}
+
+.duo-eng .duo-forms li {
+  counter-increment: pin;
+  padding: 4px 10px;
+  border: 1px solid color-mix(in oklab, var(--side) 34%, var(--line));
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.duo-eng .duo-forms li::before {
+  content: counter(pin, decimal-leading-zero) " ";
+  color: var(--side);
+}
+
+/* The ampersand. It is the argument of the whole block: not one side and
+   then the other, but both at once. It takes its colour from halfway
+   between the two hues, and the hairline runs through it so the panels
+   read as joined rather than merely adjacent. */
+.duo-join {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: color-mix(in oklab, var(--c-literary) 50%, var(--c-engineering));
+}
+
+.duo-join::before {
+  content: "";
+  position: absolute;
+  inset: 50% calc(var(--s-3) * -1) auto;
+  height: 1px;
+  background: linear-gradient(to right,
+    var(--c-literary), transparent 32%, transparent 68%, var(--c-engineering));
+  opacity: 0.5;
+}
+
+/* The rule fades out before it reaches the glyph, so the two reach
+   towards each other and the character is not struck through. */
+.duo-join i {
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+
+/* The line that closes the block, centred under both panels and set in
+   the serif at reading size — the two voices having agreed on something. */
+.duo-close {
+  max-width: 52ch;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* Below this width the two panels stop reading as a pair side by side, so
+   they stack and the ampersand becomes the join between them: the rule
+   turns vertical and runs from one panel into the next. */
+@media (max-width: 720px) {
+  .duo-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .duo-join {
+    width: auto;
+    height: 3.4rem;
+    font-size: 2.1rem;
+  }
+  .duo-join::before {
+    inset: 0 50% auto;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+      var(--c-literary), transparent 30%, transparent 70%, var(--c-engineering));
+  }
+  .duo-join::before { opacity: 0.5; }
+}
+
+
 /* ---------- Revealed on arrival ----------
    Triggered by position, then run on a fixed duration — motion tied to
    scroll speed plays slowly for slow scrollers and reads as broken. */
