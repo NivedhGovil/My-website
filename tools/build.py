@@ -78,7 +78,7 @@ for page, title, kind, text in [
     # so it stays out of the search index too. Restore this line with the page.
     # ('music.html', 'Music', 'Section', 'What I play, what I am learning, and recordings.'),
     ('achievements.html', 'Achievements', 'Section', 'Checkpoint marks, olympiad ranks, a merit certificate and a Taekwondo belt.'),
-    ('about.html', 'About', 'Section', 'School, interests, achievements and how to get in touch.')]:
+    ('about.html', 'Blog', 'Section', 'What went wrong on the builds, what came of it, and how to get in touch.')]:
     records.append(dict(title=title, url=page, section=title, kind=kind, meta='', text=text))
 
 # Written as JavaScript, not JSON: a <script> tag works when the site is opened

@@ -749,7 +749,7 @@
           { name: 'taekwondo.txt', type: 'page', url: 'achievements.html#belt',
             desc: 'Green belt in Taekwondo.' }
         ] },
-      { name: 'about',    type: 'page', url: 'about.html',    desc: 'School, interests, and how to get in touch.' }
+      { name: 'blog',     type: 'page', url: 'about.html',    desc: 'What went wrong on the builds, what came of it, and how to get in touch.' }
     ]
   };
 

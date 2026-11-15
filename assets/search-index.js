@@ -345,11 +345,11 @@ window.SEARCH_INDEX = [
 "text": "Checkpoint marks, olympiad ranks, a merit certificate and a Taekwondo belt."
 },
 {
-"title": "About",
+"title": "Blog",
 "url": "about.html",
-"section": "About",
+"section": "Blog",
 "kind": "Section",
 "meta": "",
-"text": "School, interests, achievements and how to get in touch."
+"text": "What went wrong on the builds, what came of it, and how to get in touch."
 }
 ];
