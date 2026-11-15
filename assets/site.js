@@ -357,6 +357,37 @@
     });
   }
 
+  /* ---------------- An embedded project, held for reduced motion ----
+     SW-Crawl runs its crawl on a 220s loop with no reduced-motion
+     handling of its own, and nothing on this page can reach inside
+     another origin to stop it. So when the reader has asked for less
+     movement, the frame's src is taken away before it loads and a
+     button put in its place. The src stays in the markup, so with no
+     script at all the project still runs: this only ever removes
+     motion, never the content. */
+  (function () {
+    var wrap = document.querySelector('[data-embed]');
+    if (!wrap) return;
+    var frame = wrap.querySelector('[data-embed-frame]');
+    var play = wrap.querySelector('[data-embed-play]');
+    if (!frame || !play) return;
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* The frame is lazy and below the fold, so this runs before it has
+       fetched anything. */
+    var src = frame.getAttribute('src');
+    frame.removeAttribute('src');
+    frame.hidden = true;
+    play.hidden = false;
+
+    play.addEventListener('click', function () {
+      frame.setAttribute('src', src);
+      frame.hidden = false;
+      play.hidden = true;
+      frame.focus();
+    });
+  })();
+
   /* ---------------- Artwork lightbox ----------------
      A gallery you cannot look at closely is not much of a gallery. */
   /* Anything with a picture worth looking at closely: artwork, CAD models,

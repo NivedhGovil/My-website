@@ -68,7 +68,7 @@
 
   <div class="sw-grid">
 
-    <article class="sw-project sw-feature" data-sw="crawl">
+    <article class="sw-project sw-feature sw-live" data-sw="crawl">
       <div class="sw-body">
         <span class="sw-kind">Web</span>
         <h2>SW-Crawl</h2>
@@ -79,49 +79,48 @@
         </ul>
         <p class="sw-links"><a class="sw-demo" href="https://sw-crawl.vercel.app/" target="_blank" rel="noopener">Open the demo</a><a class="sw-repo" href="https://github.com/NivedhGovil/SW-Crawl" target="_blank" rel="noopener">GitHub</a></p>
       </div>
-      <div class="sw-art sw-art-crawl" aria-hidden="true"><span class="sw-crawl-text"></span></div>
-    </article>
+      <!-- The project itself, running here. SW-Crawl is a static page of
+           HTML and a stylesheet on Vercel - no script, no audio and no
+           framing refusal, checked in its own repository - so it sits in
+           the page exactly as it is served. Its crawl runs without
+           stopping and the project has no reduced-motion handling of its
+           own, so site.js holds it behind a button for anyone who has
+           asked for less movement. -->
+      <div class="live-embed" data-embed>
+        <p class="live-head">
+          <span class="live-chip">Live</span>
+          This is SW-Crawl itself, running here &mdash; the opening crawl
+          of <em>The Cosmic Spark</em>, the story in it.</p>
 
-    <article class="sw-project sw-feature sw-math" data-sw="math">
-      <div class="sw-body">
-        <span class="sw-kind">Python</span>
-        <h2>MathCanvas</h2>
-        <p>An interactive maths and physics explorer. It plots constant, linear, quadratic, sine, cosine and tangent curves; takes a small set of observations and returns the mean, median, standard deviation, variance and range with a bar chart beside them; and simulates projectile motion from a launch angle, speed and mass. Pick a mode, change an input, and the graph redraws. The whole interface is Streamlit, NumPy and Matplotlib &mdash; there is not a single HTML tag in it.</p>
-        <ul class="sw-tags">
-          <li>Python</li>
-          <li>Streamlit</li>
-          <li>NumPy</li>
-          <li>Matplotlib</li>
-        </ul>
-        <p class="sw-links"><a class="sw-demo" href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Open the demo</a><a class="sw-repo" href="https://github.com/NivedhGovil/MathCanvas" target="_blank" rel="noopener">GitHub</a></p>
-      </div>
-
-      <!-- The real MathCanvas, running here. This is the Streamlit app
-           itself in a frame, not a copy of it: everything in the panel
-           below is the project, served from where it is deployed. The
-           embed parameter is Streamlit's own, and only removes its
-           chrome so the app sits in the page without a second toolbar. -->
-      <div class="mc-embed" data-mc-embed>
-        <p class="mc-embed-head">
-          <span class="mc-live">Live</span>
-          This is MathCanvas itself, running here &mdash; the same Streamlit app,
-          not a copy. Pick a mode and change an input.
-        </p>
-
-        <div class="mc-frame">
+        <div class="live-frame">
           <iframe
-            src="https://mathcanvas.streamlit.app/?embed=true"
-            title="MathCanvas &mdash; an interactive maths and physics explorer"
+            src="https://sw-crawl.vercel.app/"
+            title="SW-Crawl &mdash; the opening crawl of The Cosmic Spark"
             loading="lazy"
-            allow="fullscreen"
-            referrerpolicy="no-referrer-when-downgrade"
-            data-mc-iframe></iframe>
+            data-embed-frame></iframe>
+          <button type="button" class="live-play" data-embed-play hidden>
+            <span class="live-play-label">Run the crawl</span>
+            <span class="live-play-note">It scrolls without stopping, and you have asked for reduced motion, so it waits for you.</span>
+          </button>
         </div>
 
-        <p class="mc-embed-foot">
-          Not loading, or asleep? <a href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Open MathCanvas in a new tab &rarr;</a>
+        <p class="live-foot">
+          Not loading? <a href="https://sw-crawl.vercel.app/" target="_blank" rel="noopener">Open SW-Crawl in a new tab &rarr;</a>
         </p>
       </div>
+    </article>
+
+    <article class="sw-project sw-wide" data-sw="math">
+      <span class="sw-kind">Python</span>
+      <h2>MathCanvas</h2>
+      <p>An interactive maths and physics explorer. It plots constant, linear, quadratic, sine, cosine and tangent curves; takes a small set of observations and returns the mean, median, standard deviation, variance and range with a bar chart beside them; and simulates projectile motion from a launch angle, speed and mass. Pick a mode, change an input, and the graph redraws. The whole interface is Streamlit, NumPy and Matplotlib &mdash; there is not a single HTML tag in it.</p>
+      <ul class="sw-tags">
+        <li>Python</li>
+        <li>Streamlit</li>
+        <li>NumPy</li>
+        <li>Matplotlib</li>
+      </ul>
+      <p class="sw-links"><a class="sw-demo" href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Open the demo</a><a class="sw-repo" href="https://github.com/NivedhGovil/MathCanvas" target="_blank" rel="noopener">GitHub</a></p>
     </article>
 
     <article class="sw-project sw-narrow" data-sw="culina">

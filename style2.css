@@ -1603,42 +1603,44 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.8);
 }
 
-/* ---------- MathCanvas, running in the page ----------
-   Not a reconstruction of the project: the Streamlit app itself, in a
-   frame. The card stacks so the app gets the full width of the feature
-   row, and the frame keeps a fixed height because the app inside it
-   scrolls on its own and cannot report its height across origins. */
-.sw-project.sw-math { flex-direction: column; align-items: stretch; gap: 0; }
-.sw-project.sw-math .sw-body { flex: 0 0 auto; padding: var(--s-5) var(--s-5) var(--s-4); }
+/* ---------- A project running in the page ----------
+   SW-Crawl is a static page of its own, so the card frames it rather
+   than illustrating it: what a visitor sees is the project. The card
+   stacks so the frame gets the whole feature row, and the frame keeps a
+   fixed height because a page in another origin cannot report its own.
+*/
+.sw-project.sw-live { flex-direction: column; align-items: stretch; gap: 0; }
+.sw-project.sw-live .sw-body { flex: 0 0 auto; padding: var(--s-5) var(--s-5) var(--s-4); }
 
-/* The frame runs edge to edge inside the card: a Streamlit app needs
-   every pixel of width it can get, and running it full-bleed reads as
-   the app being embedded rather than pasted in. Only the two lines of
-   text around it are indented. */
-.mc-embed {
+/* The frame runs edge to edge inside the card: the crawl wants every
+   pixel of width, and running it full-bleed reads as the project being
+   embedded rather than pasted in. Only the text around it is indented. */
+.live-embed {
   padding: var(--s-4) 0 var(--s-4);
   border-top: 1px solid var(--line);
   background: var(--paper);
 }
-.mc-embed-head, .mc-embed-foot { padding: 0 var(--s-5); }
+.live-head, .live-foot { padding: 0 var(--s-5); }
 
-.mc-embed-head {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 10px;
+/* A line of running text, not a flex row: as a flex container the
+   <em> inside it became its own item and collected the row gap on
+   both sides, which put a space in front of the comma after it. */
+.live-head {
   margin: 0 0 var(--s-3) !important;
   color: var(--ink) !important;
   font-size: var(--t-meta) !important;
-  line-height: 1.55;
+  line-height: 1.7;
 }
+.live-head em { font-family: var(--font-serif); font-size: 1.05em; }
 
-/* A dot that says the thing in the frame is the real, deployed app. It
-   pulses only where motion is welcome. */
-.mc-live {
+/* A dot that says the thing in the frame is the deployed project and
+   not a picture of it. It pulses only where motion is welcome. */
+.live-chip {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  margin-right: 10px;
+  vertical-align: 1px;
   padding: 3px 11px 3px 9px;
   border-radius: var(--radius-pill);
   background: var(--accent-tint);
@@ -1650,29 +1652,30 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   text-transform: uppercase;
   white-space: nowrap;
 }
-.mc-live::before {
+.live-chip::before {
   content: "";
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--accent);
-  animation: mc-pulse 2.4s var(--ease) infinite;
+  animation: live-pulse 2.4s var(--ease) infinite;
 }
-@keyframes mc-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-.mc-frame {
+.live-frame {
   position: relative;
   overflow: hidden;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: var(--card);
+  /* The crawl is white type on black, so the frame sits on black and
+     there is no white flash before the page inside it paints. */
+  background: #05060a;
 }
 
-/* Behind the frame, so there is something to look at while the app
-   starts — and something to read instead of an empty box if it never
-   arrives. The link underneath is the way out either way. */
-.mc-frame::before {
-  content: "Starting MathCanvas\2026";
+/* Behind the frame: something to look at while it starts, and
+   something to read instead of an empty box if it never arrives. */
+.live-frame::before {
+  content: "Starting SW-Crawl\2026";
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -1681,41 +1684,83 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   justify-content: center;
   padding: var(--s-4);
   text-align: center;
-  color: var(--ink-soft);
+  color: #6d7890;
   font-family: var(--font-mono);
   font-size: var(--t-meta);
 }
-.mc-frame iframe { position: relative; z-index: 1; }
 
-.mc-frame iframe {
+.live-frame iframe {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
-  height: 680px;
+  height: 560px;
   border: 0;
 }
+.live-frame iframe[hidden] { display: none; }
 
-.mc-embed-foot {
+/* While the button is standing in for the crawl, the "starting" line
+   behind it has nothing to announce, and showed through the button. */
+.live-frame:has([data-embed-play]:not([hidden]))::before { content: none; }
+
+/* What stands in for the crawl when the reader has asked for less
+   movement: the whole frame as one button, so it is a large target and
+   says plainly why it is waiting. */
+.live-play {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 360px;
+  padding: var(--s-4);
+  border: 0;
+  background: none;
+  color: #e7ecf6;
+  text-align: center;
+  cursor: pointer;
+}
+.live-play-label {
+  padding: 10px 22px;
+  border: 1px solid #39425c;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--t-meta);
+  font-weight: 700;
+}
+.live-play-note { max-width: 42ch; color: #98a3bb; font-size: var(--t-meta); line-height: 1.5; }
+
+/* display: flex above beats the hidden attribute's own display: none,
+   so the button has to be told again. Without this it sits under the
+   frame for everyone, not only for the readers it is meant for. */
+.live-play[hidden] { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .live-play:hover .live-play-label { border-color: #8fa0c8; }
+}
+
+.live-foot {
   margin: var(--s-2) 0 0 !important;
   color: var(--ink-soft);
   font-size: var(--t-meta) !important;
 }
-.mc-embed-foot a { font-weight: 600; }
+.live-foot a { font-weight: 600; }
 
-/* A phone has no room for a 680px frame above the fold, and the app
-   inside scrolls itself, so it gets a shorter window. */
-@media (max-width: 760px) {
-  .mc-frame iframe { height: 560px; }
-}
+/* A phone has no room for a 560px frame above the fold, and the page
+   inside scrolls itself. */
+@media (max-width: 760px) { .live-frame iframe { height: 460px; } }
 @media (max-width: 480px) {
-  .mc-embed { padding: var(--s-3) 0 var(--s-3); }
-  .mc-embed-head, .mc-embed-foot { padding: 0 var(--s-4); }
-  .mc-frame iframe { height: 480px; }
+  .live-embed { padding: var(--s-3) 0 var(--s-3); }
+  .live-head, .live-foot { padding: 0 var(--s-4); }
+  .live-frame iframe { height: 380px; }
+  .live-play { height: 300px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mc-live::before { animation: none; }
+  .live-chip::before { animation: none; }
 }
-
 
 /* ---------- The project grid ----------
    Six columns, so cards can take a half, a third or two thirds and the
@@ -1843,43 +1888,8 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 
 /* ---------- What each project looks like ----------
    A small amount of decoration per project, drawn in CSS from what the
-   project actually is: a crawl, a graph, a row of letter tiles. */
-.sw-art {
-  flex: 1 1 42%;
-  position: relative;
-  overflow: hidden;
-  border-left: 1px solid var(--line);
-  background: linear-gradient(160deg, #10112c, #241f52);
-}
-
-/* SW-Crawl: a starfield with text receding into it. */
-.sw-art-crawl::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1.4px 1.4px at 22% 18%, #fff, transparent),
-    radial-gradient(1.2px 1.2px at 68% 28%, #fff, transparent),
-    radial-gradient(1.6px 1.6px at 41% 62%, #fff, transparent),
-    radial-gradient(1.1px 1.1px at 84% 72%, #fff, transparent),
-    radial-gradient(1.3px 1.3px at 12% 82%, #fff, transparent),
-    radial-gradient(1px 1px at 56% 44%, #fff, transparent);
-  opacity: 0.85;
-}
-.sw-crawl-text {
-  position: absolute;
-  left: 50%;
-  bottom: -6%;
-  width: 78%;
-  height: 86%;
-  translate: -50% 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    #ffd34d 0 6px, transparent 6px 15px);
-  mask-image: linear-gradient(to top, #000 4%, transparent 72%);
-  transform: perspective(170px) rotateX(46deg);
-  transform-origin: bottom center;
-}
+   project actually is: a graph, a row of letter tiles. SW-Crawl has
+   none, because it runs in the card for real. */
 
 /* MathCanvas: a coordinate grid with a curve across it. */
 [data-sw="math"]::before {
@@ -1930,7 +1940,6 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   .sw-project, .sw-feature, .sw-wide, .sw-narrow { grid-column: span 1; }
   .sw-feature { flex-direction: column; padding: 0; }
   .sw-feature .sw-body { padding: var(--s-4); }
-  .sw-art { flex: 0 0 180px; border-left: 0; border-top: 1px solid var(--line); }
   .sw-hero-inner { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
   .sw-hero { padding: var(--s-6) 0 var(--s-5); }
 }
