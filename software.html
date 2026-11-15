@@ -96,96 +96,31 @@
         <p class="sw-links"><a class="sw-demo" href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Open the demo</a><a class="sw-repo" href="https://github.com/NivedhGovil/MathCanvas" target="_blank" rel="noopener">GitHub</a></p>
       </div>
 
-      <!-- A small re-implementation of the three modes MathCanvas has, so
-           the page can show what the project does rather than only say
-           it. It is not the project: MathCanvas is a Streamlit app in
-           Python, and the link above opens the real one. The maths here
-           is the same maths, written in JavaScript for the browser. -->
-      <div class="mc" data-mc>
-        <p class="mc-note">
-          <strong>A demonstration, not the project.</strong> MathCanvas itself is a
-          Python app built with Streamlit, NumPy and Matplotlib; this is a small
-          browser version of its three modes, written for this page.
-          <a href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Open the real MathCanvas &rarr;</a>
+      <!-- The real MathCanvas, running here. This is the Streamlit app
+           itself in a frame, not a copy of it: everything in the panel
+           below is the project, served from where it is deployed. The
+           embed parameter is Streamlit's own, and only removes its
+           chrome so the app sits in the page without a second toolbar. -->
+      <div class="mc-embed" data-mc-embed>
+        <p class="mc-embed-head">
+          <span class="mc-live">Live</span>
+          This is MathCanvas itself, running here &mdash; the same Streamlit app,
+          not a copy. Pick a mode and change an input.
         </p>
 
-        <div class="mc-tabs" role="tablist" aria-label="MathCanvas modes">
-          <button type="button" role="tab" id="mc-t-fn" aria-controls="mc-p-fn" aria-selected="true" data-mc-tab="fn">Functions</button>
-          <button type="button" role="tab" id="mc-t-stats" aria-controls="mc-p-stats" aria-selected="false" tabindex="-1" data-mc-tab="stats">Statistics</button>
-          <button type="button" role="tab" id="mc-t-proj" aria-controls="mc-p-proj" aria-selected="false" tabindex="-1" data-mc-tab="proj">Projectile</button>
+        <div class="mc-frame">
+          <iframe
+            src="https://mathcanvas.streamlit.app/?embed=true"
+            title="MathCanvas &mdash; an interactive maths and physics explorer"
+            loading="lazy"
+            allow="fullscreen"
+            referrerpolicy="no-referrer-when-downgrade"
+            data-mc-iframe></iframe>
         </div>
 
-        <!-- Functions -->
-        <div class="mc-panel" role="tabpanel" id="mc-p-fn" aria-labelledby="mc-t-fn" data-mc-panel="fn">
-          <div class="mc-controls">
-            <p class="mc-field">
-              <label for="mc-curve">Curve</label>
-              <select id="mc-curve" data-mc-curve>
-                <option value="constant">Constant</option>
-                <option value="linear" selected>Linear</option>
-                <option value="quadratic">Quadratic</option>
-                <option value="sine">Sine</option>
-                <option value="cosine">Cosine</option>
-                <option value="tangent">Tangent</option>
-              </select>
-            </p>
-            <p class="mc-field" data-mc-coef="a">
-              <label for="mc-a">a <output for="mc-a" data-mc-out="a">1</output></label>
-              <input id="mc-a" type="range" min="-5" max="5" step="0.1" value="1" data-mc-in="a">
-            </p>
-            <p class="mc-field" data-mc-coef="b">
-              <label for="mc-b">b <output for="mc-b" data-mc-out="b">0</output></label>
-              <input id="mc-b" type="range" min="-5" max="5" step="0.1" value="0" data-mc-in="b">
-            </p>
-            <p class="mc-field" data-mc-coef="c">
-              <label for="mc-c">c <output for="mc-c" data-mc-out="c">0</output></label>
-              <input id="mc-c" type="range" min="-5" max="5" step="0.1" value="0" data-mc-in="c">
-            </p>
-          </div>
-          <figure class="mc-plot">
-            <svg viewBox="0 0 340 220" role="img" data-mc-fnplot aria-labelledby="mc-fn-desc"></svg>
-            <figcaption id="mc-fn-desc" data-mc-fncaption aria-live="polite">y = x</figcaption>
-          </figure>
-        </div>
-
-        <!-- Statistics -->
-        <div class="mc-panel" role="tabpanel" id="mc-p-stats" aria-labelledby="mc-t-stats" data-mc-panel="stats" hidden>
-          <div class="mc-controls">
-            <p class="mc-field mc-wide">
-              <label for="mc-values">Observations &mdash; numbers separated by commas</label>
-              <input id="mc-values" type="text" inputmode="decimal" value="4, 8, 15, 16, 23, 42" data-mc-values>
-              <span class="mc-error" data-mc-verr aria-live="polite"></span>
-            </p>
-          </div>
-          <div class="mc-stats-out">
-            <dl class="mc-stats" data-mc-stats></dl>
-            <figure class="mc-plot">
-              <svg viewBox="0 0 340 180" role="img" data-mc-bars aria-labelledby="mc-bars-desc"></svg>
-              <figcaption id="mc-bars-desc" data-mc-barscaption aria-live="polite"></figcaption>
-            </figure>
-          </div>
-        </div>
-
-        <!-- Projectile -->
-        <div class="mc-panel" role="tabpanel" id="mc-p-proj" aria-labelledby="mc-t-proj" data-mc-panel="proj" hidden>
-          <div class="mc-controls">
-            <p class="mc-field">
-              <label for="mc-angle">Launch angle <output for="mc-angle" data-mc-out="angle">45&deg;</output></label>
-              <input id="mc-angle" type="range" min="1" max="89" step="1" value="45" data-mc-in="angle">
-            </p>
-            <p class="mc-field">
-              <label for="mc-speed">Launch speed <output for="mc-speed" data-mc-out="speed">20 m/s</output></label>
-              <input id="mc-speed" type="range" min="1" max="50" step="1" value="20" data-mc-in="speed">
-            </p>
-          </div>
-          <figure class="mc-plot">
-            <svg viewBox="0 0 340 200" role="img" data-mc-proj aria-labelledby="mc-proj-desc"></svg>
-            <figcaption id="mc-proj-desc" data-mc-projcaption aria-live="polite"></figcaption>
-          </figure>
-          <dl class="mc-stats mc-stats-row" data-mc-projstats></dl>
-          <p class="mc-foot">Drag-free motion under gravity at 9.81&nbsp;m/s&sup2;, which is
-          why mass does not appear here. The real MathCanvas takes a mass as well.</p>
-        </div>
+        <p class="mc-embed-foot">
+          Not loading, or asleep? <a href="https://mathcanvas.streamlit.app/" target="_blank" rel="noopener">Open MathCanvas in a new tab &rarr;</a>
+        </p>
       </div>
     </article>
 
