@@ -1603,6 +1603,193 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
   box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.8);
 }
 
+/* ---------- MathCanvas, demonstrated ----------
+   The Software page can now show the three modes the project has rather
+   than only describe them. It is laid out as a panel inside the project
+   card, with the note that it is a demonstration first and in bold,
+   because a visitor should never be in doubt about which is which. */
+/* The featured card normally lays its body beside its artwork, so the
+   body carries flex: 1 1 58%. This one stacks instead, and on a column
+   axis that 58% becomes a height, which stretched the card by a third
+   of a screen of blank space. The basis goes back to the content. */
+.sw-project.sw-math { flex-direction: column; align-items: stretch; gap: 0; }
+.sw-project.sw-math .sw-body { flex: 0 0 auto; padding: var(--s-5) var(--s-5) var(--s-4); }
+
+.mc {
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.mc-note {
+  margin: 0 0 var(--s-3) !important;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-tint);
+  font-size: var(--t-meta) !important;
+  line-height: 1.55;
+  color: var(--ink) !important;
+}
+.mc-note strong { color: var(--accent); }
+.mc-note a { font-weight: 600; white-space: nowrap; }
+
+.mc-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--s-3);
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.mc-tabs [role="tab"] {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--d-fast) var(--ease), color var(--d-fast) var(--ease),
+              border-color var(--d-fast) var(--ease);
+}
+.mc-tabs [role="tab"][aria-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+@media (hover: hover) and (pointer: fine) {
+  .mc-tabs [role="tab"]:not([aria-selected="true"]):hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+.mc-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-bottom: var(--s-3);
+}
+.mc-field { margin: 0 !important; flex: 1 1 150px; min-width: 0; }
+.mc-field.mc-wide { flex: 1 1 100%; }
+.mc-field[hidden] { display: none; }
+
+.mc-field label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+}
+.mc-field output { color: var(--accent); font-weight: 700; }
+
+.mc-field select,
+.mc-field input[type="text"] {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--t-meta);
+}
+.mc-field input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+.mc-error { display: block; margin-top: 6px; color: var(--danger); font-size: var(--t-meta); }
+.mc-error:empty { display: none; }
+
+.mc-plot { margin: 0; }
+.mc-plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+}
+.mc-plot figcaption {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  font-size: var(--t-meta);
+  text-wrap: pretty;
+}
+
+/* The drawing itself. Everything is drawn in the section's own accent,
+   so the panel belongs to the page it sits on. */
+.mc-grid  { stroke: var(--line); stroke-width: 1; }
+.mc-axis  { stroke: var(--ink-soft); stroke-width: 1; }
+.mc-curve { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.mc-bar   { fill: color-mix(in oklab, var(--accent) 72%, var(--paper)); }
+.mc-mean  { stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.mc-dot   { fill: var(--accent); }
+.mc-tick  { fill: var(--ink-soft); font-family: var(--font-mono); font-size: 10px; }
+
+.mc-stats-out { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: var(--s-4); align-items: start; }
+
+.mc-stats { margin: 0; }
+.mc-stats dt {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+}
+.mc-stats dd {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--t-md);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.mc-stats-row { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-top: var(--s-3); }
+.mc-stats-row dd { margin-bottom: 0; }
+
+.mc-foot {
+  margin: var(--s-3) 0 0 !important;
+  color: var(--ink-soft);
+  font-size: var(--t-meta) !important;
+  text-wrap: pretty;
+}
+
+/* The plot is an SVG scaled to its box, so on a card this wide it grew
+   to most of a screen. Above this width the controls move into a column
+   beside it instead of sitting above it, which uses the width the
+   feature card has and keeps the drawing a sensible size. */
+@media (min-width: 760px) {
+  [data-mc-panel="fn"], [data-mc-panel="proj"] {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: var(--s-4);
+    align-items: start;
+  }
+  /* display above would otherwise defeat the hidden attribute. */
+  [data-mc-panel="fn"][hidden], [data-mc-panel="proj"][hidden] { display: none; }
+
+  [data-mc-panel="fn"] .mc-controls,
+  [data-mc-panel="proj"] .mc-controls { flex-direction: column; margin-bottom: 0; }
+  [data-mc-panel="fn"] .mc-field,
+  [data-mc-panel="proj"] .mc-field { flex: 0 0 auto; width: 100%; }
+
+  [data-mc-panel="proj"] > .mc-stats-row,
+  [data-mc-panel="proj"] > .mc-foot { grid-column: 1 / -1; margin-top: 0 !important; }
+}
+
+.mc-plot svg { max-width: 560px; }
+
+@media (max-width: 620px) {
+  .mc { padding: var(--s-3) var(--s-4) var(--s-4); }
+  .mc-stats-out { grid-template-columns: minmax(0, 1fr); }
+  .mc-field { flex: 1 1 100%; }
+}
+
+
 /* ---------- The project grid ----------
    Six columns, so cards can take a half, a third or two thirds and the
    page stops being a stack of equal boxes. The narrow cell is for the
@@ -3268,7 +3455,11 @@ body.s-stories .section-intro > p:first-child::first-line {
 
 .skip-link:focus { left: 0; }
 
-a:focus-visible, button:focus-visible {
+/* Form controls were missing from this list, which left the MathCanvas
+   select and sliders without a ring when tabbed to. */
+a:focus-visible, button:focus-visible,
+select:focus-visible, input:focus-visible, textarea:focus-visible,
+[tabindex]:focus-visible {
   outline: 3px solid var(--accent-bright);
   outline-offset: 3px;
   border-radius: 4px;
