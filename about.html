@@ -101,6 +101,50 @@
   </ol>
 
   <div class="big-head">
+    <p class="pill">Ask</p>
+    <h2>Ask about <span>me</span></h2>
+    <p>A question about the writing, the builds, the code or the marks &mdash;
+    this looks up the answer in what the site already says.</p>
+  </div>
+
+  <!-- A retrieval chatbot. It holds no model and makes nothing up: it
+       scores the question against assets/knowledge.json, where every
+       entry is lifted from a page of this site, and answers with the
+       closest passage and a link to where it came from. Below its
+       confidence threshold it says so and hands the question to the
+       contact form below, which is a real mailto and not a pretend send. -->
+  <section class="ask" data-ask aria-labelledby="ask-h">
+    <h3 class="sr-only" id="ask-h">Ask a question about Nivedh</h3>
+
+    <div class="ask-log" data-ask-log role="log" aria-live="polite" aria-atomic="false"></div>
+
+    <div class="ask-chips" data-ask-chips>
+      <span class="ask-chips-label">Try:</span>
+      <button type="button" data-ask-chip>What school does he go to?</button>
+      <button type="button" data-ask-chip>What has he built?</button>
+      <button type="button" data-ask-chip>Where has he been published?</button>
+      <button type="button" data-ask-chip>What are his Checkpoint results?</button>
+    </div>
+
+    <form class="ask-form" data-ask-form>
+      <label class="sr-only" for="ask-input">Your question</label>
+      <input id="ask-input" type="text" autocomplete="off"
+             placeholder="Ask something about Nivedh&hellip;" data-ask-input>
+      <button type="submit" class="ask-send">
+        <span class="sr-only">Send</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.8 18-3.7-7.5L3 9.8 21 3Z"/></svg>
+      </button>
+    </form>
+
+    <p class="ask-note">
+      It answers only from notes taken off this site, so it will not invent
+      anything. When it has no answer it says so and offers to pass your
+      question to Nivedh through the form below.
+      <noscript>It needs JavaScript; the form below works without it.</noscript>
+    </p>
+  </section>
+
+  <div class="big-head">
 
   <h2>Get in <span>Touch</span></h2>
     <p>For feedback on a piece, a question about a build, or anything else.</p>

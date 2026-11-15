@@ -1,0 +1,582 @@
+{
+  "updated": "2026-11-15",
+  "note": "Every entry here is taken from a page of this site. Nothing in this file says anything the site does not already say. To teach the chatbot something new, add an entry: give it text in Nivedh's own words, the words someone might search with, and the page it came from.",
+  "entries": [
+    {
+      "id": "who",
+      "topic": "Who he is",
+      "text": "I live in India and am a student who has a passion for making innovative projects interacting with STEAM. I am in the science stream and love to solve problems.",
+      "keywords": [
+        "who",
+        "about",
+        "yourself",
+        "introduce",
+        "introduction",
+        "student",
+        "india",
+        "steam",
+        "science",
+        "stream",
+        "tell me about"
+      ],
+      "source": {
+        "label": "Who this is",
+        "url": "index.html#who"
+      }
+    },
+    {
+      "id": "school",
+      "topic": "School",
+      "text": "I am in Grade 9 IGCSE at VIBGYOR HIGH.",
+      "keywords": [
+        "school",
+        "grade",
+        "class",
+        "year",
+        "igcse",
+        "vibgyor",
+        "study",
+        "studying",
+        "studies",
+        "education"
+      ],
+      "source": {
+        "label": "Who this is",
+        "url": "index.html#who"
+      }
+    },
+    {
+      "id": "where",
+      "topic": "Where he lives",
+      "text": "I am in Vadodara, India.",
+      "keywords": [
+        "where",
+        "live",
+        "lives",
+        "city",
+        "country",
+        "located",
+        "location",
+        "from",
+        "vadodara",
+        "india",
+        "gujarat"
+      ],
+      "source": {
+        "label": "Get in touch",
+        "url": "about.html#contact"
+      }
+    },
+    {
+      "id": "contact",
+      "topic": "How to reach him",
+      "text": "You can reach me at nivedh.govil@outlook.com, or through the contact form at the bottom of the Blog page.",
+      "keywords": [
+        "contact",
+        "email",
+        "mail",
+        "reach",
+        "message",
+        "write",
+        "get in touch",
+        "address"
+      ],
+      "source": {
+        "label": "Get in touch",
+        "url": "about.html#contact"
+      }
+    },
+    {
+      "id": "goal",
+      "topic": "His goal",
+      "text": "My goal is to be a top-class innovator and to be a Nobel Prize winner.",
+      "keywords": [
+        "goal",
+        "goals",
+        "ambition",
+        "dream",
+        "future",
+        "want",
+        "aim",
+        "nobel",
+        "innovator",
+        "aspire"
+      ],
+      "source": {
+        "label": "Who this is",
+        "url": "index.html#who"
+      }
+    },
+    {
+      "id": "interests",
+      "topic": "The two sides",
+      "text": "There are two sides to what I do. On one, literature: articles, poems, essays and short stories. On the other, engineering: embedded systems, Arduino builds and CAD. One looks for the right words, the other for the right way round a problem.",
+      "keywords": [
+        "interests",
+        "hobbies",
+        "likes",
+        "passion",
+        "literature",
+        "engineering",
+        "both",
+        "sides",
+        "two",
+        "what do you do"
+      ],
+      "source": {
+        "label": "Words & circuits",
+        "url": "index.html#interests"
+      }
+    },
+    {
+      "id": "writing",
+      "topic": "His writing",
+      "text": "I write articles, poems, essays and short stories. There are seventeen pieces on the site: six articles, one essay, three poems and eight short stories.",
+      "keywords": [
+        "writing",
+        "write",
+        "writer",
+        "articles",
+        "poems",
+        "poetry",
+        "essays",
+        "stories",
+        "fiction",
+        "pieces",
+        "how many",
+        "written",
+        "wrote",
+        "how many"
+      ],
+      "source": {
+        "label": "Literary",
+        "url": "literary.html"
+      }
+    },
+    {
+      "id": "published",
+      "topic": "Where he has been published",
+      "text": "Three of my pieces have been published in Beyond the Box, and a story of mine is in BTB Quests Volume 2. I am part of my school editorial team, and I was a guest speaker at Greader's Club, where I conducted a session on blogging. I also write on Medium.",
+      "keywords": [
+        "published",
+        "publication",
+        "publish",
+        "beyond the box",
+        "btb",
+        "quests",
+        "medium",
+        "editorial",
+        "greader",
+        "speaker",
+        "blogging"
+      ],
+      "source": {
+        "label": "Writing highlights",
+        "url": "literary.html#highlights"
+      }
+    },
+    {
+      "id": "writing-hard",
+      "topic": "The hardest part of writing",
+      "text": "Sometimes the hardest thing is just choosing what to write about, as there are lots of ideas and topics. Another thing I face difficulty with is using language techniques like assonance. I guess I need to improve my vocabulary and the writer's effect.",
+      "keywords": [
+        "hardest",
+        "hard",
+        "difficult",
+        "struggle",
+        "writing",
+        "challenge",
+        "assonance",
+        "vocabulary",
+        "weakness"
+      ],
+      "source": {
+        "label": "What went wrong",
+        "url": "about.html"
+      }
+    },
+    {
+      "id": "builds",
+      "topic": "What he has built",
+      "text": "I have built an Arduino Radar using an ultrasonic sensor on a servo motor, a tutorial for it, an Arduino crane tutorial, and a Tiranga on an RGB LED that shows the saffron, white and green of the Indian flag. Each one has a video.",
+      "keywords": [
+        "build",
+        "builds",
+        "built",
+        "arduino",
+        "radar",
+        "crane",
+        "tiranga",
+        "led",
+        "rgb",
+        "electronics",
+        "projects",
+        "hardware",
+        "servo",
+        "ultrasonic"
+      ],
+      "source": {
+        "label": "Engineering",
+        "url": "engineering.html"
+      }
+    },
+    {
+      "id": "build-fail",
+      "topic": "When a build fails",
+      "text": "I try to think what went wrong. If I get it, then I fix it, or sometimes I just rework and try to think what could work out.",
+      "keywords": [
+        "fail",
+        "fails",
+        "failed",
+        "broken",
+        "wrong",
+        "debug",
+        "fix",
+        "stuck",
+        "crash",
+        "problem"
+      ],
+      "source": {
+        "label": "What went wrong",
+        "url": "about.html"
+      }
+    },
+    {
+      "id": "science-fair",
+      "topic": "Science exhibition",
+      "text": "I came second in a school science exhibition. We built a model on how rainwater harvesting can help in irrigation and prevent water wastage: the water from the roof of a house connects to the farm, which has pipes to help in drip irrigation.",
+      "keywords": [
+        "science",
+        "exhibition",
+        "fair",
+        "second",
+        "2nd",
+        "rainwater",
+        "harvesting",
+        "irrigation",
+        "model",
+        "competition"
+      ],
+      "source": {
+        "label": "Build highlights",
+        "url": "engineering.html"
+      }
+    },
+    {
+      "id": "robot",
+      "topic": "The robotic arm",
+      "text": "I am currently making a robotic arm. It is in progress, and the details are in its GitHub repository.",
+      "keywords": [
+        "robot",
+        "robotic",
+        "arm",
+        "making",
+        "current",
+        "currently",
+        "working on",
+        "in progress"
+      ],
+      "source": {
+        "label": "Build highlights",
+        "url": "engineering.html"
+      }
+    },
+    {
+      "id": "cad",
+      "topic": "CAD and design",
+      "text": "I use Tinkercad and Onshape for CAD designing. I am still a beginner, but aim for improving in the near future. I have modelled a dream backyard, a submarine, and a Demon Slayer inspired fidget spinner that I printed.",
+      "keywords": [
+        "cad",
+        "design",
+        "designs",
+        "3d",
+        "model",
+        "modelling",
+        "tinkercad",
+        "onshape",
+        "print",
+        "printed",
+        "spinner",
+        "submarine",
+        "backyard"
+      ],
+      "source": {
+        "label": "Designs",
+        "url": "designs.html"
+      }
+    },
+    {
+      "id": "electrical",
+      "topic": "Circuits and PCBs",
+      "text": "I draw schematics and PCB layouts in KiCad. One is an LDR controlled LED: during the night the switch automatically switches on because of the LDR.",
+      "keywords": [
+        "circuit",
+        "circuits",
+        "schematic",
+        "pcb",
+        "kicad",
+        "ldr",
+        "electrical",
+        "electronics",
+        "board",
+        "wiring"
+      ],
+      "source": {
+        "label": "Electrical",
+        "url": "electrical.html"
+      }
+    },
+    {
+      "id": "software",
+      "topic": "His software",
+      "text": "I have written SW-Crawl, a one-page CSS animation carrying a story called The Cosmic Spark; MathCanvas, a maths and physics explorer in Streamlit; Culina AI; Culinary Guide; and Hangman, a Python terminal game.",
+      "keywords": [
+        "software",
+        "code",
+        "coding",
+        "programming",
+        "python",
+        "apps",
+        "app",
+        "sw-crawl",
+        "crawl",
+        "cosmic",
+        "spark",
+        "mathcanvas",
+        "culina",
+        "culinary",
+        "hangman",
+        "streamlit"
+      ],
+      "source": {
+        "label": "Software",
+        "url": "software.html"
+      }
+    },
+    {
+      "id": "languages",
+      "topic": "What he codes in",
+      "text": "The projects on this site are written in Python, HTML and CSS, with Streamlit, NumPy and Matplotlib on the Python side.",
+      "keywords": [
+        "language",
+        "languages",
+        "python",
+        "html",
+        "css",
+        "javascript",
+        "framework",
+        "tools",
+        "stack",
+        "technologies",
+        "programming",
+        "program",
+        "code in",
+        "written in"
+      ],
+      "source": {
+        "label": "Software",
+        "url": "software.html"
+      }
+    },
+    {
+      "id": "checkpoint",
+      "topic": "Checkpoint results",
+      "text": "In the Cambridge Lower Secondary Checkpoint I got 50 out of 50 in Maths, 50 out of 50 in Science and 41 out of 50 in English.",
+      "keywords": [
+        "checkpoint",
+        "cambridge",
+        "marks",
+        "result",
+        "results",
+        "score",
+        "exam",
+        "maths",
+        "math",
+        "science",
+        "english",
+        "grade"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html#checkpoint"
+      }
+    },
+    {
+      "id": "finance",
+      "topic": "National Finance Olympiad",
+      "text": "I got All-India Rank 112 in the National Finance Olympiad.",
+      "keywords": [
+        "finance",
+        "olympiad",
+        "rank",
+        "air",
+        "112",
+        "national",
+        "india"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html#finance"
+      }
+    },
+    {
+      "id": "bhabha",
+      "topic": "Homi Bhabha certificate",
+      "text": "I was awarded a Homi Bhabha merit certificate in 2023.",
+      "keywords": [
+        "homi",
+        "bhabha",
+        "certificate",
+        "merit",
+        "2023",
+        "award"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html#bhabha"
+      }
+    },
+    {
+      "id": "taekwondo",
+      "topic": "Taekwondo",
+      "text": "I am a green belt in Taekwondo.",
+      "keywords": [
+        "taekwondo",
+        "belt",
+        "green",
+        "martial",
+        "sport",
+        "sports",
+        "karate"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html#belt"
+      }
+    },
+    {
+      "id": "isso",
+      "topic": "Olympiads at school",
+      "text": "I have participated in the SOF Olympiads, Spell Bees and other STEAM competitions. I was in the top 10 in the International Social Studies Olympiad, and also in the top 50 in the IMO the same year.",
+      "keywords": [
+        "isso",
+        "sof",
+        "olympiad",
+        "olympiads",
+        "imo",
+        "spell",
+        "bee",
+        "social",
+        "studies",
+        "medal",
+        "top"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html"
+      }
+    },
+    {
+      "id": "art",
+      "topic": "His art",
+      "text": "I draw and paint. There are two pieces on the site: a house at night, and a taped banana.",
+      "keywords": [
+        "art",
+        "draw",
+        "drawing",
+        "paint",
+        "painting",
+        "artwork",
+        "gallery",
+        "banana",
+        "house"
+      ],
+      "source": {
+        "label": "Art",
+        "url": "art.html"
+      }
+    },
+    {
+      "id": "books",
+      "topic": "Books he recommends",
+      "text": "I recommend Percy Jackson and the Heroes of Olympus by Rick Riordan, the Ram Chandra series by Amish Tripathi, the William Warwick series by Jeffrey Archer, How to Build an Epic Career by Ankur Warikoo, The Richest Man in Babylon by George S. Clason, and Everything You Need to Ace World History in One Big Fat Notebook.",
+      "keywords": [
+        "book",
+        "books",
+        "read",
+        "reading",
+        "recommend",
+        "recommendation",
+        "favourite",
+        "favorite",
+        "author",
+        "percy",
+        "jackson",
+        "riordan",
+        "warikoo",
+        "babylon"
+      ],
+      "source": {
+        "label": "Books to recommend",
+        "url": "books.html"
+      }
+    },
+    {
+      "id": "setback",
+      "topic": "A setback",
+      "text": "I did not top my class one year. I learned from my mistakes, I improved, and continued to work harder. That's my advice to all of you: if one mistake happens, learn from it and then move on.",
+      "keywords": [
+        "setback",
+        "failure",
+        "mistake",
+        "class",
+        "top",
+        "advice",
+        "learn",
+        "improve",
+        "bad",
+        "worst"
+      ],
+      "source": {
+        "label": "What went wrong",
+        "url": "about.html"
+      }
+    },
+    {
+      "id": "github",
+      "topic": "GitHub",
+      "text": "My code is at github.com/NivedhGovil, and the contribution chart on the Software page is refreshed once a day.",
+      "keywords": [
+        "github",
+        "repo",
+        "repository",
+        "repositories",
+        "code",
+        "profile",
+        "commits",
+        "contributions"
+      ],
+      "source": {
+        "label": "On GitHub",
+        "url": "software.html#github"
+      }
+    },
+    {
+      "id": "youtube",
+      "topic": "Videos",
+      "text": "The videos of my builds are on my YouTube channel, youtube.com/@nivedhgovil.",
+      "keywords": [
+        "youtube",
+        "video",
+        "videos",
+        "channel",
+        "watch",
+        "recording"
+      ],
+      "source": {
+        "label": "Engineering",
+        "url": "engineering.html"
+      }
+    }
+  ]
+}

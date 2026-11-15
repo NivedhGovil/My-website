@@ -516,6 +516,214 @@
     }
   })();
 
+  /* ---------------- Ask about me ----------------
+     A retrieval chatbot, and only the retrieval half of one. There is no
+     language model here and nothing is generated: a static site cannot
+     hold an API key, and a key in a page is a key anyone can take. So
+     this scores the question against assets/knowledge.json -- every
+     entry of which is lifted off a page of this site -- and answers with
+     the closest passage, attributed and linked.
+
+     That is the whole point of the design rather than a shortcut: it
+     cannot invent an answer, because the only sentences it can say are
+     ones already written. Below its confidence threshold it says it does
+     not know and hands the question to the contact form, which is a real
+     mailto, not a pretend send. */
+  (function () {
+    var panel = document.querySelector('[data-ask]');
+    if (!panel) return;
+
+    var log = panel.querySelector('[data-ask-log]');
+    var form = panel.querySelector('[data-ask-form]');
+    var input = panel.querySelector('[data-ask-input]');
+    var chips = panel.querySelector('[data-ask-chips]');
+    var entries = null;
+    var ready = false;
+
+    /* Words carried by almost every question, which would otherwise
+       decide the match on their own. */
+    var STOP = {};
+    ('a an and are as at be but by can could did do does for from has have he her his how i if in is it its me my of on or our she that the their them then there these they this to was what when where which who whom why will with you your your nivedh his him about tell say know').split(' ')
+      .forEach(function (w) { STOP[w] = true; });
+
+    function words(s) {
+      return String(s).toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, ' ')
+        .split(/\s+/)
+        .filter(function (w) { return w.length > 1 && !STOP[w]; });
+    }
+
+    /* A light stem, so "builds" finds "build" and "studies" finds
+       "study". Not a real stemmer, and it does not need to be. */
+    function stem(w) {
+      return w.replace(/(ies)$/, 'y').replace(/(sses|shes|ches)$/, '').replace(/([^s])s$/, '$1');
+    }
+
+    /* One word is a near-prefix of the other, and they are close enough
+       in length that the shorter is a form of the longer rather than a
+       different word that happens to start the same way. */
+    function near(a, b) {
+      if (Math.abs(a.length - b.length) > 2) return false;
+      return a.indexOf(b) === 0 || b.indexOf(a) === 0;
+    }
+
+    function score(queryWords, entry) {
+      var hits = 0, matched = 0;
+      queryWords.forEach(function (raw) {
+        var w = stem(raw), best = 0;
+        entry._keys.forEach(function (k) {
+          /* A keyword is what the entry was written to be found by, so
+             it counts for more than the same word appearing in prose. */
+          if (k === w) { best = Math.max(best, 3); return; }
+          /* A prefix only counts when the two words are nearly the same
+             length. Without that guard "math" matched "mathcanvas" and
+             "art" matched "articles", and both sent the question to
+             entirely the wrong entry. */
+          if (near(k, w)) best = Math.max(best, 2);
+        });
+        entry._words.forEach(function (t) {
+          if (t === w) best = Math.max(best, 1);
+          else if (w.length > 3 && near(t, w)) best = Math.max(best, 0.6);
+        });
+        if (best > 0) matched++;
+        hits += best;
+      });
+      if (!queryWords.length) return 0;
+      /* Divided by the question's length, so a long question does not
+         beat a short one just by having more words in it, and weighted
+         by how much of the question was recognised at all. */
+      return (hits / queryWords.length) * (matched / queryWords.length);
+    }
+
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text) n.textContent = text;
+      return n;
+    }
+
+    function add(who, build) {
+      var row = el('div', 'ask-msg ask-' + who);
+      build(row);
+      log.appendChild(row);
+      row.scrollIntoView({ block: 'nearest' });
+      return row;
+    }
+
+    function say(text) {
+      return add('bot', function (row) { row.appendChild(el('p', null, text)); });
+    }
+
+    /* When it does not know, it does the one useful thing it can: carry
+       the question down to the contact form and leave it there, ready to
+       send. Nothing is sent by this page and nothing pretends to be. */
+    function dontKnow(question) {
+      add('bot', function (row) {
+        row.appendChild(el('p', null,
+          'I do not have an answer to that one in my notes, and I would rather ' +
+          'say so than guess. I can pass it to Nivedh instead.'));
+        var btn = el('button', 'ask-handoff', 'Put this question in the form below');
+        btn.type = 'button';
+        btn.addEventListener('click', function () { handOff(question, btn); });
+        row.appendChild(btn);
+      });
+    }
+
+    function handOff(question, btn) {
+      var message = document.getElementById('cf-message');
+      var contact = document.querySelector('.contact-form');
+      if (!message || !contact) return;
+
+      var existing = message.value.trim();
+      message.value = (existing ? existing + '\n\n' : '') + question;
+      contact.scrollIntoView({ behavior: prefersCalm() ? 'auto' : 'smooth', block: 'center' });
+      /* Focus goes to the next thing they have to fill in, not to the
+         field we just filled. */
+      var name = document.getElementById('cf-name');
+      (name && !name.value ? name : message).focus();
+
+      btn.disabled = true;
+      btn.textContent = 'Added to the form below';
+      say('Put your name and email in with it and press Send, and it will ' +
+          'open in your mail app addressed to Nivedh.');
+    }
+
+    function prefersCalm() {
+      return matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function answer(question) {
+      if (!ready) { say('Still loading the notes. Try that again in a moment.'); return; }
+
+      var q = words(question).map(stem);
+      if (!q.length) { dontKnow(question); return; }
+
+      var best = null, bestScore = 0, second = 0;
+      entries.forEach(function (entry) {
+        var s = score(q, entry);
+        if (s > bestScore) { second = bestScore; bestScore = s; best = entry; }
+        else if (s > second) { second = s; }
+      });
+
+      /* The threshold is deliberately not low. A wrong confident answer
+         about a real person is worse than no answer. */
+      if (!best || bestScore < 0.55) { dontKnow(question); return; }
+
+      add('bot', function (row) {
+        row.appendChild(el('p', null, best.text));
+        var src = el('p', 'ask-src');
+        src.appendChild(document.createTextNode('From '));
+        var a = document.createElement('a');
+        a.href = best.source.url;
+        a.textContent = best.source.label;
+        src.appendChild(a);
+        src.appendChild(document.createTextNode(' on this site.'));
+        row.appendChild(src);
+      });
+    }
+
+    function ask(question) {
+      question = String(question || '').trim();
+      if (!question) return;
+      add('you', function (row) { row.appendChild(el('p', null, question)); });
+      input.value = '';
+      /* A beat before the reply, so the two messages do not land as one
+         block and the live region announces them separately. */
+      setTimeout(function () { answer(question); }, prefersCalm() ? 0 : 260);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      ask(input.value);
+    });
+
+    chips.addEventListener('click', function (e) {
+      var chip = e.target.closest('[data-ask-chip]');
+      if (chip) ask(chip.textContent);
+    });
+
+    fetch(base + 'assets/knowledge.json', { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        entries = (data && data.entries) || [];
+        if (!entries.length) throw new Error('empty');
+        entries.forEach(function (entry) {
+          entry._keys = (entry.keywords || []).map(function (k) { return stem(k.toLowerCase()); });
+          entry._words = words(entry.text + ' ' + (entry.topic || '')).map(stem);
+        });
+        ready = true;
+        say('Ask me something about Nivedh — his writing, his builds, his ' +
+            'code or his marks. I answer from what this site says, and if I ' +
+            'do not know I will pass the question on.');
+      })
+      .catch(function () {
+        say('I could not load my notes just now. The contact form below still works.');
+      });
+  })();
+
   /* ---------------- Artwork lightbox ----------------
      A gallery you cannot look at closely is not much of a gallery. */
   /* Anything with a picture worth looking at closely: artwork, CAD models,

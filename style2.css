@@ -2932,6 +2932,164 @@ article.prose ol.sources li { margin-bottom: 12px; }
 .qa .answer p { margin: 0 0 14px; }
 .qa .answer p:last-child, .qa .answer .fill { margin-bottom: 0; }
 
+/* ---------- Ask about me ----------
+   A chat panel that looks like a conversation without pretending to be a
+   person: the replies are plainly sourced, each one carrying the page it
+   was taken from. */
+.ask {
+  margin: 0 0 var(--s-6);
+  padding: var(--s-4);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* The log grows to fit and then scrolls, so the panel does not shove the
+   rest of the page down as a conversation goes on. */
+.ask-log {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: var(--s-2) 2px;
+  margin-bottom: var(--s-3);
+}
+.ask-log:empty { display: none; }
+
+.ask-msg { margin-bottom: var(--s-3); max-width: 46ch; }
+.ask-msg p { margin: 0; font-size: var(--t-base); line-height: 1.6; text-wrap: pretty; }
+
+/* The bubble is the answer only. The source line underneath is a
+   caption on it, not a second thing said. */
+.ask-bot p:not(.ask-src) {
+  padding: 11px 15px;
+  border-radius: 16px 16px 16px 4px;
+  background: var(--paper-alt);
+  color: var(--ink);
+}
+
+/* The reader's own words sit on the other side, in the accent, so a
+   glance tells you who said what without reading either. */
+.ask-you {
+  margin-left: auto;
+  text-align: right;
+}
+.ask-you p {
+  display: inline-block;
+  text-align: left;
+  padding: 11px 15px;
+  border-radius: 16px 16px 4px 16px;
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* Where the answer came from. Every reply carries one: an answer with no
+   source is an answer nobody can check. */
+.ask-src {
+  margin-top: 6px !important;
+  padding-left: 15px;
+  color: var(--ink-soft);
+  font-size: var(--t-meta) !important;
+}
+.ask-src a { color: var(--accent); font-weight: 600; }
+
+.ask-handoff {
+  margin: 10px 0 0 15px;
+  padding: 8px 15px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--d-fast) var(--ease), color var(--d-fast) var(--ease);
+}
+.ask-handoff:disabled {
+  border-color: var(--line);
+  color: var(--ink-soft);
+  cursor: default;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ask-handoff:not(:disabled):hover { background: var(--accent); color: var(--paper); }
+}
+
+.ask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: var(--s-3);
+}
+.ask-chips-label {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ask-chips button {
+  padding: 6px 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-size: var(--t-meta);
+  cursor: pointer;
+  transition: border-color var(--d-fast) var(--ease), color var(--d-fast) var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ask-chips button:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+.ask-form { display: flex; gap: 10px; }
+
+.ask-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--t-base);
+}
+.ask-form input::placeholder { color: var(--ink-soft); }
+
+.ask-send {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--paper);
+  cursor: pointer;
+  transition: background var(--d-fast) var(--ease);
+}
+.ask-send svg { width: 19px; height: 19px; }
+@media (hover: hover) and (pointer: fine) {
+  .ask-send:hover { background: var(--ink); }
+}
+
+.ask-note {
+  margin: var(--s-3) 0 0;
+  color: var(--ink-soft);
+  font-size: var(--t-meta);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+@media (max-width: 560px) {
+  .ask { padding: var(--s-3); }
+  .ask-msg { max-width: 100%; }
+  .ask-log { max-height: 300px; }
+}
+
+
 /* ---------- Get in touch ---------- */
 .contact-split {
   display: grid;
