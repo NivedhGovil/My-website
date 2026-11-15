@@ -559,7 +559,18 @@
       { name: 'engineering', type: 'dir',  url: 'engineering.html',
         desc: 'Things built: Arduino, electronics and CAD.',
         kids: [
-          { name: 'builds.txt',     type: 'page', url: 'engineering.html', desc: 'Arduino builds, with the video from each bench.' },
+          { name: 'builds', type: 'dir', url: 'engineering.html',
+            desc: 'Arduino builds, with the video from each bench.',
+            kids: [
+              { name: 'radar.txt',          type: 'page', url: 'engineering.html#radar',
+                desc: 'Arduino Radar: an ultrasonic sensor on a servo, detecting objects at different angles.' },
+              { name: 'radar-tutorial.txt', type: 'page', url: 'engineering.html#radar-tutorial',
+                desc: 'A step-by-step demonstration of building the radar: components, wiring and setup.' },
+              { name: 'crane-tutorial.txt', type: 'page', url: 'engineering.html#crane-tutorial',
+                desc: 'Building an Arduino-controlled mini crane, assembly and connections.' },
+              { name: 'tiranga.txt',        type: 'page', url: 'engineering.html#tiranga',
+                desc: 'An RGB LED showing the flag\u2019s saffron, white and green.' }
+            ] },
           { name: 'designs.txt',    type: 'page', url: 'designs.html',     desc: 'CAD models drawn before anything is built.' },
           { name: 'electrical.txt', type: 'page', url: 'electrical.html',  desc: 'Schematics, PCB layouts and circuit diagrams.' }
         ] },

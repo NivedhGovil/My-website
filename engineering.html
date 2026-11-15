@@ -98,35 +98,28 @@
   </div>
 
 
-  <div class="tabs">
-   
-    <input type="radio" name="build" id="build-1" checked>
-    <input type="radio" name="build" id="build-2">
-    <input type="radio" name="build" id="build-3">
-    <input type="radio" name="build" id="build-4">
+  <!-- Four builds, four compositions. They used to be four identical
+       panels behind radio tabs, which meant three of them were hidden at
+       any moment and the one on screen looked like the others. Now all
+       four are on the page at once and each is shaped by what it is: the
+       radar is the feature, the two tutorials are a pair of lessons, and
+       the flag project takes a band of its own in its own three colours.
+       Every title, description, component list and link is unchanged. -->
+  <div class="builds">
 
-    <div class="tab-labels">
-      <label for="build-1">Arduino Radar</label>
-      <label for="build-2">Radar Tutorial</label>
-      <label for="build-3">Crane Tutorial</label>
-      <label for="build-4">Tiranga on RGB LED</label>
-    </div>
-
-    <div class="panels">
-    <div class="panel">
-      <article class="project">
+    <article class="build build-feature b-radar" id="radar">
+      <div class="build-media">
+        <figure class="clip">
+          <video controls preload="metadata" playsinline
+                 src="assets/videos/arduino-radar-1.mp4"></video>
+          <figcaption>17s</figcaption>
+        </figure>
+      </div>
+      <div class="build-body">
+        <span class="build-kind">The build</span>
         <h3>Arduino Radar</h3>
         <p class="lede">An Arduino-based radar system using an ultrasonic sensor mounted on a servo motor to detect objects at different angles.</p>
-
-        <div class="clips">
-          <figure class="clip">
-            <video controls preload="metadata" playsinline
-                   src="assets/videos/arduino-radar-1.mp4"></video>
-            <figcaption>17s</figcaption>
-          </figure>
-        </div>
-
-        <div class="project-foot">
+        <div class="build-foot">
           <div>
             <span class="col-label">Built with</span>
             <ul class="tags">
@@ -139,79 +132,73 @@
             <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
           </div>
         </div>
-      </article>
-    </div>
+      </div>
+    </article>
 
-    <div class="panel">
-      <article class="project">
+    <article class="build b-tutorial" id="radar-tutorial">
+      <div class="build-body">
+        <span class="build-kind">Tutorial</span>
         <h3>Arduino Radar Tutorial</h3>
         <p class="lede">A step-by-step demonstration of building an Arduino radar, showing the electronic components, wiring, and setup used for the project.</p>
-
-        <div class="clips">
-          <figure class="clip">
-            <video controls preload="metadata" playsinline
-                   src="assets/videos/arduino-radar-2.mp4"></video>
-            <figcaption>25s</figcaption>
-          </figure>
+      </div>
+      <div class="build-media">
+        <figure class="clip">
+          <video controls preload="metadata" playsinline
+                 src="assets/videos/arduino-radar-2.mp4"></video>
+          <figcaption>25s</figcaption>
+        </figure>
+      </div>
+      <div class="build-foot">
+        <div>
+          <span class="col-label">Built with</span>
+          <ul class="tags">
+            <li>Arduino</li>
+            <li>Ultrasonic sensor</li>
+            <li>Servo motor</li>
+          </ul>
         </div>
-
-        <div class="project-foot">
-          <div>
-            <span class="col-label">Built with</span>
-            <ul class="tags">
-              <li>Arduino</li>
-              <li>Ultrasonic sensor</li>
-              <li>Servo motor</li>
-            </ul>
-          </div>
-          <div class="links">
-            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
-          </div>
+        <div class="links">
+          <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
         </div>
-      </article>
-    </div>
+      </div>
+    </article>
 
-    <div class="panel">
-      <article class="project">
+    <article class="build b-crane" id="crane-tutorial">
+      <div class="build-body">
+        <span class="build-kind">Assembly</span>
         <h3>Arduino Crane Tutorial</h3>
         <p class="lede">A tutorial demonstrating how to build an Arduino-controlled mini crane, including the assembly and connection of its electronic components.</p>
-
-        <div class="clips">
-          <figure class="clip">
-            <video controls preload="metadata" playsinline
-                   src="assets/videos/arduino-crane-2.mp4"></video>
-            <figcaption>42s</figcaption>
-          </figure>
+      </div>
+      <div class="build-media">
+        <figure class="clip">
+          <video controls preload="metadata" playsinline
+                 src="assets/videos/arduino-crane-2.mp4"></video>
+          <figcaption>42s</figcaption>
+        </figure>
+      </div>
+      <div class="build-foot">
+        <div>
+          <span class="col-label">Built with</span>
+          <ul class="tags">
+            <li>Arduino</li>
+          </ul>
         </div>
-
-        <div class="project-foot">
-          <div>
-            <span class="col-label">Built with</span>
-            <ul class="tags">
-              <li>Arduino</li>
-            </ul>
-          </div>
-          <div class="links">
-            <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
-          </div>
+        <div class="links">
+          <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
         </div>
-      </article>
-    </div>
+      </div>
+    </article>
 
-    <div class="panel">
-      <article class="project">
+    <article class="build build-wide b-tiranga" id="tiranga">
+      <!-- The three bands are the three colours the project puts on the
+           LED, and nothing more: a still card, not a simulation, and it
+           does not pretend to drive the real thing. -->
+      <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="build-body">
+        <span class="build-kind">Colour</span>
         <h3>Tiranga on RGB LED &#127470;&#127475;</h3>
         <p class="lede">An Arduino project that uses an RGB LED to display the colours of the Indian national flag &mdash; saffron, white, and green.</p>
-
-        <div class="clips">
-          <figure class="clip">
-            <video controls preload="metadata" playsinline
-                   src="assets/videos/tiranga-rgb-led.mp4"></video>
-            <figcaption>33s</figcaption>
-          </figure>
-        </div>
-
-        <div class="project-foot">
+        <div class="build-foot">
           <div>
             <span class="col-label">Built with</span>
             <ul class="tags">
@@ -223,9 +210,16 @@
             <a href="https://www.youtube.com/@nivedhgovil" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
           </div>
         </div>
-      </article>
-    </div>
-    </div>
+      </div>
+      <div class="build-media">
+        <figure class="clip">
+          <video controls preload="metadata" playsinline
+                 src="assets/videos/tiranga-rgb-led.mp4"></video>
+          <figcaption>33s</figcaption>
+        </figure>
+      </div>
+    </article>
+
   </div>
 
   <div class="big-head">
