@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "note": "Every entry here is taken from a page of this site. Nothing in this file says anything the site does not already say. To teach the chatbot something new, add an entry: give it text in Nivedh's own words, the words someone might search with, and the page it came from.",
   "entries": [
     {
@@ -156,7 +156,7 @@
     {
       "id": "published",
       "topic": "Where he has been published",
-      "text": "Three of my pieces have been published in Beyond the Box, and a story of mine is in BTB Quests Volume 2. I am part of my school editorial team, and I was a guest speaker at Greader's Club, where I conducted a session on blogging. I also write on Medium.",
+      "text": "Three of my pieces have been published in Beyond the Box, and a story of mine is in BTB Quests Volume 2. My essay Planted, But Never Prosperous was published on Youth Ki Awaaz in November 2026. I am part of my school editorial team, and I was a guest speaker at Greader's Club, where I conducted a session on blogging. I also write on Medium.",
       "keywords": [
         "published",
         "publication",
@@ -168,7 +168,13 @@
         "editorial",
         "greader",
         "speaker",
-        "blogging"
+        "blogging",
+        "youth ki awaaz",
+        "youthkiawaaz",
+        "yka",
+        "planted",
+        "prosperous",
+        "agricultural"
       ],
       "source": {
         "label": "Writing highlights",
@@ -576,6 +582,118 @@
       "source": {
         "label": "Engineering",
         "url": "engineering.html"
+      }
+    },
+    {
+      "id": "french",
+      "topic": "French Champions League",
+      "text": "I was International Rank 18 in the French Champions League in 2024-25.",
+      "keywords": [
+        "french",
+        "language",
+        "champions",
+        "league",
+        "rank",
+        "18",
+        "2024",
+        "2025",
+        "competition"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html#french"
+      }
+    },
+    {
+      "id": "mathfest",
+      "topic": "Math Ingenious Fest",
+      "text": "I have won my school's Math Ingenious Fest twice.",
+      "keywords": [
+        "math",
+        "maths",
+        "ingenious",
+        "fest",
+        "school",
+        "won",
+        "winner",
+        "twice",
+        "two",
+        "competition"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html#mathfest"
+      }
+    },
+    {
+      "id": "kuari",
+      "topic": "Kuari Pass",
+      "text": "I trekked to Kuari Pass, in the Garhwal Himalaya, at 3,815 metres.",
+      "keywords": [
+        "trek",
+        "trekked",
+        "trekking",
+        "hike",
+        "hiking",
+        "kuari",
+        "pass",
+        "himalaya",
+        "himalayan",
+        "mountain",
+        "mountains",
+        "garhwal",
+        "altitude",
+        "outdoors"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html#kuari"
+      }
+    },
+    {
+      "id": "memberships",
+      "topic": "Memberships",
+      "text": "I am a member of the Association for Nepal and Himalayan Studies, and a member of the NASA Virtual Guest Program.",
+      "keywords": [
+        "member",
+        "membership",
+        "association",
+        "nepal",
+        "himalayan",
+        "studies",
+        "nasa",
+        "virtual",
+        "guest",
+        "program",
+        "space",
+        "anhs"
+      ],
+      "source": {
+        "label": "Achievements",
+        "url": "achievements.html"
+      }
+    },
+    {
+      "id": "elsewhere",
+      "topic": "Where to find him online",
+      "text": "My writing is on Youth Ki Awaaz and Medium, my code is on GitHub, my build videos are on YouTube, my 3D models are on MakerWorld, and I am on Hack Club's Lapse.",
+      "keywords": [
+        "online",
+        "elsewhere",
+        "profile",
+        "profiles",
+        "accounts",
+        "social",
+        "find",
+        "links",
+        "makerworld",
+        "lapse",
+        "hack club",
+        "hackclub"
+      ],
+      "source": {
+        "label": "Elsewhere",
+        "url": "index.html#elsewhere"
       }
     }
   ]

@@ -45,7 +45,7 @@ window.SEARCH_INDEX = [
 "url": "pieces/planted-but-never-prosperous.html",
 "section": "Literary",
 "kind": "Essay",
-"meta": "Essay \u00b7 IPA \u00b7 2026",
+"meta": "Essay \u00b7 IPA \u00b7 2026 \u00b7 Published on Youth Ki Awaaz",
 "text": "Nearly half of India works the land and produces under a fifth of its economy. An essay on the yield gap behind that arithmetic, the poverty cycle it feeds, and what students, lenders and universities could actually do about it."
 },
 {

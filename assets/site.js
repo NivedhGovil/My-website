@@ -974,10 +974,12 @@
         (function step(now) {
           if (started === null) started = now;
           var t = Math.min(1, (now - started) / span);
-          /* Decelerating, so the last few numbers are readable. */
-          el.textContent = String(Math.round(target * (1 - Math.pow(1 - t, 3))));
+          /* Decelerating, so the last few numbers are readable. The
+             thousands separator comes back at every step, so 3815 ends
+             as "3,815" rather than losing the comma it started with. */
+          el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3))).toLocaleString();
           if (t < 1) requestAnimationFrame(step);
-          else el.textContent = String(target);
+          else el.textContent = target.toLocaleString();
         })(performance.now());
       });
     }
