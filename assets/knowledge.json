@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-28",
   "note": "Every entry here is taken from a page of this site. Nothing in this file says anything the site does not already say. To teach the chatbot something new, add an entry: give it text in Nivedh's own words, the words someone might search with, and the page it came from.",
   "entries": [
     {
@@ -335,7 +335,7 @@
     {
       "id": "software",
       "topic": "His software",
-      "text": "I have written SW-Crawl, a one-page CSS animation carrying a story called The Cosmic Spark; MathCanvas, a maths and physics explorer in Streamlit; Culina AI; Culinary Guide; and Hangman, a Python terminal game.",
+      "text": "I have written SW-Crawl, a one-page CSS animation carrying a story called The Cosmic Spark; MathCanvas, a maths and physics explorer in Streamlit; Culina AI; Culinary Guide; Hangman, a Python terminal game; and the Weekly Weather Analyzer.",
       "keywords": [
         "software",
         "code",
@@ -694,6 +694,110 @@
       "source": {
         "label": "Elsewhere",
         "url": "index.html#elsewhere"
+      }
+    },
+    {
+      "id": "weather",
+      "topic": "Weekly Weather Analyzer",
+      "text": "The Weekly Weather Analyzer asks for a city, fetches the past seven days of hourly temperature for it from the free Open-Meteo API, works out the daily minimum, mean, median and maximum, writes both the raw hours and the summary out as CSV, and plots the four statistics as a line chart. It is one Python file using requests, pandas and Matplotlib.",
+      "keywords": [
+        "weather",
+        "analyzer",
+        "analyser",
+        "temperature",
+        "city",
+        "open-meteo",
+        "meteo",
+        "csv",
+        "chart",
+        "pandas",
+        "matplotlib",
+        "requests",
+        "api",
+        "weekly",
+        "forecast"
+      ],
+      "source": {
+        "label": "Software",
+        "url": "software.html"
+      }
+    },
+    {
+      "id": "contributions",
+      "topic": "Open source contributions",
+      "text": "I have sent pull requests to other people's repositories. A drawing of Orpheus, Hack Club's mascot, was merged into hackclub/dinosaurs. Edits to a short astrophysics course were merged into parshwa282011/Astronomy-Astrophysics. A pull request adding my Weekly Weather Analyzer to practical-tutorials/project-based-learning is still open. A game called Past the Patrol was submitted to hackclub/sprig and closed without being merged.",
+      "keywords": [
+        "contribution",
+        "contributions",
+        "contributed",
+        "open",
+        "source",
+        "opensource",
+        "pull",
+        "request",
+        "pr",
+        "merged",
+        "orpheus",
+        "dinosaur",
+        "dinosaurs",
+        "hack",
+        "club",
+        "hackclub",
+        "sprig",
+        "patrol",
+        "astrophysics",
+        "astronomy",
+        "project-based",
+        "tutorials",
+        "draw",
+        "drawing",
+        "drew"
+      ],
+      "source": {
+        "label": "Contributions",
+        "url": "software.html#contributions"
+      }
+    },
+    {
+      "id": "kaggle",
+      "topic": "Kaggle",
+      "text": "I completed Kaggle's Intro to Machine Learning course. In its competition, the Housing Prices Competition for Kaggle Learn Users, my place on the leaderboard is 1,584.",
+      "keywords": [
+        "kaggle",
+        "machine",
+        "learning",
+        "ml",
+        "course",
+        "competition",
+        "leaderboard",
+        "rank",
+        "housing",
+        "prices",
+        "1584",
+        "model"
+      ],
+      "source": {
+        "label": "Courses and competitions",
+        "url": "software.html#contributions"
+      }
+    },
+    {
+      "id": "githubskills",
+      "topic": "GitHub Skills",
+      "text": "I completed GitHub's own Introduction to GitHub exercise, on branches, commits and pull requests.",
+      "keywords": [
+        "github",
+        "skills",
+        "introduction",
+        "exercise",
+        "course",
+        "branches",
+        "commits",
+        "certificate"
+      ],
+      "source": {
+        "label": "Courses and competitions",
+        "url": "software.html#contributions"
       }
     }
   ]

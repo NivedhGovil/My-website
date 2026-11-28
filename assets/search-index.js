@@ -273,6 +273,14 @@ window.SEARCH_INDEX = [
 "text": "The word-guessing game, written in Python and played in the terminal. The computer picks a word at random, you guess one letter at a time, and every letter that is not in the word costs you an attempt. It is a single file that needs nothing beyond Python itself, and I packaged it with PyInstaller so it can be run on Windows without installing anything first."
 },
 {
+"title": "Weekly Weather Analyzer",
+"url": "software.html",
+"section": "Software",
+"kind": "Software",
+"meta": "Python, requests, pandas, Matplotlib",
+"text": "Ask it for a city and it fetches the past seven days of hourly temperature for that place from the free Open-Meteo API, works out the minimum, mean, median and maximum for each day, writes both the raw hours and the daily summary out as CSV, and plots the four statistics as a line chart. It is one Python file on top of requests, pandas and Matplotlib."
+},
+{
 "title": "Literary",
 "url": "literary.html",
 "section": "Literary",

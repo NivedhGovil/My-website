@@ -1989,6 +1989,138 @@ main.wrap > .cards:last-of-type { margin-bottom: 76px; }
 }
 
 .piece-list, .book-list { list-style: none; margin: 30px 0 76px; padding: 0; }
+/* ---------- A project with a picture of its output ----------
+   The weather analyzer draws a chart, so the card shows the chart. */
+.sw-shot {
+  flex: 1 1 42%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: var(--s-3);
+  border-left: 1px solid var(--line);
+  background: var(--paper);
+}
+.sw-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Contributions ----------
+   Work sent to other people's repositories. Each row carries the state
+   of its pull request, in words as well as in colour, because the state
+   is the honest part: one of these was merged, one is still open and one
+   was closed without being merged, and the page says so. */
+.contribs {
+  list-style: none;
+  display: grid;
+  gap: var(--s-3);
+  margin: 0 0 var(--s-6);
+  padding: 0;
+}
+
+.contrib {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* The left edge in the row's own hue: enough to tell the rows apart
+   while scanning, without colouring the whole card. */
+.contrib::before {
+  content: "";
+  flex: 0 0 4px;
+  background: var(--card-accent, var(--accent));
+}
+
+.contrib-body { flex: 1; padding: var(--s-4); min-width: 0; }
+
+/* The repository, in monospace, because that is what it is. */
+.contrib-repo {
+  margin: 0 0 6px !important;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.02em;
+}
+.contrib-repo a { color: var(--card-accent, var(--accent)); font-weight: 600; }
+
+.contrib h3 {
+  margin: 0 0 8px;
+  font-size: var(--t-sm);
+  letter-spacing: -0.01em;
+}
+.contrib-body > p:not(.contrib-repo):not(.contrib-meta) {
+  margin: 0 0 var(--s-3);
+  color: var(--ink-soft);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  text-wrap: pretty;
+  max-width: 68ch;
+}
+
+.contrib-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 !important;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+}
+.contrib-meta a { color: var(--ink-soft); }
+.pr-when { color: var(--ink-soft); }
+
+/* The state of the pull request. The word carries it; the colour only
+   agrees with the word, so nothing here depends on seeing colour. */
+.pr-state {
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.s-merged { background: var(--c-software-tt); color: var(--c-software); }
+.s-open   { background: var(--c-achievements-tt); color: var(--c-achievements); }
+/* 12% of danger behind danger gave 4.42:1, just under AA. The paler
+   ground clears it with the same two colours. */
+.s-closed { background: color-mix(in oklab, var(--danger) 7%, transparent); color: var(--danger); }
+.s-done   { background: var(--c-research-tt); color: var(--c-research); }
+
+/* The drawing sits beside its row rather than above it, on its own
+   paper, because it is a picture on a page and not a banner. */
+.contrib-art {
+  flex: 0 0 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: var(--s-3);
+  border-right: 1px solid var(--line);
+  background: var(--paper);
+}
+.contrib-art img { display: block; width: 100%; height: auto; }
+
+.contrib-stat { margin: 0 0 var(--s-3) !important; }
+.contrib-stat .stat-num { font-size: var(--t-lg); }
+
+@media (max-width: 760px) {
+  .sw-shot { border-left: 0; border-top: 1px solid var(--line); }
+  .contrib { flex-wrap: wrap; }
+  .contrib::before { flex-basis: 100%; height: 4px; }
+  .contrib-art {
+    flex: 1 0 100%;
+    justify-content: flex-start;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .contrib-art img { width: 150px; }
+}
+
+
 /* ---------- Elsewhere ----------
    Six places the work is published, each in the hue of whatever it
    carries: writing warm, code purple, builds blue. A tile is a link and
